@@ -1,0 +1,4 @@
+Leo -> Socket Cliente, Cliente, comandos cliente
+Kevin -> Servidor, Comandos de servidor
+Jose -> Mesa, DTO's, PockerBet
+Marcelo -> Jugador, Juego (Juegos), mano, carta, deck, comparable.
