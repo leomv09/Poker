@@ -126,13 +126,12 @@ public class ServerLog extends javax.swing.JFrame {
     * @param args the command line arguments
     */
     public static void main(String args[]) {
-                String comando = "String";
+                String comando = "Servidor.PEPE";
                 String argumentos = "";
-                Object comAEjecutar;
+                Class comAEjecutar;
         try {
-             comAEjecutar = Class.forName(comando).newInstance();
-             System.out.println(comAEjecutar.getClass());
-        } catch (ClassNotFoundException |InstantiationException | IllegalAccessException ex) {
+             comAEjecutar = Class.forName(comando);
+        } catch (Exception ex) {
             Logger.getLogger(ServerLog.class.getName()).log(Level.SEVERE, null, ex);
         }
                 

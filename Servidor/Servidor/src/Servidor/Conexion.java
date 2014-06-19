@@ -99,8 +99,7 @@ public class Conexion extends Thread{
             while(corriendo){
                 String comando = entrada.readUTF();
                 ArrayList<Object> argumentos = (ArrayList<Object>) entrada.readObject();
-                Comando comAEjecutar;
-                comAEjecutar = (Comando)(Object)Class.forName(comando);
+                Comando comAEjecutar = (Comando)Class.forName(comando).newInstance();
                 salida.writeObject(comAEjecutar.ejecutar(argumentos));
             }
             
@@ -109,6 +108,10 @@ public class Conexion extends Thread{
         {
             serv.post(e.getMessage());
         } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
             Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
