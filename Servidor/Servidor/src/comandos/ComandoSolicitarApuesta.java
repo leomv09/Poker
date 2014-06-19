@@ -13,11 +13,10 @@ public class ComandoSolicitarApuesta extends Comando{
     public static final String COMANDO = "solicitarAouesta";//Comando de la clase
     
     
-
-    @Override
-   public void ejecutar(Object dto)
+@Override
+   public Object ejecutar(Object dto)
    {
-       
+       return null;
        
    }
 }

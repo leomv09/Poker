@@ -13,10 +13,10 @@ public class ComandoSolicitarCambioCarta extends Comando{
     public static final String COMANDO = "solicitarCarta";//Comando de la clase
     
     
-
-   public void ejecutar(Object dto)
+@Override
+   public Object ejecutar(Object dto)
    {
-       
+       return null;
        
    }
     

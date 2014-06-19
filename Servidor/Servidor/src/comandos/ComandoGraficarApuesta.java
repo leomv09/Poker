@@ -14,10 +14,10 @@ public class ComandoGraficarApuesta extends Comando{
     
     
 
-    @Override
-   public void ejecutar(Object dto)
+@Override
+   public Object ejecutar(Object dto)
    {
-       
+       return null;
        
    }
 }

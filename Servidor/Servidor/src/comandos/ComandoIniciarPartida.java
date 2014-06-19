@@ -14,9 +14,9 @@ public class ComandoIniciarPartida extends Comando{
     
     
     @Override
-   public void ejecutar(Object dto)
+   public Object ejecutar(Object dto)
    {
-       
+       return null;
        
    }
 }

@@ -7,9 +7,12 @@
 
 package Servidor;
 
+import comandos.*;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Ventana del servidor donde se va a ir mostrando la 
@@ -123,9 +126,19 @@ public class ServerLog extends javax.swing.JFrame {
     * @param args the command line arguments
     */
     public static void main(String args[]) {
-        ServerLog ventana = new ServerLog();
-        ventana.setVisible(true);
-        ventana.post(".::Servidor Iniciado::.");
+                String comando = "String";
+                String argumentos = "";
+                Object comAEjecutar;
+        try {
+             comAEjecutar = Class.forName(comando).newInstance();
+             System.out.println(comAEjecutar.getClass());
+        } catch (ClassNotFoundException |InstantiationException | IllegalAccessException ex) {
+            Logger.getLogger(ServerLog.class.getName()).log(Level.SEVERE, null, ex);
+        }
+                
+//        ServerLog ventana = new ServerLog();
+//        ventana.setVisible(true);
+//        ventana.post(".::Servidor Iniciado::.");
     }
     
     /**

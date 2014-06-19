@@ -13,14 +13,10 @@ public class ComandoUnirseMesa extends Comando{
     public static final String COMANDO = "unirseMesa";//Comando de la clase.
     
     
-    /**
-     *
-     * @param dto Objeto DTO a ejecutar.
-     */
     @Override
-   public void ejecutar(Object dto)
+   public Object ejecutar(Object dto)
    {
-       
+       return null;
        
    }
     
