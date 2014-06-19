@@ -9,5 +9,7 @@
 package poker;
 
 public class Carta {
+    int Palo;
+    char Valor;
     
 }
