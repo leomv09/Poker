@@ -11,6 +11,8 @@ package poker;
 import java.util.List;
 
 public class Jugador {
+    String Id;
+    int dinero;
 
     public String getId()
     {

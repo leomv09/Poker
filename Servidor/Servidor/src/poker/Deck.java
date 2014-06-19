@@ -8,10 +8,7 @@
 
 package poker;
 
-/**
- *
- * @author Marcelo
- */
+
 public interface Deck {
     
 }

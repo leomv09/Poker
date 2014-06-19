@@ -8,8 +8,13 @@
 
 package poker;
 
-public class Carta {
+public abstract class Carta implements Comparable<Carta>{
     int Palo;
     char Valor;
+    
+    public int compareTo(Carta c)
+    {
+        return this.Valor-c.Valor;
+    }
     
 }
