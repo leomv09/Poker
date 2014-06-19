@@ -10,6 +10,7 @@ package Servidor;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.ArrayList;
 import poker.BetStatusDTO;
 import poker.CartasDTO;
 
@@ -30,6 +31,10 @@ public class Servidor extends Thread{
      * ocurridos en el servidor
      */
     private static ServerLog ventana;
+    /**
+     * Conexiones existentes.
+     */
+    private static ArrayList<Conexion> conexiones;
     
     //Constructores
     /**
@@ -67,6 +72,13 @@ public class Servidor extends Thread{
      */
     public final void post(String msg){
         ventana.post(msg);
+    }
+    
+    /**
+     * Envia un objeto al cliente
+     */
+    private void enviarDatos(){
+        
     }
     
     /**
@@ -108,6 +120,7 @@ public class Servidor extends Thread{
                 //crea un hilo para cada conexion con los clientes
                 // y server
                 Conexion user = new Conexion(sock1,this);
+                conexiones.add(user);
                 user.start();
 
             }
@@ -121,6 +134,7 @@ public class Servidor extends Thread{
         
     }
 
+    
     public void solicitarCambios(String id)
     {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
