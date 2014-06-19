@@ -55,7 +55,7 @@ public class SocketCliente extends Thread{
      */
     private Map<String, Comando> inicializarComandos()
     {
-        Map<String, Comando> res = new HashMap<>();
+        Map<String, Comando> res = new HashMap<>(String, Comando);
 	res.put(ComandoApostar.COMANDO, new ComandoApostar());
         res.put(ComandoCambiarCarta.COMANDO, new ComandoCambiarCarta());
         res.put(ComandoCrearMesa.COMANDO, new ComandoCrearMesa());
@@ -100,7 +100,6 @@ public class SocketCliente extends Thread{
             
                 //Avisar sobre el objeto que ingresó.
             }
-            cerrarConexion();
         }catch ( ClassNotFoundException | IOException ex) {
             Logger.getLogger(SocketCliente.class.getName()).log(Level.SEVERE, null, ex);
         }
