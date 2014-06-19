@@ -5,12 +5,10 @@
 package cliente;
 
 import comandos.Comando;
-import comandos.ComandoApostar;
-import comandos.ComandoCambiarCarta;
-import comandos.ComandoCrearMesa;
-import comandos.ComandoIniciarPartida;
-import comandos.ComandoObtenerMesas;
-import comandos.ComandoUnirseMesa;
+import comandos.ComandoSolicitarApuesta;
+import comandos.ComandoSolicitarCambioCarta;
+import comandos.ComandoGraficarCarta;
+import comandos.ComandoGraficarApuesta;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -55,13 +53,11 @@ public class SocketCliente extends Thread{
      */
     private Map<String, Comando> inicializarComandos()
     {
-        Map<String, Comando> res = new HashMap<>(String, Comando);
-	res.put(ComandoApostar.COMANDO, new ComandoApostar());
-        res.put(ComandoCambiarCarta.COMANDO, new ComandoCambiarCarta());
-        res.put(ComandoCrearMesa.COMANDO, new ComandoCrearMesa());
-        res.put(ComandoUnirseMesa.COMANDO, new ComandoUnirseMesa());
-        res.put(ComandoIniciarPartida.COMANDO, new ComandoIniciarPartida());
-        res.put(ComandoObtenerMesas.COMANDO, new ComandoObtenerMesas());
+        Map<String, Comando> res = new HashMap<>();
+	res.put(ComandoSolicitarApuesta.COMANDO, new ComandoSolicitarApuesta());
+        res.put(ComandoSolicitarCambioCarta.COMANDO, new ComandoSolicitarCambioCarta());
+        res.put(ComandoGraficarCarta.COMANDO, new ComandoGraficarCarta());
+        res.put(ComandoGraficarApuesta.COMANDO, new ComandoGraficarApuesta());
         return res;
     }
     
