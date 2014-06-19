@@ -8,9 +8,12 @@
 
 package poker;
 
+import com.google.gson.Gson;
 import java.util.List;
 
 public class BetStatusDTO {
+    
+    public static Gson gson = new Gson();
 
     private List<Jugador> jugadores;
     private int[][] apuestas;
@@ -29,6 +32,16 @@ public class BetStatusDTO {
     public int[][]getApuestas()
     {
         return apuestas;
+    }
+    
+    public static BetStatusDTO deserialize(String text)
+    {
+        return BetStatusDTO.gson.fromJson(text, BetStatusDTO.class);
+    }
+    
+    public String serialize()
+    {
+        return BetStatusDTO.gson.toJson(this);
     }
     
 }

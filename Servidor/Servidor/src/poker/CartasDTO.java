@@ -8,10 +8,13 @@
 
 package poker;
 
+import com.google.gson.Gson;
 import java.util.List;
 
 public class CartasDTO {
 
+    public static Gson gson = new Gson();
+    
     private List<Carta> cartasMesa;
     private List<Carta> cartasJugador;
 
@@ -29,6 +32,16 @@ public class CartasDTO {
     public List<Carta> getCartasJugador()
     {
         return cartasJugador;
+    }
+    
+    public static CartasDTO deserialize(String text)
+    {
+        return CartasDTO.gson.fromJson(text, CartasDTO.class);
+    }
+    
+    public String serialize()
+    {
+        return CartasDTO.gson.toJson(this);
     }
     
 }
