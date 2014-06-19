@@ -10,6 +10,8 @@ package Servidor;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
+import poker.BetStatusDTO;
+import poker.CartasDTO;
 
 /**
  * Servidor, Se encarga de recibir las conexiones entrantes
@@ -117,5 +119,25 @@ public class Servidor extends Thread{
         
         
         
+    }
+
+    public void solicitarCambios(String id)
+    {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public void solicitarApuestas(String id)
+    {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public void notificarCartas(String id, CartasDTO status)
+    {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public void notificarEstadoApuesta(String id, BetStatusDTO status)
+    {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
