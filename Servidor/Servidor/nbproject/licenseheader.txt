@@ -1,0 +1,11 @@
+<#if licenseFirst??>
+${licenseFirst}
+</#if>
+/*
+ * Instituto Tecnológico de Costa Rica
+ * Escuela de Ingeniería en Computación
+ * Lenguajes de Programación
+ * Casa de Apuestas de Eddy
+<#if licenseLast??>
+${licenseLast}
+</#if>
