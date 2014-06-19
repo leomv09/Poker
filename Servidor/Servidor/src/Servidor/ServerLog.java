@@ -126,18 +126,9 @@ public class ServerLog extends javax.swing.JFrame {
     * @param args the command line arguments
     */
     public static void main(String args[]) {
-                String comando = "Servidor.PEPE";
-                String argumentos = "";
-                Class comAEjecutar;
-        try {
-             comAEjecutar = Class.forName(comando);
-        } catch (Exception ex) {
-            Logger.getLogger(ServerLog.class.getName()).log(Level.SEVERE, null, ex);
-        }
-                
-//        ServerLog ventana = new ServerLog();
-//        ventana.setVisible(true);
-//        ventana.post(".::Servidor Iniciado::.");
+        ServerLog ventana = new ServerLog();
+        ventana.setVisible(true);
+        ventana.post(".::Servidor Iniciado::.");
     }
     
     /**
