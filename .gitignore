@@ -1,3 +1,4 @@
-/Servidor/JavaApplication1/nbproject/private/
-/Servidor/Servidor/nbproject/private/
-/Servidor/Servidor/build/
+private/
+build/
+*~
+*.autosave
