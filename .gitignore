@@ -1,5 +1,6 @@
 private/
 build/
+dist/
 *~
 *.autosave
 /Servidor/Servidor/dist/
