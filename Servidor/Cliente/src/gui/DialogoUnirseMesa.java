@@ -1,18 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package gui;
 
 import java.util.List;
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 
-/**
- *
- * @author jose
- */
 public class DialogoUnirseMesa extends javax.swing.JDialog {
     
     public static int ACEPTADO = 0;
@@ -20,9 +11,6 @@ public class DialogoUnirseMesa extends javax.swing.JDialog {
     
     public int estado;
     
-    /**
-     * Creates new form DialogoUnirseMesa
-     */
     public DialogoUnirseMesa(java.awt.Frame parent, boolean modal)
     {
         super(parent, modal);
@@ -38,11 +26,21 @@ public class DialogoUnirseMesa extends javax.swing.JDialog {
             model.addElement(mesa);
         }
         this.listaMesas.setModel(model);
+        this.listaMesas.setSelectedIndex(0);
+    }
+    
+    private String validarDatos()
+    {
+        if (this.obtenerMesaSeleccionada() == null)
+        {
+            return "Seleccione una mesa.";
+        }
+        return null;
     }
     
     public String obtenerMesaSeleccionada()
     {
-        return this.listaMesas.getSelectedValue().toString();
+        return (String) this.listaMesas.getSelectedValue();
     }
     
     public int getEstado()
@@ -89,27 +87,22 @@ public class DialogoUnirseMesa extends javax.swing.JDialog {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 352, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(botonCancelar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(botonAceptar)))
-                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(173, Short.MAX_VALUE)
+                .addComponent(botonCancelar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(botonAceptar)
+                .addGap(6, 6, 6))
+            .addComponent(jScrollPane1)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 242, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(botonAceptar)
-                    .addComponent(botonCancelar))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(botonCancelar)
+                    .addComponent(botonAceptar)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -139,8 +132,16 @@ public class DialogoUnirseMesa extends javax.swing.JDialog {
     }//GEN-LAST:event_botonCancelarActionPerformed
 
     private void botonAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAceptarActionPerformed
-        this.estado = DialogoUnirseMesa.ACEPTADO;
-        this.dispose();
+        String error = this.validarDatos();
+        if (error == null)
+        {
+            this.estado = DialogoUnirseMesa.ACEPTADO;
+            this.dispose();
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(this, error, "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_botonAceptarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -1,15 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package gui;
 
-/**
- *
- * @author jose
- */
+import javax.swing.JOptionPane;
+
 public class DialogoCrearMesa extends javax.swing.JDialog {
 
     public static int ACEPTADO = 0;
@@ -17,14 +9,20 @@ public class DialogoCrearMesa extends javax.swing.JDialog {
     
     public int estado;
     
-    /**
-     * Creates new form DialogoCrearMesa
-     */
     public DialogoCrearMesa(java.awt.Frame parent, boolean modal)
     {
         super(parent, modal);
         initComponents();
         this.estado = DialogoCrearMesa.CANCELADO;
+    }
+    
+    private String validarDatos()
+    {
+        if (this.nombreMesa.getText().isEmpty())
+        {
+            return "Ingrese un nombre para la mesa.";
+        }
+        return null;
     }
     
     public int getEstado()
@@ -55,11 +53,13 @@ public class DialogoCrearMesa extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
+        jLabel1.setLabelFor(nombreMesa);
         jLabel1.setText("Nombre");
 
+        jLabel2.setLabelFor(cantidadJugadores);
         jLabel2.setText("Cantidad Máxima de Jugadores");
 
-        cantidadJugadores.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(3), null, null, Integer.valueOf(1)));
+        cantidadJugadores.setModel(new javax.swing.SpinnerNumberModel(3, 2, 5, 1));
 
         jLabel3.setText("Tipo de Juego");
 
@@ -92,29 +92,26 @@ public class DialogoCrearMesa extends javax.swing.JDialog {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(171, Short.MAX_VALUE)
+                .addComponent(botonCancelar)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(botonAceptar)
+                    .addComponent(omahaButton))
+                .addGap(26, 26, 26))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
+                    .addComponent(nombreMesa, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2)
+                    .addComponent(cantidadJugadores, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(nombreMesa, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2)
-                            .addComponent(cantidadJugadores, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3))
-                        .addContainerGap(20, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(botonCancelar)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(holdemButton)
-                                .addGap(18, 18, 18)
-                                .addComponent(fiveCardsButton)
-                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addComponent(holdemButton)
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(botonAceptar)
-                            .addComponent(omahaButton))
-                        .addGap(26, 26, 26))))
+                        .addComponent(fiveCardsButton))
+                    .addComponent(jLabel3))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -123,18 +120,18 @@ public class DialogoCrearMesa extends javax.swing.JDialog {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(nombreMesa, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(cantidadJugadores, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(omahaButton)
                     .addComponent(fiveCardsButton)
-                    .addComponent(holdemButton))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
+                    .addComponent(holdemButton)
+                    .addComponent(omahaButton))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(botonAceptar)
                     .addComponent(botonCancelar))
@@ -151,8 +148,16 @@ public class DialogoCrearMesa extends javax.swing.JDialog {
     }//GEN-LAST:event_botonCancelarActionPerformed
 
     private void botonAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAceptarActionPerformed
-        this.estado = DialogoCrearMesa.ACEPTADO;
-        this.dispose();
+        String error = this.validarDatos();
+        if (error == null)
+        {
+            this.estado = DialogoCrearMesa.ACEPTADO;
+            this.dispose();
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(this, error, "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_botonAceptarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

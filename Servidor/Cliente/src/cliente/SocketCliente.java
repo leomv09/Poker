@@ -56,7 +56,7 @@ public class SocketCliente extends Thread{
         Map<String, Comando> res = new HashMap<>();
 	res.put(ComandoSolicitarApuesta.COMANDO, new ComandoSolicitarApuesta());
         res.put(ComandoSolicitarCambioCarta.COMANDO, new ComandoSolicitarCambioCarta());
-        res.put(ComandoGraficarCartas.COMANDO, new ComandoGraficarCartas());
+        res.put(ComandoGraficarCartas.COMANDO, new ComandoGraficarCartas(null));
         res.put(ComandoGraficarApuestas.COMANDO, new ComandoGraficarApuestas());
         return res;
     }

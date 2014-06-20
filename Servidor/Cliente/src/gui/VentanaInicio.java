@@ -1,14 +1,23 @@
 package gui;
 
+import javax.swing.JOptionPane;
+
 public class VentanaInicio extends javax.swing.JFrame {
 
-    /**
-     * Creates new form VentanaInicio
-     */
-    public VentanaInicio() {
+    public VentanaInicio()
+    {
         initComponents();
     }
 
+    private String validarDatos()
+    {
+        if (this.textoIdUsuario.getText().isEmpty())
+        {
+            return "Ingrese un ID de Usuario";
+        }
+        return null;
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -18,12 +27,16 @@ public class VentanaInicio extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jRadioButton1 = new javax.swing.JRadioButton();
         jPanel1 = new javax.swing.JPanel();
         botonCrearMesa = new javax.swing.JButton();
         botonUnirseMesa = new javax.swing.JButton();
         textoIdUsuario = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+
+        jRadioButton1.setText("jRadioButton1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -48,36 +61,40 @@ public class VentanaInicio extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jLabel2.setText("POKER");
 
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/icons/poker.png"))); // NOI18N
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(textoIdUsuario)
+            .addComponent(botonCrearMesa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(botonUnirseMesa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(82, 82, 82)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(botonUnirseMesa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(botonCrearMesa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(textoIdUsuario)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(39, 39, 39)
-                                .addComponent(jLabel1))))
+                        .addGap(91, 91, 91)
+                        .addComponent(jLabel4))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(133, 133, 133)
-                        .addComponent(jLabel2)))
-                .addContainerGap(86, Short.MAX_VALUE))
+                        .addGap(122, 122, 122)
+                        .addComponent(jLabel2))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(122, 122, 122)
+                        .addComponent(jLabel1)))
+                .addContainerGap(110, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
+                .addGap(1, 1, 1)
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(textoIdUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
+                .addGap(18, 18, 18)
                 .addComponent(botonCrearMesa)
                 .addGap(18, 18, 18)
                 .addComponent(botonUnirseMesa)
@@ -106,29 +123,45 @@ public class VentanaInicio extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonCrearMesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCrearMesaActionPerformed
-        DialogoCrearMesa dialog = new DialogoCrearMesa(this, true);
-        dialog.setVisible(true);
-        
-        if (dialog.getEstado() == DialogoCrearMesa.ACEPTADO)
+        String error = this.validarDatos();
+        if (error == null)
         {
-            
+            DialogoCrearMesa dialog = new DialogoCrearMesa(this, true);
+            dialog.setVisible(true);
+
+            if (dialog.getEstado() == DialogoCrearMesa.ACEPTADO)
+            {
+                this.setVisible(false);
+                this.dispose();
+                new VentanaEspera(true).setVisible(true);
+            }
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(this, error, "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_botonCrearMesaActionPerformed
 
     private void botonUnirseMesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonUnirseMesaActionPerformed
-        DialogoUnirseMesa dialog = new DialogoUnirseMesa(this, true);
-        dialog.graficarMesas(null);
-        dialog.setVisible(true);
-        
-        if (dialog.getEstado() == DialogoUnirseMesa.ACEPTADO)
+        String error = this.validarDatos();
+        if (error == null)
         {
-            
+            DialogoUnirseMesa dialog = new DialogoUnirseMesa(this, true);
+            dialog.setVisible(true);
+
+            if (dialog.getEstado() == DialogoUnirseMesa.ACEPTADO)
+            {
+                this.setVisible(false);
+                this.dispose();
+                new VentanaEspera(false).setVisible(true);
+            }
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(this, error, "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_botonUnirseMesaActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -153,10 +186,10 @@ public class VentanaInicio extends javax.swing.JFrame {
         }
         //</editor-fold>
 
-        /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
-            public void run() {
+            public void run()
+            {
                 new VentanaInicio().setVisible(true);
             }
         });
@@ -167,7 +200,9 @@ public class VentanaInicio extends javax.swing.JFrame {
     private javax.swing.JButton botonUnirseMesa;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JTextField textoIdUsuario;
     // End of variables declaration//GEN-END:variables
 }
