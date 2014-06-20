@@ -4,8 +4,6 @@
  */
 package comandos;
 
-import comandos.Comando;
-
 /**
  *
  * @author Leo
