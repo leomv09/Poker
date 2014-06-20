@@ -7,8 +7,8 @@ package cliente;
 import comandos.Comando;
 import comandos.ComandoSolicitarApuesta;
 import comandos.ComandoSolicitarCambioCarta;
-import comandos.ComandoGraficarCarta;
-import comandos.ComandoGraficarApuesta;
+import comandos.ComandoGraficarCartas;
+import comandos.ComandoGraficarApuestas;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -56,8 +56,8 @@ public class SocketCliente extends Thread{
         Map<String, Comando> res = new HashMap<>();
 	res.put(ComandoSolicitarApuesta.COMANDO, new ComandoSolicitarApuesta());
         res.put(ComandoSolicitarCambioCarta.COMANDO, new ComandoSolicitarCambioCarta());
-        res.put(ComandoGraficarCarta.COMANDO, new ComandoGraficarCarta());
-        res.put(ComandoGraficarApuesta.COMANDO, new ComandoGraficarApuesta());
+        res.put(ComandoGraficarCartas.COMANDO, new ComandoGraficarCartas());
+        res.put(ComandoGraficarApuestas.COMANDO, new ComandoGraficarApuestas());
         return res;
     }
     
