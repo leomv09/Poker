@@ -11,8 +11,7 @@ package comandos;
 public class ComandoCambiarCarta extends Comando{
     
     public static final String COMANDO = "cambiarCarta";//Comando de la clase.
-    
-    @Override
+
    public Object ejecutar(Object dto)
    {
        return null;

@@ -4,6 +4,8 @@
  */
 package comandos;
 
+import comandos.Comando;
+
 /**
  *
  * @author Leo
@@ -13,10 +15,10 @@ public class ComandoSolicitarApuesta extends Comando{
     public static final String COMANDO = "solicitarAouesta";//Comando de la clase
     
     
-@Override
-   public Object ejecutar(Object dto)
-   {
-       return null;
-       
-   }
+    @Override
+   public void ejecutar(String[] args)
+    {
+        
+    }
+
 }

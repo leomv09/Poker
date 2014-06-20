@@ -21,4 +21,10 @@ public class Cliente {
         this.idMesa = "-1";
         this.socketCliente = new SocketCliente();
     }
+    
+    private void solicitarMesas()
+    {
+        String[] args = {""};
+        this.socketCliente.enviarDato("obtenerMesas", args);
+    }
 }

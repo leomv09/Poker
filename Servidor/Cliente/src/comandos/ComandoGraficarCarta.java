@@ -4,6 +4,8 @@
  */
 package comandos;
 
+import comandos.Comando;
+
 /**
  *
  * @author Leo
@@ -12,11 +14,10 @@ public class ComandoGraficarCarta extends Comando{
     
     public static final String COMANDO = "graficarCarta";//Comando de la clase
    
-@Override
-   public Object ejecutar(Object dto)
-   {
-       return null;
-       
-   }
+    @Override
+   public void ejecutar(String[] args)
+    {
+        
+    }
     
 }

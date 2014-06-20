@@ -9,10 +9,12 @@ package Servidor;
 
 import com.sun.imageio.plugins.jpeg.JPEG;
 import comandos.Comando;
-import comandos.ComandoGraficarApuesta;
-import comandos.ComandoGraficarCarta;
-import comandos.ComandoSolicitarApuesta;
-import comandos.ComandoSolicitarCambioCarta;
+import comandos.ComandoApostar;
+import comandos.ComandoCambiarCarta;
+import comandos.ComandoCrearMesa;
+import comandos.ComandoIniciarPartida;
+import comandos.ComandoObtenerMesas;
+import comandos.ComandoUnirseMesa;
 import java.io.BufferedReader;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -82,10 +84,12 @@ public class Conexion extends Thread{
     private Map<String, Comando> inicializarComandos()
     {
         Map<String, Comando> res = new HashMap<>();
-	res.put(ComandoSolicitarApuesta.COMANDO, new ComandoSolicitarApuesta());
-        res.put(ComandoSolicitarCambioCarta.COMANDO, new ComandoSolicitarCambioCarta());
-        res.put(ComandoGraficarCarta.COMANDO, new ComandoGraficarCarta());
-        res.put(ComandoGraficarApuesta.COMANDO, new ComandoGraficarApuesta());
+	res.put(ComandoApostar.COMANDO, new ComandoApostar());
+        res.put(ComandoCambiarCarta.COMANDO, new ComandoCambiarCarta());
+        res.put(ComandoCrearMesa.COMANDO, new ComandoCrearMesa());
+        res.put(ComandoIniciarPartida.COMANDO, new ComandoIniciarPartida());
+        res.put(ComandoObtenerMesas.COMANDO, new ComandoObtenerMesas());
+        res.put(ComandoUnirseMesa.COMANDO, new ComandoUnirseMesa());
         return res;
     }
     

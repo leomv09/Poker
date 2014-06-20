@@ -13,7 +13,7 @@ public class ComandoIniciarPartida extends Comando{
     public static final String COMANDO = "iniciarPartida";//Comando de la clase
     
     
-    @Override
+
    public Object ejecutar(Object dto)
    {
        return null;
