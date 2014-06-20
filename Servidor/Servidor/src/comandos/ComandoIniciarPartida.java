@@ -14,7 +14,7 @@ public class ComandoIniciarPartida extends Comando{
     
     
     @Override
-   public void ejecutar(Object dto)
+   public void ejecutar(String[] args)
    {
        
        

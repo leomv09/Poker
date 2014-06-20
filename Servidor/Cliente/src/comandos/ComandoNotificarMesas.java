@@ -4,19 +4,17 @@
  */
 package comandos;
 
+import comandos.Comando;
+
 /**
  *
  * @author Leo
  */
-public class ComandoUnirseMesa extends Comando{
+public class ComandoNotificarMesas extends Comando{
     
-    public static final String COMANDO = "unirseMesa";//Comando de la clase.
+    public static final String COMANDO = "notificarMesas";//Comando de la clase
     
     
-    /**
-     *
-     * @param dto Objeto DTO a ejecutar.
-     */
     @Override
    public void ejecutar(String[] args)
    {

@@ -4,6 +4,8 @@
  */
 package comandos;
 
+import comandos.Comando;
+
 /**
  *
  * @author Leo
@@ -15,7 +17,7 @@ public class ComandoGraficarApuesta extends Comando{
     
 
     @Override
-   public void ejecutar(Object dto)
+   public void ejecutar(String[] args)
    {
        
        

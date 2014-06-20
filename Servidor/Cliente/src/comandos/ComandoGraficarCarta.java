@@ -4,6 +4,8 @@
  */
 package comandos;
 
+import comandos.Comando;
+
 /**
  *
  * @author Leo
@@ -14,7 +16,7 @@ public class ComandoGraficarCarta extends Comando{
    
 
     @Override
-   public void ejecutar(Object dto)
+   public void ejecutar(String[] args)
    {
        
        

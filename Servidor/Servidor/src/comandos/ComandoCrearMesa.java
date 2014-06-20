@@ -14,7 +14,7 @@ public class ComandoCrearMesa extends Comando{
     
     
     @Override
-   public void ejecutar(Object dto)
+   public void ejecutar(String[] args)
    {
        
        

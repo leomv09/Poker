@@ -63,18 +63,48 @@ public class SocketCliente extends Thread{
     
     /*
      *Método que permite enviar un dato al servidor(DTO).
-     * Parametro: dato Objeto a enviar al servidor.
+     * Parametro: comando Comando para el servidor.
+     *            args Arreglo de argumentos.
      */
-    public void enviarDato(Object dato)
+    public void enviarDato(String comando, String[] args)
     {
         try {
-            this.out.writeObject(dato);
+            this.out.writeObject(args);
         } catch (IOException ex) {
             Logger.getLogger(SocketCliente.class.getName()).log(Level.SEVERE, null, ex);
         }
               
     }
-    //Método que cierra la conexión con el servidor.
+    
+    /*
+     *Método que se encarga de llamar al comando con los datos brindados por el servidor,
+     * Parametros: nombre Nombre del comando.
+     *             dto DTO a procesar.
+     */
+    private void ejecutarComando(String nombre, String[] args)
+    {
+        Comando comando = this.comandos.get(nombre);
+        if(comando != null)
+        {
+            comando.ejecutar(args);
+        }
+    }
+    
+    /*
+     *Método que elimina el primer elemento de un arreglo.
+     * Parametros: array Arreglo a eliminar el elementos.
+     *             elem  Elemento a eliminar.
+     */
+    private String[] removeFirst(String[] array, String elem)
+    {
+        String[] res =(String[]) new String[array.length - 1];
+        System.arraycopy(array, 1, res, 0, array.length - 1);
+        return res;
+    }
+    
+    /*
+     * Método que cierra la conexión con el servidor.
+     */
     public void cerrarConexion()
     {
         try {
@@ -86,15 +116,22 @@ public class SocketCliente extends Thread{
         }
     }
     
+    /*
+     *Método que escucha al servidor.
+     */
     @Override
     public void run()
     {
         Object input;//Objeto que se recibe del servidor.
         try {
+            String[] datos;//Arreglo de datos recibidos.
             while((input = in.readObject()) != null)
             {
-            
-                //Avisar sobre el objeto que ingresó.
+                datos = (String[])input;
+                if(datos[0] != null)
+                {
+                    ejecutarComando(datos[0], removeFirst(datos, datos[0]));
+                }
             }
         }catch ( ClassNotFoundException | IOException ex) {
             Logger.getLogger(SocketCliente.class.getName()).log(Level.SEVERE, null, ex);
