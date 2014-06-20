@@ -14,6 +14,7 @@ import java.util.Iterator;
 import java.util.List;
 
 public class Deck {
+      int posicion=0;
       ArrayList<Carta> baraja=null;
       String num="10";
       char[] valores={'1','2','3','4','5','6','7','8','9','D','J','Q','K','A'};
@@ -50,7 +51,7 @@ public class Deck {
       
       protected class IteradorDeck implements Iterator<Carta>
       {
-         int posicion=0;
+        
          @Override
          public boolean hasNext()
          {
