@@ -6,14 +6,13 @@ package comandos;
 
 /**
  *
- * Permite ejecutar funcionalidades mediante comandos.
+ * @author Leo
  */
 public abstract class Comando {
-    
     
     /*
      *Método que se encarga de ejecutar la acción dependiendo del comando.
      */
-    public abstract Object ejecutar(Object dto);
+    public abstract void ejecutar(String[] args);
     
 }

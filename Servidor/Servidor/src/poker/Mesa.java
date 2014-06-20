@@ -8,7 +8,7 @@
 
 package poker;
 
-import Servidor.Servidor;
+import servidor.Servidor;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.UUID;

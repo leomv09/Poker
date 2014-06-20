@@ -12,9 +12,8 @@ public class ComandoObtenerMesas extends Comando{
     
     public static final String COMANDO = "obtenerMesas";//Comando de la clase.
     
-    @Override
-   public Object ejecutar(Object dto)
+   public void ejecutar(String[] args)
    {
-       return null;
+       
    }
 }

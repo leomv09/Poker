@@ -5,7 +5,7 @@
  * Casa de Apuestas de Eddy
  */
 
-package Servidor;
+package servidor;
 
 import com.sun.imageio.plugins.jpeg.JPEG;
 import comandos.Comando;
@@ -104,7 +104,7 @@ public class Conexion extends Thread{
                 String comando = entrada.readUTF();
                 ArrayList<Object> argumentos = (ArrayList<Object>) entrada.readObject();
                 Comando comAEjecutar = (Comando)Class.forName(comando).newInstance();
-                salida.writeObject(comAEjecutar.ejecutar(argumentos));
+                //salida.writeObject(comAEjecutar.ejecutar(argumentos));
             }
             
         }

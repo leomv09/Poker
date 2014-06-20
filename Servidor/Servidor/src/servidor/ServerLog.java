@@ -5,7 +5,7 @@
  * Casa de Apuestas de Eddy
  */
 
-package Servidor;
+package servidor;
 
 import comandos.*;
 import java.awt.Color;
@@ -116,8 +116,6 @@ public class ServerLog extends javax.swing.JFrame {
                     .addComponent(jScrollPane1))
                 .addContainerGap())
         );
-
-        jLabel1.getAccessibleContext().setAccessibleName("Mesas activas");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

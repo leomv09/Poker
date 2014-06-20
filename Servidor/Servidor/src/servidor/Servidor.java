@@ -5,7 +5,7 @@
  * Casa de Apuestas de Eddy
  */
 
-package Servidor;
+package servidor;
 
 import java.io.IOException;
 import java.net.ServerSocket;
