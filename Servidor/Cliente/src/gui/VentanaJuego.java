@@ -1,14 +1,33 @@
 package gui;
 
+import javax.swing.JLabel;
+
 public class VentanaJuego extends javax.swing.JFrame {
 
-    /**
-     * Creates new form VentanaJuego
-     */
-    public VentanaJuego() {
+    public VentanaJuego()
+    {
         initComponents();
+        
+        for (JLabel label : this.getCartasMesa())
+        {
+            label.setVisible(false);
+        }
+        for (JLabel label : this.getCartasJugador())
+        {
+            label.setVisible(false);
+        }
+    }
+    
+    public final JLabel[] getCartasMesa()
+    {
+        return new JLabel[] { this.cartaMesa1, this.cartaMesa2, this.cartaMesa3, this.cartaMesa4, this.cartaMesa5 };
     }
 
+    public final JLabel[] getCartasJugador()
+    {
+        return new JLabel[] { this.cartaJugador1, this.cartaJugador2, this.cartaJugador3, this.cartaJugador4, this.cartaJugador5 };
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -18,27 +37,42 @@ public class VentanaJuego extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        botonIgualar = new javax.swing.JButton();
+        botonRetirarse = new javax.swing.JButton();
+        botonPasar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
+        labelFichas = new javax.swing.JLabel();
+        panelApuestas = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        panelCartasMesa = new javax.swing.JPanel();
+        cartaMesa1 = new javax.swing.JLabel();
+        cartaMesa2 = new javax.swing.JLabel();
+        cartaMesa3 = new javax.swing.JLabel();
+        cartaMesa4 = new javax.swing.JLabel();
+        cartaMesa5 = new javax.swing.JLabel();
+        panelCartasJugador = new javax.swing.JPanel();
+        cartaJugador1 = new javax.swing.JLabel();
+        cartaJugador2 = new javax.swing.JLabel();
+        cartaJugador3 = new javax.swing.JLabel();
+        cartaJugador4 = new javax.swing.JLabel();
+        cartaJugador5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jButton1.setText("Igualar");
+        botonIgualar.setText("Igualar");
+        botonIgualar.setEnabled(false);
 
-        jButton2.setText("Retirarse");
+        botonRetirarse.setText("Retirarse");
+        botonRetirarse.setEnabled(false);
 
-        jButton3.setText("Pasar");
+        botonPasar.setText("Pasar");
+        botonPasar.setEnabled(false);
 
         jLabel1.setText("Fichas");
 
-        jLabel2.setText("50");
+        labelFichas.setText("50");
 
         jLabel3.setText("Apuestas");
 
@@ -46,24 +80,24 @@ public class VentanaJuego extends javax.swing.JFrame {
 
         jLabel5.setText("SidePot");
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout panelApuestasLayout = new javax.swing.GroupLayout(panelApuestas);
+        panelApuestas.setLayout(panelApuestasLayout);
+        panelApuestasLayout.setHorizontalGroup(
+            panelApuestasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelApuestasLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 226, Short.MAX_VALUE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(panelApuestasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(panelApuestasLayout.createSequentialGroup()
+                        .addGroup(panelApuestasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel4)
                             .addComponent(jLabel5))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        panelApuestasLayout.setVerticalGroup(
+            panelApuestasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelApuestasLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -73,56 +107,155 @@ public class VentanaJuego extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        cartaMesa1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/cards/B-2.png"))); // NOI18N
+
+        cartaMesa2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/cards/B-2.png"))); // NOI18N
+
+        cartaMesa3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/cards/B-2.png"))); // NOI18N
+
+        cartaMesa4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/cards/B-2.png"))); // NOI18N
+
+        cartaMesa5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/cards/B-2.png"))); // NOI18N
+
+        javax.swing.GroupLayout panelCartasMesaLayout = new javax.swing.GroupLayout(panelCartasMesa);
+        panelCartasMesa.setLayout(panelCartasMesaLayout);
+        panelCartasMesaLayout.setHorizontalGroup(
+            panelCartasMesaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelCartasMesaLayout.createSequentialGroup()
+                .addGap(105, 105, 105)
+                .addComponent(cartaMesa1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(cartaMesa2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(cartaMesa3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(cartaMesa4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(cartaMesa5)
+                .addContainerGap(140, Short.MAX_VALUE))
+        );
+        panelCartasMesaLayout.setVerticalGroup(
+            panelCartasMesaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelCartasMesaLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panelCartasMesaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(cartaMesa1)
+                    .addComponent(cartaMesa2)
+                    .addComponent(cartaMesa3)
+                    .addComponent(cartaMesa4)
+                    .addComponent(cartaMesa5))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        cartaJugador1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/cards/B-2.png"))); // NOI18N
+
+        cartaJugador2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/cards/B-2.png"))); // NOI18N
+
+        cartaJugador3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/cards/B-2.png"))); // NOI18N
+
+        cartaJugador4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/cards/B-2.png"))); // NOI18N
+
+        cartaJugador5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/cards/B-2.png"))); // NOI18N
+
+        javax.swing.GroupLayout panelCartasJugadorLayout = new javax.swing.GroupLayout(panelCartasJugador);
+        panelCartasJugador.setLayout(panelCartasJugadorLayout);
+        panelCartasJugadorLayout.setHorizontalGroup(
+            panelCartasJugadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelCartasJugadorLayout.createSequentialGroup()
+                .addGap(104, 104, 104)
+                .addComponent(cartaJugador1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(cartaJugador2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(cartaJugador3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(cartaJugador4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(cartaJugador5)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        panelCartasJugadorLayout.setVerticalGroup(
+            panelCartasJugadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelCartasJugadorLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panelCartasJugadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(cartaJugador1)
+                    .addComponent(cartaJugador2)
+                    .addComponent(cartaJugador3)
+                    .addComponent(cartaJugador4)
+                    .addComponent(cartaJugador5))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(panelApuestas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jButton3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(labelFichas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(botonPasar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(botonRetirarse, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(botonIgualar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(20, 20, 20))
+            .addComponent(panelCartasMesa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(panelCartasJugador, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(panelApuestas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton1)
+                        .addComponent(botonIgualar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton3)
+                        .addComponent(botonPasar)
                         .addGap(5, 5, 5)
-                        .addComponent(jButton2)
+                        .addComponent(botonRetirarse)
                         .addGap(20, 20, 20)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel1)
-                            .addComponent(jLabel2))))
-                .addContainerGap(167, Short.MAX_VALUE))
+                            .addComponent(labelFichas))))
+                .addGap(43, 43, 43)
+                .addComponent(panelCartasMesa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(47, 47, 47)
+                .addComponent(panelCartasJugador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton botonIgualar;
+    private javax.swing.JButton botonPasar;
+    private javax.swing.JButton botonRetirarse;
+    private javax.swing.JLabel cartaJugador1;
+    private javax.swing.JLabel cartaJugador2;
+    private javax.swing.JLabel cartaJugador3;
+    private javax.swing.JLabel cartaJugador4;
+    private javax.swing.JLabel cartaJugador5;
+    private javax.swing.JLabel cartaMesa1;
+    private javax.swing.JLabel cartaMesa2;
+    private javax.swing.JLabel cartaMesa3;
+    private javax.swing.JLabel cartaMesa4;
+    private javax.swing.JLabel cartaMesa5;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel labelFichas;
+    private javax.swing.JPanel panelApuestas;
+    private javax.swing.JPanel panelCartasJugador;
+    private javax.swing.JPanel panelCartasMesa;
     // End of variables declaration//GEN-END:variables
 }
