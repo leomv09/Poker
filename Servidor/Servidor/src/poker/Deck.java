@@ -9,6 +9,7 @@
 package poker;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
@@ -32,6 +33,10 @@ public class Deck {
             }
               
           }
+      }
+      public void shuffle()
+      {
+          Collections.shuffle(baraja);
       }
       public Iterator<Carta> iterador()
       {
