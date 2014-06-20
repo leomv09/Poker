@@ -8,17 +8,12 @@
 
 package poker;
 
-/**
- *
- * @author Marcelo
- */
-public class Juego {
-    int cartasMesa=0;
-    int cartasJugador=0;
-    
-    public void jugar()
+
+public class Holdem extends Juego {
+    public Holdem()
     {
-        
+        this.cartasJugador=2;
+        this.cartasMesa=5;
     }
     
 }

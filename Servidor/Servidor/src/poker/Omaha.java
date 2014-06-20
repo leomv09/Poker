@@ -8,17 +8,12 @@
 
 package poker;
 
-/**
- *
- * @author Marcelo
- */
-public class Juego {
-    int cartasMesa=0;
-    int cartasJugador=0;
-    
-    public void jugar()
+
+public class Omaha extends Juego{
+    public Omaha()
     {
-        
+        this.cartasJugador=4;
+        this.cartasMesa=5;
     }
     
 }
