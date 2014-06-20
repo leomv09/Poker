@@ -11,12 +11,10 @@ package comandos;
 public class ComandoCrearMesa extends Comando{
     
     public static final String COMANDO = "crearMesa";//Comando de la clase.
-    
-    
-    @Override
-   public void ejecutar(String[] args)
+
+   public Object ejecutar(Object dto)
    {
-       
+       return null;
        
    }
 }

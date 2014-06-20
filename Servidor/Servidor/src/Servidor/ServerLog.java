@@ -7,9 +7,12 @@
 
 package Servidor;
 
+import comandos.*;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Ventana del servidor donde se va a ir mostrando la 

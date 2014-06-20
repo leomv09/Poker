@@ -20,6 +20,5 @@ public class ComandoGraficarApuesta extends Comando{
    public void ejecutar(String[] args)
    {
        
-       
    }
 }

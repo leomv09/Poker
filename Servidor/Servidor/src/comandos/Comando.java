@@ -14,6 +14,6 @@ public abstract class Comando {
     /*
      *Método que se encarga de ejecutar la acción dependiendo del comando.
      */
-    public abstract void ejecutar(String[] args);
+    public abstract Object ejecutar(Object dto);
     
 }

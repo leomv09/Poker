@@ -14,12 +14,10 @@ public class ComandoGraficarCarta extends Comando{
     
     public static final String COMANDO = "graficarCarta";//Comando de la clase
    
-
     @Override
    public void ejecutar(String[] args)
-   {
-       
-       
-   }
+    {
+        
+    }
     
 }

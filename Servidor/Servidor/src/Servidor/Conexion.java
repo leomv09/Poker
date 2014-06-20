@@ -20,6 +20,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Vector;
@@ -97,13 +98,21 @@ public class Conexion extends Thread{
             //Espera comandos
             while(corriendo){
                 String comando = entrada.readUTF();
-                String argumentos = entrada.readUTF();
+                ArrayList<Object> argumentos = (ArrayList<Object>) entrada.readObject();
+                Comando comAEjecutar = (Comando)Class.forName(comando).newInstance();
+                salida.writeObject(comAEjecutar.ejecutar(argumentos));
             }
             
         }
         catch(IOException e)
         {
             serv.post(e.getMessage());
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     

@@ -12,11 +12,10 @@ public class ComandoApostar extends Comando{
     
     public static final String COMANDO = "apostar";//Comando de la clase.
     
-    
-    @Override
-   public void ejecutar(String[] args)
+
+   public Object ejecutar(Object dto)
    {
-       
+       return null;
        
    }
     
