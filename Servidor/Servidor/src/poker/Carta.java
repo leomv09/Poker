@@ -8,10 +8,15 @@
 
 package poker;
 
-public abstract class Carta implements Comparable<Carta>{
+public class Carta implements Comparable<Carta>{
     int Palo;
     char Valor;
-    
+    public Carta(int pPalo,char pValor)
+    {
+        this.Palo=pPalo;
+        this.Valor=pValor;
+    }
+    @Override
     public int compareTo(Carta c)
     {
         return this.Valor-c.Valor;
