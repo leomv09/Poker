@@ -4,6 +4,8 @@
  */
 package comandos;
 
+import cliente.Cliente;
+
 /**
  *
  * @author Leo
@@ -19,7 +21,7 @@ public class ComandoNotificarMesas extends Comando{
     @Override
    public void ejecutar(String[] args)
    {
-       
+   
        
    }
     

@@ -77,7 +77,7 @@ public class SocketCliente extends Thread{
     }
     
     /*
-     *Método que se encarga de llamar al comando con los datos brindados por el servidor,
+     *Método que se encarga de llamar al comando con los datos brindados por el servidor.
      * Parametros: nombre Nombre del comando.
      *             dto DTO a procesar.
      */
