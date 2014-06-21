@@ -13,9 +13,9 @@ public class ComandoApostar extends Comando{
     public static final String COMANDO = "apostar";//Comando de la clase.
     
 
-   public void ejecutar(Object args)
+   public Object ejecutar(Object args)
    {
-       
+       return null;
    }
     
 }

@@ -21,11 +21,12 @@ public class ComandoGraficarCartas extends Comando{
     }
     
     @Override
-    public void ejecutar(Object args)
+    public Object ejecutar(Object args)
     {
         CartasDTO dto = CartasDTO.deserialize(String.valueOf(args));
         graficarCartas(dto.getCartasMesa(), labelsCartasMesa);
         graficarCartas(dto.getCartasJugador(), labelsCartasJugador);
+        return null;
     }
     
     private void graficarCartas(List<Carta> cartas, JLabel[] labels)

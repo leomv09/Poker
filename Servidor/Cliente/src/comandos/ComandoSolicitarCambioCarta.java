@@ -27,9 +27,9 @@ public class ComandoSolicitarCambioCarta extends Comando{
     
    
     @Override
-   public void ejecutar(Object args)
+   public Object ejecutar(Object args)
    {
-       
+       return null;
    }
     
 }
