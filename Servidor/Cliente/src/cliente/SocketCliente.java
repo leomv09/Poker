@@ -6,9 +6,6 @@ package cliente;
 
 import comandos.Comando;
 import comandos.ComandoSolicitarApuesta;
-import comandos.ComandoSolicitarCambioCarta;
-import comandos.ComandoGraficarCartas;
-import comandos.ComandoGraficarApuestas;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -54,11 +51,18 @@ public class SocketCliente extends Thread{
     private Map<String, Comando> inicializarComandos()
     {
         Map<String, Comando> res = new HashMap<>();
-	res.put(ComandoSolicitarApuesta.COMANDO, new ComandoSolicitarApuesta());
-        res.put(ComandoSolicitarCambioCarta.COMANDO, new ComandoSolicitarCambioCarta());
-        res.put(ComandoGraficarCartas.COMANDO, new ComandoGraficarCartas(null));
-        res.put(ComandoGraficarApuestas.COMANDO, new ComandoGraficarApuestas(null));
         return res;
+    }
+    
+    
+    /**
+     * Método agrega un comando al mapa de comandos.
+     * @param nombre Nombre del comando.
+     * @param comando Objeto de tipo comando.
+     */
+    public void setComando(String nombre, Comando comando)
+    {
+        this.comandos.put(nombre, comando);
     }
     
     /*

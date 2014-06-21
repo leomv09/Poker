@@ -4,6 +4,8 @@
  */
 package cliente;
 
+import poker.Jugador;
+
 /**
  *
  * @author Leo
@@ -14,16 +16,39 @@ public class Cliente {
     private String[] mesas;
     private String idMesa;//id de la mesa en la que está jugando.
     private SocketCliente socketCliente;//Socket por el cuál se va a comunicar con el server.
+    private Jugador jugador;
     
-    /*
-     * Constructor
+
+    /**
+     * Constructor.
+     * @param idJugador El identificador del jugador (Nickname).
      */
-    public Cliente()
+    public Cliente(String idJugador)
     {
         this.idJugador = "-1";
         this.idMesa = "-1";
         this.mesas = new String[10];
         this.socketCliente = new SocketCliente();
+        this.jugador = new Jugador();//Hacer constructor que reciba el id del jugador.
+    }
+    
+    
+    /**
+     * Método que obtiene el jugador del cliente.
+     * @return El jugador del cliente.
+     */
+    public Jugador getJugador()
+    {
+        return this.jugador;
+    }
+    
+    /**
+     * Método que obtiene el socket por el cual se comunica el cliente con el servidor.
+     * @return El socket del cliente.
+     */
+    public SocketCliente getsocketCliente()
+    {
+        return this.socketCliente;
     }
     
     /*
@@ -100,6 +125,10 @@ public class Cliente {
         
     }
     
+    /**
+     * Método que le avisa al servidor sobre la apuesta a realizar.
+     * @param apuesta Cantidad de fichas a apostar.
+     */
     public void realizarApuesta(int apuesta)
     {
         String[] args = {idJugador, Integer.toString(apuesta)};

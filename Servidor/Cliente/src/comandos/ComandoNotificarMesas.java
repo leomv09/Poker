@@ -5,6 +5,7 @@
 package comandos;
 
 
+import cliente.Cliente;
 import java.util.List;
 
 /**
@@ -14,8 +15,17 @@ import java.util.List;
 public class ComandoNotificarMesas extends Comando{
     
     public static final String COMANDO = "notificarMesas";//Comando de la clase
+    private Cliente cliente;//Cliente al que se le notifican las mesas.
     
     
+    /**
+     *
+     * @param cliente El cliente al cual se le notifican las mesas.
+     */
+    public ComandoNotificarMesas(Cliente cliente)
+    {
+        this.cliente = cliente;
+    }
     
     
     /*
