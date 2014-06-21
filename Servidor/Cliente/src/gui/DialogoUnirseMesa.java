@@ -3,6 +3,7 @@ package gui;
 import java.util.List;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
+import poker.MesaDTO;
 
 public class DialogoUnirseMesa extends javax.swing.JDialog {
     
@@ -18,10 +19,10 @@ public class DialogoUnirseMesa extends javax.swing.JDialog {
         this.estado = DialogoUnirseMesa.CANCELADO;
     }
     
-    public void graficarMesas(List<String> mesas)
+    public void establecerMesas(List<MesaDTO> mesas)
     {
         DefaultListModel model = new DefaultListModel();
-        for (String mesa : mesas)
+        for (MesaDTO mesa : mesas)
         {
             model.addElement(mesa);
         }
