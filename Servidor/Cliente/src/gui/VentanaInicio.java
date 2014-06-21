@@ -1,6 +1,7 @@
 package gui;
 
 import javax.swing.JOptionPane;
+import poker.Constantes;
 
 public class VentanaInicio extends javax.swing.JFrame {
 
@@ -57,11 +58,14 @@ public class VentanaInicio extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("ID de Usuario");
 
         jLabel2.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("POKER");
 
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/icons/poker.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -70,19 +74,10 @@ public class VentanaInicio extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(textoIdUsuario)
             .addComponent(botonCrearMesa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(botonUnirseMesa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(91, 91, 91)
-                        .addComponent(jLabel4))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(122, 122, 122)
-                        .addComponent(jLabel2))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(122, 122, 122)
-                        .addComponent(jLabel1)))
-                .addContainerGap(110, Short.MAX_VALUE))
+            .addComponent(botonUnirseMesa, javax.swing.GroupLayout.DEFAULT_SIZE, 352, Short.MAX_VALUE)
+            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -130,7 +125,7 @@ public class VentanaInicio extends javax.swing.JFrame {
             DialogoCrearMesa dialog = new DialogoCrearMesa(this, true);
             dialog.setVisible(true);
 
-            if (dialog.getEstado() == DialogoCrearMesa.ACEPTADO)
+            if (dialog.getEstado() == Constantes.DIALOGO_ACEPTAR)
             {
                 this.setVisible(false);
                 this.dispose();
@@ -153,7 +148,7 @@ public class VentanaInicio extends javax.swing.JFrame {
             DialogoUnirseMesa dialog = new DialogoUnirseMesa(this, true);
             dialog.setVisible(true);
 
-            if (dialog.getEstado() == DialogoUnirseMesa.ACEPTADO)
+            if (dialog.getEstado() == Constantes.DIALOGO_ACEPTAR)
             {
                 this.setVisible(false);
                 this.dispose();

@@ -19,13 +19,18 @@ public class VentanaJuego extends javax.swing.JFrame {
         }
     }
     
-    public List<Integer> getCartasCambiadas()
+    public List<Integer> cambiarCartas()
     {
         DialogoCambiarCarta dialog = new DialogoCambiarCarta(this, true);
         dialog.establecerCartas(this.getCartasJugador());
         dialog.setVisible(true);
         
         return dialog.obtenerCartasCambiadas();
+    }
+    
+    public void realizarApuesta()
+    {
+        this.setButtonsEnabled(true);
     }
     
     public final JLabel[] getCartasMesa()
@@ -44,6 +49,13 @@ public class VentanaJuego extends javax.swing.JFrame {
     public JLabel getLabelApuestas()
     {
         return this.labelApuestas;
+    }
+    
+    private void setButtonsEnabled(boolean enabled)
+    {
+        this.botonIgualar.setEnabled(enabled);
+        this.botonPasar.setEnabled(enabled);
+        this.botonRetirarse.setEnabled(enabled);
     }
     
     /**
@@ -120,7 +132,7 @@ public class VentanaJuego extends javax.swing.JFrame {
         panelCartasMesaLayout.setHorizontalGroup(
             panelCartasMesaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelCartasMesaLayout.createSequentialGroup()
-                .addGap(105, 105, 105)
+                .addGap(122, 122, 122)
                 .addComponent(cartaMesa1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(cartaMesa2)
@@ -130,7 +142,7 @@ public class VentanaJuego extends javax.swing.JFrame {
                 .addComponent(cartaMesa4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(cartaMesa5)
-                .addContainerGap(140, Short.MAX_VALUE))
+                .addGap(123, 123, 123))
         );
         panelCartasMesaLayout.setVerticalGroup(
             panelCartasMesaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -160,7 +172,7 @@ public class VentanaJuego extends javax.swing.JFrame {
         panelCartasJugadorLayout.setHorizontalGroup(
             panelCartasJugadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelCartasJugadorLayout.createSequentialGroup()
-                .addGap(104, 104, 104)
+                .addGap(122, 122, 122)
                 .addComponent(cartaJugador1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(cartaJugador2)
@@ -170,7 +182,7 @@ public class VentanaJuego extends javax.swing.JFrame {
                 .addComponent(cartaJugador4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(cartaJugador5)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(123, 123, 123))
         );
         panelCartasJugadorLayout.setVerticalGroup(
             panelCartasJugadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -252,15 +264,15 @@ public class VentanaJuego extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonIgualarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonIgualarActionPerformed
-        // TODO add your handling code here:
+        this.setButtonsEnabled(false);
     }//GEN-LAST:event_botonIgualarActionPerformed
 
     private void botonPasarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonPasarActionPerformed
-        // TODO add your handling code here:
+        this.setButtonsEnabled(false);
     }//GEN-LAST:event_botonPasarActionPerformed
 
     private void botonRetirarseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRetirarseActionPerformed
-        // TODO add your handling code here:
+        this.setButtonsEnabled(false);
     }//GEN-LAST:event_botonRetirarseActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

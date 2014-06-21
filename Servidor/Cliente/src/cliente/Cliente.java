@@ -76,7 +76,7 @@ public class Cliente {
      */
     public void setidJugador(String id)
     {
-        //this.idJugador.setId(id);
+        this.jugador.setId(id);
     }
     
     /*

@@ -21,9 +21,9 @@ public class ComandoGraficarApuestas extends Comando{
     }
     
     @Override
-    public void ejecutar(String[] args)
+    public void ejecutar(Object[] args)
     {
-        BetStatusDTO dto = BetStatusDTO.deserialize(args[0]);
+        BetStatusDTO dto = BetStatusDTO.deserialize((String)args[0]);
         List<Jugador> jugadores = dto.getJugadores();
         int[][] rondaApuestas = dto.getApuestas();
         

@@ -3,31 +3,45 @@ package gui;
 import java.util.List;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
+import poker.Constantes;
 import poker.MesaDTO;
 
 public class DialogoUnirseMesa extends javax.swing.JDialog {
     
-    public static int ACEPTADO = 0;
-    public static int CANCELADO = 1;
-    
     public int estado;
+    private List<MesaDTO> mesas;
     
     public DialogoUnirseMesa(java.awt.Frame parent, boolean modal)
     {
         super(parent, modal);
         initComponents();
-        this.estado = DialogoUnirseMesa.CANCELADO;
+        this.mesas = null;
+        this.estado = Constantes.DIALOGO_ACEPTAR;
     }
     
-    public void establecerMesas(List<MesaDTO> mesas)
+    /**
+     * Método que carga las mesas en la interfaz.
+     */
+    private void cargarMesas()
     {
         DefaultListModel model = new DefaultListModel();
         for (MesaDTO mesa : mesas)
         {
-            model.addElement(mesa);
+            String elem ="Nombre: " + mesa.getId() + " " + "Cantidad de jugadores: "+ mesa.getCantidadJugadores();
+            model.addElement(elem);
         }
         this.listaMesas.setModel(model);
         this.listaMesas.setSelectedIndex(0);
+    }
+    
+    /**
+     * Método que establece el valor del atributo mesas.
+     * @param mesas Lista de DTO's donde viene la información de las mesas.
+     */
+    public void setMesas(List<MesaDTO> mesas)
+    {
+        this.mesas = mesas;
+        cargarMesas();
     }
     
     private String validarDatos()
@@ -129,7 +143,7 @@ public class DialogoUnirseMesa extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCancelarActionPerformed
-        this.estado = DialogoUnirseMesa.CANCELADO;
+        this.estado = Constantes.DIALOGO_CANCELAR;
         this.dispose();
     }//GEN-LAST:event_botonCancelarActionPerformed
 
@@ -137,7 +151,7 @@ public class DialogoUnirseMesa extends javax.swing.JDialog {
         String error = this.validarDatos();
         if (error == null)
         {
-            this.estado = DialogoUnirseMesa.ACEPTADO;
+            this.estado = Constantes.DIALOGO_ACEPTAR;
             this.dispose();
         }
         else

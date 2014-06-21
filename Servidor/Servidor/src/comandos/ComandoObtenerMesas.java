@@ -12,7 +12,7 @@ public class ComandoObtenerMesas extends Comando{
     
     public static final String COMANDO = "obtenerMesas";//Comando de la clase.
     
-   public void ejecutar(String[] args)
+   public void ejecutar(Object[] args)
    {
        
    }

@@ -1,15 +1,9 @@
 package gui;
 
 import javax.swing.JOptionPane;
+import poker.Constantes;
 
 public class DialogoCrearMesa extends javax.swing.JDialog {
-
-    public static int ACEPTADO = 0;
-    public static int CANCELADO = 1;
-    
-    public static int HOLDEM = 0;
-    public static int FIVECARDS = 1;
-    public static int OMAHA = 2;
     
     public int estado;
     public int juego;
@@ -18,8 +12,8 @@ public class DialogoCrearMesa extends javax.swing.JDialog {
     {
         super(parent, modal);
         initComponents();
-        this.estado = DialogoCrearMesa.CANCELADO;
-        this.juego = DialogoCrearMesa.HOLDEM;
+        this.estado = Constantes.DIALOGO_CANCELAR;
+        this.juego = Constantes.HOLDEM;
     }
     
     private String validarDatos()
@@ -180,7 +174,7 @@ public class DialogoCrearMesa extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCancelarActionPerformed
-        this.estado = DialogoCrearMesa.CANCELADO;
+        this.estado = Constantes.DIALOGO_CANCELAR;
         this.dispose();
     }//GEN-LAST:event_botonCancelarActionPerformed
 
@@ -188,7 +182,7 @@ public class DialogoCrearMesa extends javax.swing.JDialog {
         String error = this.validarDatos();
         if (error == null)
         {
-            this.estado = DialogoCrearMesa.ACEPTADO;
+            this.estado = Constantes.DIALOGO_ACEPTAR;
             this.dispose();
         }
         else
@@ -198,15 +192,15 @@ public class DialogoCrearMesa extends javax.swing.JDialog {
     }//GEN-LAST:event_botonAceptarActionPerformed
 
     private void holdemButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_holdemButtonActionPerformed
-        this.juego = DialogoCrearMesa.HOLDEM;
+        this.juego = Constantes.HOLDEM;
     }//GEN-LAST:event_holdemButtonActionPerformed
 
     private void fiveCardsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fiveCardsButtonActionPerformed
-        this.juego = DialogoCrearMesa.FIVECARDS;
+        this.juego = Constantes.FIVECARDS;
     }//GEN-LAST:event_fiveCardsButtonActionPerformed
 
     private void omahaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_omahaButtonActionPerformed
-        this.juego = DialogoCrearMesa.OMAHA;
+        this.juego = Constantes.OMAHA;
     }//GEN-LAST:event_omahaButtonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

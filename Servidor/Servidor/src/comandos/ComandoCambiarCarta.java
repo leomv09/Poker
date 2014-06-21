@@ -12,7 +12,7 @@ public class ComandoCambiarCarta extends Comando{
     
     public static final String COMANDO = "cambiarCarta";//Comando de la clase.
 
-   public void ejecutar(String[] args)
+   public void ejecutar(Object[] args)
    {
        
    }

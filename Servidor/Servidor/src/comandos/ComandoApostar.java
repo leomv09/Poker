@@ -13,7 +13,7 @@ public class ComandoApostar extends Comando{
     public static final String COMANDO = "apostar";//Comando de la clase.
     
 
-   public void ejecutar(String[] args)
+   public void ejecutar(Object[] args)
    {
        
    }
