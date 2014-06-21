@@ -1,5 +1,6 @@
 package gui;
 
+import java.util.List;
 import javax.swing.JLabel;
 
 public class VentanaJuego extends javax.swing.JFrame {
@@ -16,6 +17,15 @@ public class VentanaJuego extends javax.swing.JFrame {
         {
             label.setVisible(false);
         }
+    }
+    
+    public List<Integer> getCartasCambiadas()
+    {
+        DialogoCambiarCarta dialog = new DialogoCambiarCarta(this, true);
+        dialog.establecerCartas(this.getCartasJugador());
+        dialog.setVisible(true);
+        
+        return dialog.obtenerCartasCambiadas();
     }
     
     public final JLabel[] getCartasMesa()
@@ -69,12 +79,27 @@ public class VentanaJuego extends javax.swing.JFrame {
 
         botonIgualar.setText("Igualar");
         botonIgualar.setEnabled(false);
+        botonIgualar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonIgualarActionPerformed(evt);
+            }
+        });
 
         botonRetirarse.setText("Retirarse");
         botonRetirarse.setEnabled(false);
+        botonRetirarse.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonRetirarseActionPerformed(evt);
+            }
+        });
 
         botonPasar.setText("Pasar");
         botonPasar.setEnabled(false);
+        botonPasar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonPasarActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Fichas");
 
@@ -225,6 +250,18 @@ public class VentanaJuego extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void botonIgualarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonIgualarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botonIgualarActionPerformed
+
+    private void botonPasarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonPasarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botonPasarActionPerformed
+
+    private void botonRetirarseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRetirarseActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botonRetirarseActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonIgualar;

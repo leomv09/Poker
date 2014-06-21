@@ -77,18 +77,27 @@
         <Property name="text" type="java.lang.String" value="Igualar"/>
         <Property name="enabled" type="boolean" value="false"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonIgualarActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="botonRetirarse">
       <Properties>
         <Property name="text" type="java.lang.String" value="Retirarse"/>
         <Property name="enabled" type="boolean" value="false"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonRetirarseActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="botonPasar">
       <Properties>
         <Property name="text" type="java.lang.String" value="Pasar"/>
         <Property name="enabled" type="boolean" value="false"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonPasarActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
