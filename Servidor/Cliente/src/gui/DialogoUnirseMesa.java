@@ -9,23 +9,39 @@ import poker.MesaDTO;
 public class DialogoUnirseMesa extends javax.swing.JDialog {
     
     public int estado;
+    private List<MesaDTO> mesas;
     
     public DialogoUnirseMesa(java.awt.Frame parent, boolean modal)
     {
         super(parent, modal);
         initComponents();
+        this.mesas = null;
         this.estado = Constantes.DIALOGO_ACEPTAR;
     }
     
-    public void establecerMesas(List<MesaDTO> mesas)
+    /**
+     * Método que carga las mesas en la interfaz.
+     */
+    private void cargarMesas()
     {
         DefaultListModel model = new DefaultListModel();
         for (MesaDTO mesa : mesas)
         {
-            model.addElement(mesa);
+            String elem ="Nombre: " + mesa.getId() + " " + "Cantidad de jugadores: "+ mesa.getCantidadJugadores();
+            model.addElement(elem);
         }
         this.listaMesas.setModel(model);
         this.listaMesas.setSelectedIndex(0);
+    }
+    
+    /**
+     * Método que establece el valor del atributo mesas.
+     * @param mesas Lista de DTO's donde viene la información de las mesas.
+     */
+    public void setMesas(List<MesaDTO> mesas)
+    {
+        this.mesas = mesas;
+        cargarMesas();
     }
     
     private String validarDatos()

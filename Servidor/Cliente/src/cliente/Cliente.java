@@ -31,7 +31,7 @@ public class Cliente {
         this.idMesa = "-1";
         this.mesas = new String[10];
         this.socketCliente = new SocketCliente();
-        this.jugador = new Jugador("");
+        this.jugador = new Jugador("", 50);
     }
     
     

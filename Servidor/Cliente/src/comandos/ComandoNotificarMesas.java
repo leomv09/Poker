@@ -37,7 +37,11 @@ public class ComandoNotificarMesas extends Comando{
     @Override
    public void ejecutar(Object[] args)
    {
-       List<MesaDTO> dtos = (List<MesaDTO>)args[0];
+       if(args[0] != null)
+       {
+        List<MesaDTO> dtos = (List<MesaDTO>)args[0];
+        this.frame.setMesas(dtos);
+       }
        
        
    }
