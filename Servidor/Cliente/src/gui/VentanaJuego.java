@@ -1,4 +1,4 @@
-package gui;
+﻿package gui;
 
 import javax.swing.JLabel;
 
@@ -276,20 +276,15 @@ public class VentanaJuego extends javax.swing.JFrame {
     private javax.swing.JLabel cartaMesa4;
     private javax.swing.JLabel cartaMesa5;
     private javax.swing.JLabel jLabel1;
-<<<<<<< HEAD
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel labelApuestas;
-=======
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel labelFichas;
     private javax.swing.JPanel panelApuestas;
     private javax.swing.JPanel panelCartasJugador;
     private javax.swing.JPanel panelCartasMesa;
->>>>>>> 52dafd4081a1715c1bbb6ede2dba539e6984f6b8
     // End of variables declaration//GEN-END:variables
 }
