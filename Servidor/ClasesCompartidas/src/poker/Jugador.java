@@ -13,6 +13,14 @@ import java.util.List;
 public class Jugador {
     String Id;
     int dinero;
+    Mano manoJugador;
+    
+    public Jugador(String id,int dinero)
+    {
+        this.Id=id;
+        this.dinero=dinero;
+    }
+            
     
     public String getId()
     {
