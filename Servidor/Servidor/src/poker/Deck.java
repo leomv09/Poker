@@ -17,7 +17,7 @@ public class Deck {
       int posicion=0;
       ArrayList<Carta> baraja=null;
       String num="10";
-      char[] valores={'1','2','3','4','5','6','7','8','9','D','J','Q','K','A'};
+      int[] valores={1,2,3,4,5,6,7,8,9,10,11,12,13};
       public Deck()
       {
           baraja=new ArrayList();

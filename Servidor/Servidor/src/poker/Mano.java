@@ -13,6 +13,11 @@ import java.util.List;
 public abstract class Mano implements Comparable<Mano>{
     List<Carta> cartas;
     
+    public void agregarCarta(Carta c)
+    {
+        cartas.add(c);
+    }
+    
     public int obtenerValor()
     {
         return 0;
