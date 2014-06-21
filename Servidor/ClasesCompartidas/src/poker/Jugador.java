@@ -15,11 +15,19 @@ public class Jugador {
     int dinero;
     Mano manoJugador;
     
-    public Jugador(String id,int dinero)
+    public Jugador(String id)
     {
         this.Id=id;
-        this.dinero=dinero;
+        this.dinero=20;
     }
+    public void setId(String id)
+    {
+        this.Id=id;
+    }
+    public String getId()
+    {
+        return this.Id;
+    } 
             
     
     public String getId()
