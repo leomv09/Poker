@@ -33,7 +33,7 @@ public class VentanaJuego extends javax.swing.JFrame {
      */
     public JLabel getLabelApuestas()
     {
-        return null;//this.labelApuestas;
+        return this.labelApuestas;
     }
     
     /**
@@ -62,6 +62,8 @@ public class VentanaJuego extends javax.swing.JFrame {
         cartaJugador3 = new javax.swing.JLabel();
         cartaJugador4 = new javax.swing.JLabel();
         cartaJugador5 = new javax.swing.JLabel();
+        panelApuestas = new javax.swing.JPanel();
+        labelApuestas = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -158,12 +160,33 @@ public class VentanaJuego extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        labelApuestas.setText("Apuestas");
+
+        javax.swing.GroupLayout panelApuestasLayout = new javax.swing.GroupLayout(panelApuestas);
+        panelApuestas.setLayout(panelApuestasLayout);
+        panelApuestasLayout.setHorizontalGroup(
+            panelApuestasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelApuestasLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(labelApuestas)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        panelApuestasLayout.setVerticalGroup(
+            panelApuestasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelApuestasLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(labelApuestas)
+                .addContainerGap(75, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(panelApuestas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
@@ -180,12 +203,15 @@ public class VentanaJuego extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(botonIgualar)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(botonIgualar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(botonPasar)
+                        .addGap(5, 5, 5)
+                        .addComponent(botonRetirarse))
+                    .addComponent(panelApuestas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(botonPasar)
-                .addGap(5, 5, 5)
-                .addComponent(botonRetirarse)
-                .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(labelFichas))
@@ -193,7 +219,7 @@ public class VentanaJuego extends javax.swing.JFrame {
                 .addComponent(panelCartasMesa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(47, 47, 47)
                 .addComponent(panelCartasJugador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
         pack();
@@ -215,7 +241,9 @@ public class VentanaJuego extends javax.swing.JFrame {
     private javax.swing.JLabel cartaMesa4;
     private javax.swing.JLabel cartaMesa5;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel labelApuestas;
     private javax.swing.JLabel labelFichas;
+    private javax.swing.JPanel panelApuestas;
     private javax.swing.JPanel panelCartasJugador;
     private javax.swing.JPanel panelCartasMesa;
     // End of variables declaration//GEN-END:variables

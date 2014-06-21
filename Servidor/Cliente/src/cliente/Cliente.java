@@ -22,14 +22,15 @@ public class Cliente {
     /**
      * Constructor.
      * @param idJugador El identificador del jugador (Nickname).
+     * @param cantidadFichas Entero indicando la cantidad de fichas del jugador.
      */
-    public Cliente(String idJugador)
+    public Cliente(String idJugador, int cantidadFichas)
     {
         this.idJugador = "-1";
         this.idMesa = "-1";
         this.mesas = new String[10];
         this.socketCliente = new SocketCliente();
-        this.jugador = new Jugador();//Hacer constructor que reciba el id del jugador.
+        this.jugador = new Jugador(idJugador, cantidadFichas);
     }
     
     
