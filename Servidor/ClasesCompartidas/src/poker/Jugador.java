@@ -30,10 +30,14 @@ public class Jugador {
     {
         return Id; //To change body of generated methods, choose Tools | Templates.
     }
-
+    public int getDinero()
+    {
+        return this.dinero;
+    }
+    
     public List<Carta> getCartas()
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return this.manoJugador.getMano();
     }
     
 }

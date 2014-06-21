@@ -17,7 +17,10 @@ public abstract class Mano implements Comparable<Mano>{
     {
         cartas.add(c);
     }
-    
+    public List<Carta> getMano()
+    {
+        return cartas;
+    }
     public int obtenerValor()
     {
         return 0;
