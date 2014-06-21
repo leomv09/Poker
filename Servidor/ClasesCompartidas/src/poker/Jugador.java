@@ -24,10 +24,6 @@ public class Jugador {
     {
         this.Id=id;
     }
-    public String getId()
-    {
-        return this.Id;
-    } 
             
     
     public String getId()
