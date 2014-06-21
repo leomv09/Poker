@@ -39,6 +39,7 @@ public class VentanaInicio extends javax.swing.JFrame {
         jRadioButton1.setText("jRadioButton1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         botonCrearMesa.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         botonCrearMesa.setText("Crear Mesa");
@@ -133,7 +134,10 @@ public class VentanaInicio extends javax.swing.JFrame {
             {
                 this.setVisible(false);
                 this.dispose();
-                new VentanaEspera(true).setVisible(true);
+                
+                VentanaEspera frame = new VentanaEspera(true);
+                frame.establecerNombreMesa( dialog.getNombreMesa() );
+                frame.setVisible(true);
             }
         }
         else
@@ -153,7 +157,10 @@ public class VentanaInicio extends javax.swing.JFrame {
             {
                 this.setVisible(false);
                 this.dispose();
-                new VentanaEspera(false).setVisible(true);
+                
+                VentanaEspera frame = new VentanaEspera(false);
+                frame.establecerNombreMesa( dialog.getNombreMesa() );
+                frame.setVisible(true);
             }
         }
         else

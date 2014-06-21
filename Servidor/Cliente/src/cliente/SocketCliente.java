@@ -30,6 +30,9 @@ public class SocketCliente extends Thread{
     private Map<String, Comando> comandos;//Mapa con los comandos para el cliente.
     
     
+    /**
+     * Constructor.
+     */
     public SocketCliente()
     {
         try {
