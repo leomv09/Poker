@@ -15,6 +15,7 @@ package poker;
 public class Juego {
     int cartasMesa=0;
     int cartasJugador=0;
+    Mesa juego;
     
     public void jugar()
     {

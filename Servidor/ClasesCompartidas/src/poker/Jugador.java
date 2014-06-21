@@ -15,10 +15,10 @@ public class Jugador {
     int dinero;
     Mano manoJugador;
     
-    public Jugador(String id)
+    public Jugador(String id,int dinero)
     {
         this.Id=id;
-        this.dinero=20;
+        this.dinero=dinero;
     }
     public void setId(String id)
     {

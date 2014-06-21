@@ -3,12 +3,10 @@ package gui;
 import java.util.List;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
+import poker.Constantes;
 import poker.MesaDTO;
 
 public class DialogoUnirseMesa extends javax.swing.JDialog {
-    
-    public static int ACEPTADO = 0;
-    public static int CANCELADO = 1;
     
     public int estado;
     
@@ -16,7 +14,7 @@ public class DialogoUnirseMesa extends javax.swing.JDialog {
     {
         super(parent, modal);
         initComponents();
-        this.estado = DialogoUnirseMesa.CANCELADO;
+        this.estado = Constantes.DIALOGO_ACEPTAR;
     }
     
     public void establecerMesas(List<MesaDTO> mesas)
@@ -129,7 +127,7 @@ public class DialogoUnirseMesa extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCancelarActionPerformed
-        this.estado = DialogoUnirseMesa.CANCELADO;
+        this.estado = Constantes.DIALOGO_CANCELAR;
         this.dispose();
     }//GEN-LAST:event_botonCancelarActionPerformed
 
@@ -137,7 +135,7 @@ public class DialogoUnirseMesa extends javax.swing.JDialog {
         String error = this.validarDatos();
         if (error == null)
         {
-            this.estado = DialogoUnirseMesa.ACEPTADO;
+            this.estado = Constantes.DIALOGO_ACEPTAR;
             this.dispose();
         }
         else
