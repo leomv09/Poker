@@ -10,8 +10,8 @@ package poker;
 
 public class Carta implements Comparable<Carta>{
     int Palo;
-    char Valor;
-    public Carta(int pPalo,char pValor)
+    int Valor;
+    public Carta(int pPalo,int pValor)
     {
         this.Palo=pPalo;
         this.Valor=pValor;
@@ -19,7 +19,12 @@ public class Carta implements Comparable<Carta>{
     @Override
     public int compareTo(Carta c)
     {
-        return this.Valor-c.Valor;
+        if (this.Valor>c.Valor){return 1;}
+        else if (this.Valor<c.Valor){return -1;}
+        else
+        {
+            return 0;
+        }
     }
     
 }
