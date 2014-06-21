@@ -27,7 +27,7 @@ public class ComandoSolicitarCambioCarta extends Comando{
     
    
     @Override
-   public void ejecutar(String[] args)
+   public void ejecutar(Object[] args)
    {
        
    }

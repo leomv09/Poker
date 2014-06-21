@@ -31,7 +31,7 @@ public class Cliente {
         this.idMesa = "-1";
         this.mesas = new String[10];
         this.socketCliente = new SocketCliente();
-        this.jugador = new Jugador("", 50);
+        this.jugador = new Jugador("");
     }
     
     
@@ -76,7 +76,7 @@ public class Cliente {
      */
     public void setidJugador(String id)
     {
-        //this.idJugador.setId(id);
+        this.jugador.setId(id);
     }
     
     /*

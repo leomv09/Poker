@@ -21,9 +21,9 @@ public class ComandoGraficarCartas extends Comando{
     }
     
     @Override
-    public void ejecutar(String[] args)
+    public void ejecutar(Object[] args)
     {
-        CartasDTO dto = CartasDTO.deserialize(args[0]);
+        CartasDTO dto = CartasDTO.deserialize((String)args[0]);
         List<Carta> dtoCartasMesa = dto.getCartasMesa();
         List<Carta> dtoCartasJugador = dto.getCartasJugador();
         

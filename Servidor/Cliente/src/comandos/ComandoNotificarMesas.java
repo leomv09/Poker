@@ -5,8 +5,9 @@
 package comandos;
 
 
-import cliente.Cliente;
+import gui.DialogoUnirseMesa;
 import java.util.List;
+import poker.MesaDTO;
 
 /**
  *
@@ -15,26 +16,29 @@ import java.util.List;
 public class ComandoNotificarMesas extends Comando{
     
     public static final String COMANDO = "notificarMesas";//Comando de la clase
-    private Cliente cliente;//Cliente al que se le notifican las mesas.
+    private DialogoUnirseMesa frame;//Cliente al que se le notifican las mesas.
     
     
     /**
      *
      * @param cliente El cliente al cual se le notifican las mesas.
      */
-    public ComandoNotificarMesas(Cliente cliente)
+    public ComandoNotificarMesas(DialogoUnirseMesa frame)
     {
-        this.cliente = cliente;
+        this.frame = frame;
     }
     
     
-    /*
-     * En este caso el arreglo de argumentos sería un arreglo de id's de mesa.
+
+    /**
+     *
+     * @param args
      */
     @Override
-   public void ejecutar(String[] args)
+   public void ejecutar(Object[] args)
    {
-       //List<Mesa> listaMesas = args[0];
+       List<MesaDTO> dtos = (List<MesaDTO>)args[0];
+       
        
    }
     
