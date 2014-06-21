@@ -55,6 +55,10 @@ public class Conexion extends Thread{
      * Flag de control para saber cuando se termina la conexión.
      */
     private boolean corriendo;
+    /**
+     * Hash para obtener el tipo de comando recibido.
+     */
+    private Map<String, Comando> comandos;
 
     //Constructores
     /**
@@ -67,6 +71,7 @@ public class Conexion extends Thread{
         this.serv = serv;
         this.idJugador = "";
         serv.post("Conexion agregada: "+this);
+        comandos=inicializarComandos();
         try {
             entrada = new ObjectInputStream(scli.getInputStream());
             salida = new ObjectOutputStream(scli.getOutputStream());
@@ -101,10 +106,11 @@ public class Conexion extends Thread{
             
             //Espera comandos
             while(corriendo){
-                String comando = entrada.readUTF();
-                ArrayList<Object> argumentos = (ArrayList<Object>) entrada.readObject();
-                Comando comAEjecutar = (Comando)Class.forName(comando).newInstance();
-                //salida.writeObject(comAEjecutar.ejecutar(argumentos));
+                String nombreComando = entrada.readUTF();
+                Object argumentos = entrada.readObject();
+                Comando com = comandos.get(nombreComando);
+                //Comando comAEjecutar = (Comando)Class.forName(comando).newInstance(); //Idea de usar reflection, descartada por rendimiento.
+                salida.writeObject(com.ejecutar(argumentos));
             }
             
         }
@@ -112,10 +118,6 @@ public class Conexion extends Thread{
         {
             serv.post(e.getMessage());
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
             Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
