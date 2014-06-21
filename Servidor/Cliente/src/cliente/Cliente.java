@@ -12,6 +12,7 @@ import poker.Jugador;
  */
 public class Cliente {
     
+    private static Cliente instance = null;
     private String idJugador;//id de jugador que se le asigna.
     private String[] mesas;
     private String idMesa;//id de la mesa en la que está jugando.
@@ -24,15 +25,32 @@ public class Cliente {
      * @param idJugador El identificador del jugador (Nickname).
      * @param cantidadFichas Entero indicando la cantidad de fichas del jugador.
      */
-    public Cliente(String idJugador, int cantidadFichas)
+    private Cliente()
     {
         this.idJugador = "-1";
         this.idMesa = "-1";
         this.mesas = new String[10];
         this.socketCliente = new SocketCliente();
-        this.jugador = new Jugador(idJugador, cantidadFichas);
+        this.jugador = new Jugador("", 50);
     }
     
+    
+    private static void createInstance()
+    {
+        if(instance == null)
+        {
+            instance = new Cliente();
+        }
+    }
+    
+    public static Cliente getInstance()
+    {
+        if(instance == null)
+            createInstance();
+        return instance;
+    }
+    
+   
     
     /**
      * Método que obtiene el jugador del cliente.
@@ -58,7 +76,7 @@ public class Cliente {
      */
     public void setidJugador(String id)
     {
-        this.idJugador = id;
+        //this.idJugador.setId(id);
     }
     
     /*
