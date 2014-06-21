@@ -17,6 +17,11 @@ public class Carta implements Comparable<Carta>{
         this.Valor=pValor;
     }
     @Override
+    public String toString()
+    {
+        return ""+this.Palo+"-"+this.Valor;
+    }
+    @Override
     public int compareTo(Carta c)
     {
         if (this.Valor>c.Valor){return 1;}
