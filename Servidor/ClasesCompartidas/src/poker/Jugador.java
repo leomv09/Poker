@@ -13,7 +13,7 @@ import java.util.List;
 public class Jugador {
     String Id;
     int dinero;
-
+    
     public String getId()
     {
         return Id; //To change body of generated methods, choose Tools | Templates.
