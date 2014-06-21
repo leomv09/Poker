@@ -12,7 +12,7 @@ public class ComandoUnirseMesa extends Comando{
     
     public static final String COMANDO = "unirseMesa";//Comando de la clase.
     
-    public void ejecutar(Object[] args)
+    public void ejecutar(Object args)
    {
        
    }

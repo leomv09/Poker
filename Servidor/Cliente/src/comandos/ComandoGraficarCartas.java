@@ -11,44 +11,40 @@ public class ComandoGraficarCartas extends Comando{
     
     public static final String COMANDO = "graficarCartas";
     
-    private final JLabel[] cartasMesa;
-    private final JLabel[] cartasJugador;
+    private final JLabel[] labelsCartasMesa;
+    private final JLabel[] labelsCartasJugador;
     
     public ComandoGraficarCartas(VentanaJuego frame)
     {
-        this.cartasMesa = null;//frame.getCartasMesa();
-        this.cartasJugador = null;//frame.getCartasJugador();
+        this.labelsCartasMesa = frame.getCartasMesa();
+        this.labelsCartasJugador = frame.getCartasJugador();
     }
     
     @Override
-    public void ejecutar(Object[] args)
+    public void ejecutar(Object args)
     {
-        CartasDTO dto = CartasDTO.deserialize((String)args[0]);
-        List<Carta> dtoCartasMesa = dto.getCartasMesa();
-        List<Carta> dtoCartasJugador = dto.getCartasJugador();
-        
+        CartasDTO dto = CartasDTO.deserialize(String.valueOf(args));
+        graficarCartas(dto.getCartasMesa(), labelsCartasMesa);
+        graficarCartas(dto.getCartasJugador(), labelsCartasJugador);
+    }
+    
+    private void graficarCartas(List<Carta> cartas, JLabel[] labels)
+    {
         Carta cartaActual;
         JLabel labelActual;
         String rutaImagen;
         
-        for (int i=0; i<dtoCartasMesa.size(); i++)
+        if (cartas.size() <= labels.length)
         {
-            labelActual = this.cartasMesa[i];
-            cartaActual = dtoCartasMesa.get(i);
-            rutaImagen = "/res/cards/" + cartaActual.toString() + ".png";
-            
-            labelActual.setIcon( new ImageIcon(ClassLoader.getSystemResource(rutaImagen)) );
-            labelActual.setVisible(true);
-        }
-        
-        for (int i=0; i<dtoCartasJugador.size(); i++)
-        {
-            labelActual = this.cartasJugador[i];
-            cartaActual = dtoCartasJugador.get(i);
-            rutaImagen = "/res/cards/" + cartaActual.toString() + ".png";
-            
-            labelActual.setIcon( new ImageIcon(ClassLoader.getSystemResource(rutaImagen)) );
-            labelActual.setVisible(true);
+            for (int i=0; i<cartas.size(); i++)
+            {
+                labelActual = labels[i];
+                cartaActual = cartas.get(i);
+                rutaImagen = "/res/cards/" + cartaActual.toString() + ".png";
+
+                labelActual.setIcon( new ImageIcon(ClassLoader.getSystemResource(rutaImagen)) );
+                labelActual.setVisible(true);
+            }
         }
     }
     

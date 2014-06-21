@@ -13,7 +13,7 @@ public class ComandoIniciarPartida extends Comando{
     public static final String COMANDO = "iniciarPartida";//Comando de la clase
     
     
-    public void ejecutar(Object[] args)
+    public void ejecutar(Object args)
    {
        
    }

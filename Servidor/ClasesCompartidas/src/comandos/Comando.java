@@ -16,7 +16,4 @@ public abstract class Comando {
 
     public abstract void ejecutar(Object args);
 
-    public abstract void ejecutar(Object[] args);
-
-    
 }
