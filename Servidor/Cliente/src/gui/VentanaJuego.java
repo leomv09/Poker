@@ -28,6 +28,14 @@ public class VentanaJuego extends javax.swing.JFrame {
         return new JLabel[] { this.cartaJugador1, this.cartaJugador2, this.cartaJugador3, this.cartaJugador4, this.cartaJugador5 };
     }
     
+    /*
+     * Método que retorna el label donde se muestra el resultado de las apuestas.
+     */
+    public JLabel getLabelApuestas()
+    {
+        return this.labelApuestas;
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

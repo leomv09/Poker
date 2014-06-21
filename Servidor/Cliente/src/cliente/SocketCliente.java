@@ -57,7 +57,7 @@ public class SocketCliente extends Thread{
 	res.put(ComandoSolicitarApuesta.COMANDO, new ComandoSolicitarApuesta());
         res.put(ComandoSolicitarCambioCarta.COMANDO, new ComandoSolicitarCambioCarta());
         res.put(ComandoGraficarCartas.COMANDO, new ComandoGraficarCartas(null));
-        res.put(ComandoGraficarApuestas.COMANDO, new ComandoGraficarApuestas());
+        res.put(ComandoGraficarApuestas.COMANDO, new ComandoGraficarApuestas(null));
         return res;
     }
     

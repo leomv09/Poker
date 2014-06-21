@@ -4,7 +4,8 @@
  */
 package comandos;
 
-import cliente.Cliente;
+
+import java.util.List;
 
 /**
  *
@@ -15,13 +16,15 @@ public class ComandoNotificarMesas extends Comando{
     public static final String COMANDO = "notificarMesas";//Comando de la clase
     
     
+    
+    
     /*
      * En este caso el arreglo de argumentos sería un arreglo de id's de mesa.
      */
     @Override
    public void ejecutar(String[] args)
    {
-   
+       //List<Mesa> listaMesas = args[0];
        
    }
     
