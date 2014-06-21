@@ -7,13 +7,19 @@ public class DialogoCrearMesa extends javax.swing.JDialog {
     public static int ACEPTADO = 0;
     public static int CANCELADO = 1;
     
+    public static int HOLDEM = 0;
+    public static int FIVECARDS = 1;
+    public static int OMAHA = 2;
+    
     public int estado;
+    public int juego;
     
     public DialogoCrearMesa(java.awt.Frame parent, boolean modal)
     {
         super(parent, modal);
         initComponents();
         this.estado = DialogoCrearMesa.CANCELADO;
+        this.juego = DialogoCrearMesa.HOLDEM;
     }
     
     private String validarDatos()
@@ -23,6 +29,21 @@ public class DialogoCrearMesa extends javax.swing.JDialog {
             return "Ingrese un nombre para la mesa.";
         }
         return null;
+    }
+    
+    public String getNombreMesa()
+    {
+        return this.nombreMesa.getText();
+    }
+    
+    public int getMaxJugadores()
+    {
+        return (int) this.cantidadJugadores.getValue();
+    }
+    
+    public int getTipoJuego()
+    {
+        return this.juego;
     }
     
     public int getEstado()
@@ -52,6 +73,7 @@ public class DialogoCrearMesa extends javax.swing.JDialog {
         botonCancelar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
 
         jLabel1.setLabelFor(nombreMesa);
         jLabel1.setText("Nombre");
@@ -66,12 +88,27 @@ public class DialogoCrearMesa extends javax.swing.JDialog {
         tipoJuego.add(holdemButton);
         holdemButton.setSelected(true);
         holdemButton.setText("Texas Holdem");
+        holdemButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                holdemButtonActionPerformed(evt);
+            }
+        });
 
         tipoJuego.add(fiveCardsButton);
         fiveCardsButton.setText("Five Cards");
+        fiveCardsButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fiveCardsButtonActionPerformed(evt);
+            }
+        });
 
         tipoJuego.add(omahaButton);
         omahaButton.setText("Omaha");
+        omahaButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                omahaButtonActionPerformed(evt);
+            }
+        });
 
         botonAceptar.setText("Aceptar");
         botonAceptar.addActionListener(new java.awt.event.ActionListener() {
@@ -159,6 +196,18 @@ public class DialogoCrearMesa extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(this, error, "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_botonAceptarActionPerformed
+
+    private void holdemButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_holdemButtonActionPerformed
+        this.juego = DialogoCrearMesa.HOLDEM;
+    }//GEN-LAST:event_holdemButtonActionPerformed
+
+    private void fiveCardsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fiveCardsButtonActionPerformed
+        this.juego = DialogoCrearMesa.FIVECARDS;
+    }//GEN-LAST:event_fiveCardsButtonActionPerformed
+
+    private void omahaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_omahaButtonActionPerformed
+        this.juego = DialogoCrearMesa.OMAHA;
+    }//GEN-LAST:event_omahaButtonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonAceptar;

@@ -31,14 +31,14 @@ public class DialogoUnirseMesa extends javax.swing.JDialog {
     
     private String validarDatos()
     {
-        if (this.obtenerMesaSeleccionada() == null)
+        if (this.getNombreMesa() == null)
         {
             return "Seleccione una mesa.";
         }
         return null;
     }
     
-    public String obtenerMesaSeleccionada()
+    public String getNombreMesa()
     {
         return (String) this.listaMesas.getSelectedValue();
     }
@@ -64,6 +64,7 @@ public class DialogoUnirseMesa extends javax.swing.JDialog {
         botonCancelar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
 
         listaMesas.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         listaMesas.setToolTipText("");
