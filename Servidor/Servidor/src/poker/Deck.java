@@ -11,12 +11,10 @@ package poker;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
-import java.util.List;
 
 public class Deck {
       int posicion=0;
       ArrayList<Carta> baraja=null;
-      String num="10";
       int[] valores={1,2,3,4,5,6,7,8,9,10,11,12,13};
       public Deck()
       {
@@ -25,7 +23,7 @@ public class Deck {
       }
       private void nuevaBaraja()
       {
-          for (int i=0;i<=4;i++)
+          for (int i=1;i<=4;i++)
           {
             for(int j=1;j<=valores.length-1;j++)
             {
@@ -71,6 +69,14 @@ public class Deck {
       }
       public void setJoker(boolean joker)
       {
+          if(joker==true)
+          {
+          Carta jr=new Carta(20,0);
+          Carta jn=new Carta(21,0);
+          baraja.add(jr);
+          baraja.add(jn);
+          
+          }
           
       }
 }
