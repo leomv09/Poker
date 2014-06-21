@@ -4,6 +4,8 @@
  */
 package comandos;
 
+import cliente.Cliente;
+
 /**
  *
  * @author Leo
@@ -11,6 +13,17 @@ package comandos;
 public class ComandoSolicitarCambioCarta extends Comando{
     
     public static final String COMANDO = "solicitarCarta";//Comando de la clase
+    private Cliente cliente;// Cliente del cual se extraen las cartas.
+    
+    
+    /**
+     *
+     * @param cliente Objeto de tipo Cliente.
+     */
+    public ComandoSolicitarCambioCarta(Cliente cliente)
+    {
+        this.cliente = cliente;
+    }
     
    
    public void ejecutar(String[] args)

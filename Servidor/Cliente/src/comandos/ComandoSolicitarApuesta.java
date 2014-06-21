@@ -4,6 +4,8 @@
  */
 package comandos;
 
+import cliente.Cliente;
+
 /**
  *
  * @author Leo
@@ -11,6 +13,17 @@ package comandos;
 public class ComandoSolicitarApuesta extends Comando{
    
     public static final String COMANDO = "solicitarAouesta";//Comando de la clase
+    private Cliente cliente;//Cliente al cual se le va a soliciatar la apuesta.
+    
+    
+    /**
+     * Constructor.
+     * @param cliente Objeto de tipo Cliente.
+     */
+    public ComandoSolicitarApuesta(Cliente cliente)
+    {
+        this.cliente = cliente;
+    }
     
     
     @Override
