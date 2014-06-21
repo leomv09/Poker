@@ -33,7 +33,7 @@ public class VentanaJuego extends javax.swing.JFrame {
      */
     public JLabel getLabelApuestas()
     {
-        return this.labelApuestas;
+        return null;//this.labelApuestas;
     }
     
     /**
@@ -49,17 +49,7 @@ public class VentanaJuego extends javax.swing.JFrame {
         botonRetirarse = new javax.swing.JButton();
         botonPasar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-<<<<<<< HEAD
-        jLabel2 = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
-        labelApuestas = new javax.swing.JLabel();
-=======
         labelFichas = new javax.swing.JLabel();
-        panelApuestas = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
->>>>>>> 52dafd4081a1715c1bbb6ede2dba539e6984f6b8
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
         panelCartasMesa = new javax.swing.JPanel();
         cartaMesa1 = new javax.swing.JLabel();
         cartaMesa2 = new javax.swing.JLabel();
@@ -87,46 +77,6 @@ public class VentanaJuego extends javax.swing.JFrame {
         jLabel1.setText("Fichas");
 
         labelFichas.setText("50");
-
-        labelApuestas.setText("Apuestas");
-
-        jLabel4.setText("Pot");
-
-        jLabel5.setText("SidePot");
-
-        javax.swing.GroupLayout panelApuestasLayout = new javax.swing.GroupLayout(panelApuestas);
-        panelApuestas.setLayout(panelApuestasLayout);
-        panelApuestasLayout.setHorizontalGroup(
-            panelApuestasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelApuestasLayout.createSequentialGroup()
-                .addContainerGap()
-<<<<<<< HEAD
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(labelApuestas, javax.swing.GroupLayout.DEFAULT_SIZE, 415, Short.MAX_VALUE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-=======
-                .addGroup(panelApuestasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(panelApuestasLayout.createSequentialGroup()
-                        .addGroup(panelApuestasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
->>>>>>> 52dafd4081a1715c1bbb6ede2dba539e6984f6b8
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel5))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
-        );
-        panelApuestasLayout.setVerticalGroup(
-            panelApuestasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelApuestasLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(labelApuestas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel5)
-                .addContainerGap())
-        );
 
         cartaMesa1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/cards/B-2.png"))); // NOI18N
 
@@ -213,9 +163,7 @@ public class VentanaJuego extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(panelApuestas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
@@ -232,34 +180,25 @@ public class VentanaJuego extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(panelApuestas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(botonIgualar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(botonPasar)
-                        .addGap(5, 5, 5)
-                        .addComponent(botonRetirarse)
-                        .addGap(20, 20, 20)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel1)
-<<<<<<< HEAD
-                            .addComponent(jLabel2))))
-                .addContainerGap(209, Short.MAX_VALUE))
-=======
-                            .addComponent(labelFichas))))
+                .addComponent(botonIgualar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(botonPasar)
+                .addGap(5, 5, 5)
+                .addComponent(botonRetirarse)
+                .addGap(20, 20, 20)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(labelFichas))
                 .addGap(43, 43, 43)
                 .addComponent(panelCartasMesa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(47, 47, 47)
                 .addComponent(panelCartasJugador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(23, Short.MAX_VALUE))
->>>>>>> 52dafd4081a1715c1bbb6ede2dba539e6984f6b8
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonIgualar;
@@ -276,20 +215,8 @@ public class VentanaJuego extends javax.swing.JFrame {
     private javax.swing.JLabel cartaMesa4;
     private javax.swing.JLabel cartaMesa5;
     private javax.swing.JLabel jLabel1;
-<<<<<<< HEAD
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JLabel labelApuestas;
-=======
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel labelFichas;
-    private javax.swing.JPanel panelApuestas;
     private javax.swing.JPanel panelCartasJugador;
     private javax.swing.JPanel panelCartasMesa;
->>>>>>> 52dafd4081a1715c1bbb6ede2dba539e6984f6b8
     // End of variables declaration//GEN-END:variables
 }
