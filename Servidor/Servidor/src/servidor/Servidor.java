@@ -140,9 +140,9 @@ public class Servidor extends Thread implements ConstantesServ{
         
     }
 
-    public String crearMesa(Jugador plr){
+    public String crearMesa(Jugador plr,String nombreMesa,int cantidadJugadores,int tipoJuego){
         PokerBet apuesta = new PokerBet(LITTLE_BLIND,BIG_BLIND);
-        Mesa mesa = new Mesa(plr,apuesta);
+        Mesa mesa = new Mesa(plr,apuesta,nombreMesa,tipoJuego,cantidadJugadores);
         mesas.add(mesa);
         return mesa.getId();
     }
