@@ -34,6 +34,10 @@ public class Jugador {
     {
         return this.dinero;
     }
+    public void setDinero(int dinero)
+    {
+        this.dinero=dinero;
+    }
     
     public List<Carta> getCartas()
     {
