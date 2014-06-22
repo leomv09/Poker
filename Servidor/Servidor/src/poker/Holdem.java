@@ -27,6 +27,11 @@ public class Holdem extends Juego {
         this.mesa.recibirApuestas();
         this.mesa.notificarApuestas();
         
+        this.mesa.repartirCartasMesa(3);
+        this.mesa.notificarCartas();
+        this.mesa.recibirApuestas();
+        this.mesa.notificarApuestas();
+        
         int j=0;
         while (j != 2)
         {

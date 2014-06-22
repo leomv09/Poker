@@ -25,18 +25,25 @@ public class Omaha extends Juego {
     @Override
     public void jugar()
     {
-        int j=0;
-        while (j!=2){
-        this.mesa.recibirApuestas();
-        this.mesa.generarBetStatusDTO();
-        List<Jugador> jugadores=this.mesa.getJugadores();
-        for (int i=0;i<jugadores.size();i++)
-        {
-            CartasDTO generarCartasDTO = this.mesa.generarCartasDTO(jugadores.get(i));
-        }
-        this.mesa.notificarApuestas();
-        this.mesa.notificarCartas();
-        j++;}
+       this.mesa.repartirCartasJugadores(4);
+       this.mesa.notificarCartas();
+       this.mesa.recibirApuestas();
+       this.mesa.notificarApuestas();
+        
+       this.mesa.repartirCartasMesa(3);
+       this.mesa.notificarCartas();
+       this.mesa.recibirApuestas();
+       this.mesa.notificarApuestas();
+        
+       int j=0;
+       while (j != 2)
+       {
+           this.mesa.repartirCartasMesa(1);
+           this.mesa.notificarCartas();
+           this.mesa.recibirApuestas();
+           this.mesa.notificarApuestas();
+           j++;
+       }
     }
     
 }

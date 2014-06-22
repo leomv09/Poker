@@ -24,18 +24,20 @@ public class FiveCards extends Juego {
     @Override
     public void jugar()
     {
-        int j=0;
-        while (j!=2){
-        this.mesa.recibirApuestas();
-        this.mesa.recibirCambios();
-        this.mesa.generarBetStatusDTO();
-        List<Jugador> jugadores=this.mesa.getJugadores();
-        for (int i=0;i<jugadores.size();i++)
-        {
-            CartasDTO generarCartasDTO = this.mesa.generarCartasDTO(jugadores.get(i));
-        }
-        this.mesa.notificarApuestas();
-        j++;}
+       this.mesa.repartirCartasJugadores(5);
+       this.mesa.notificarCartas();
+       this.mesa.recibirApuestas();
+       this.mesa.notificarApuestas();
+       
+       int j=0;
+       while (j != 2)
+       {
+            this.mesa.recibirCambios();
+            this.mesa.recibirApuestas();
+            this.mesa.notificarApuestas();
+            j++;
+       }
+        
     }
     
 }
