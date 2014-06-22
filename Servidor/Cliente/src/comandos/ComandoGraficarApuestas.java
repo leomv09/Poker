@@ -1,6 +1,5 @@
 package comandos;
 
-import cliente.Cliente;
 import gui.VentanaJuego;
 import java.util.List;
 import javax.swing.JLabel;
@@ -12,12 +11,10 @@ public class ComandoGraficarApuestas extends Comando{
     public static final String COMANDO = "graficarApuestas";
     
     JLabel labelApuestas;//Label donde se mostrará la situación de las apuestas.
-    Cliente cliente;
     
-    public ComandoGraficarApuestas(VentanaJuego frame, Cliente cliente)
+    public ComandoGraficarApuestas(VentanaJuego frame)
     {
         this.labelApuestas = frame.getLabelApuestas();
-        this.cliente = cliente;
     }
     
     @Override

@@ -1,5 +1,9 @@
 package gui;
 
+import cliente.Cliente;
+import comandos.ComandoGraficarApuestas;
+import comandos.ComandoGraficarCartas;
+
 public class VentanaEspera extends javax.swing.JFrame {
     
     public VentanaEspera(boolean esCreador)
@@ -12,6 +16,16 @@ public class VentanaEspera extends javax.swing.JFrame {
     public void establecerNombreMesa(String nombre)
     {
         this.nombreMesa.setText(nombre);
+    }
+    
+    public void crearVentanaJuego()
+    {
+        VentanaJuego dialog = new VentanaJuego();
+        //Se agregan los comandos relacionados con la ventana de juego.
+        Cliente.getInstance().getsocketCliente().setComando("graficarApuestas", new ComandoGraficarApuestas(dialog));
+        Cliente.getInstance().getsocketCliente().setComando("graficarCartas", new ComandoGraficarCartas(dialog));
+        dialog.setVisible(true);
+        this.dispose();
     }
 
     /**

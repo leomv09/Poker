@@ -1,5 +1,9 @@
 package gui;
 
+import cliente.Cliente;
+import comandos.ComandoIniciarPartidaCliente;
+import comandos.ComandoNotificarMesas;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import poker.Constantes;
 
@@ -132,6 +136,17 @@ public class VentanaInicio extends javax.swing.JFrame {
                 
                 VentanaEspera frame = new VentanaEspera(true);
                 frame.establecerNombreMesa( dialog.getNombreMesa() );
+                Cliente.getInstance().setidMesa(dialog.getNombreMesa());
+                //Se establecen los datos a enviar al servidor.
+                ArrayList<String> datoEnvio = new ArrayList<>();
+                datoEnvio.add(Cliente.getInstance().getidMesa());//Id de la mesa.
+                datoEnvio.add(Cliente.getInstance().getidJugador());//Id del creador.
+                datoEnvio.add(Integer.toString(dialog.getMaxJugadores()));//Cantidad máxima de juagadores.
+                datoEnvio.add(Integer.toString(dialog.getTipoJuego()));//Entero indicando el tipo de juego.
+                //Se envía la petición al servidor.
+                Cliente.getInstance().getsocketCliente().enviarComando("crearMesa", datoEnvio);
+                //Se agrega el comando para iniciar la partida con la ventana de espera.
+                Cliente.getInstance().getsocketCliente().setComando("iniciarPartida", new ComandoIniciarPartidaCliente(frame));
                 frame.setVisible(true);
             }
         }
@@ -146,6 +161,7 @@ public class VentanaInicio extends javax.swing.JFrame {
         if (error == null)
         {
             DialogoUnirseMesa dialog = new DialogoUnirseMesa(this, true);
+            Cliente.getInstance().getsocketCliente().setComando("notificarMesas", new ComandoNotificarMesas(dialog));
             dialog.setVisible(true);
 
             if (dialog.getEstado() == Constantes.DIALOGO_ACEPTAR)
@@ -154,7 +170,16 @@ public class VentanaInicio extends javax.swing.JFrame {
                 this.dispose();
                 
                 VentanaEspera frame = new VentanaEspera(false);
+                Cliente.getInstance().setidMesa(dialog.getNombreMesa());
                 frame.establecerNombreMesa( dialog.getNombreMesa() );
+                //Se establecen los datos a enviar al servidor.
+                ArrayList<String> datoEnvio = new ArrayList<>();
+                datoEnvio.add(Cliente.getInstance().getidMesa());//Id de la mesa.
+                datoEnvio.add(Cliente.getInstance().getidJugador());//Id del jugador.
+                //Se envía la petición al servidor.
+                Cliente.getInstance().getsocketCliente().enviarComando("unirseMesa", datoEnvio);
+                //Se agrega el comando para iniciar la partida con la ventana de espera.
+                Cliente.getInstance().getsocketCliente().setComando("iniciarPartida", new ComandoIniciarPartidaCliente(frame));
                 frame.setVisible(true);
             }
         }
