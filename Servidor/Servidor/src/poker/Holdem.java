@@ -13,11 +13,11 @@ import java.util.List;
 
 public class Holdem extends Juego {
     
-    public Holdem(Jugador jugador,PokerBet poker)
+    public Holdem(Mesa juego)
     {
         this.cartasJugador=2;
         this.cartasMesa=5;
-        this.juego=new Mesa(jugador,poker);
+        this.juego=juego;
         
     }
     @Override
