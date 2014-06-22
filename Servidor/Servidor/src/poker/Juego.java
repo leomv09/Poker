@@ -13,10 +13,12 @@ package poker;
  * @author Marcelo
  */
 public class Juego {
+    //Parametros del juego
     int cartasMesa=0;
     int cartasJugador=0;
     Mesa juego;
     
+    //Metodo jugar que se hereda en los juegos
     public void jugar()
     {
     }

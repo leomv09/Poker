@@ -13,14 +13,18 @@ import java.util.Collections;
 import java.util.Iterator;
 
 public class Deck {
+      //Parametros del deck
       int posicion=0;
       ArrayList<Carta> baraja=null;
       int[] valores={1,2,3,4,5,6,7,8,9,10,11,12,13};
+      
+      //Constructor
       public Deck()
       {
           baraja=new ArrayList();
           nuevaBaraja();
       }
+      //Metodo para la creacion de una nueva baraja
       private void nuevaBaraja()
       {
           for (int i=1;i<=4;i++)
@@ -33,28 +37,32 @@ public class Deck {
               
           }
       }
+      //Metodo shuffle que hace barajar a la baraja
       public void shuffle()
       {
           Collections.shuffle(baraja);
       }
+      //Metodo iterador del deck de la interfaz Iterator
       public Iterator<Carta> iterador()
       {
           return new IteradorDeck();
       }
+      //Metodo toString
       @Override
       public String toString()
       {
           return baraja.toString();
       }
-      
+      //Clase interna de Iteracion del deck
       protected class IteradorDeck implements Iterator<Carta>
       {
-        
+        //Metodo para ver si la baraja tiene cartas
          @Override
          public boolean hasNext()
          {
              return posicion<baraja.size();
          }
+         //Metodo next para dar la siguiente carta
          @Override
          public Carta next()
          {
@@ -62,11 +70,13 @@ public class Deck {
              posicion++;
              return sig;
          }
+         //Metodo para quitar cartas
          @Override
          public void remove()
          {
          }
       }
+      //Metodo para definir la agregacion de un joker
       public void setJoker(boolean joker)
       {
           if(joker==true)

@@ -12,7 +12,7 @@ import java.util.List;
 
 
 public class Holdem extends Juego {
-    
+    //Constructor
     public Holdem(Mesa juego)
     {
         this.cartasJugador=2;
@@ -20,6 +20,7 @@ public class Holdem extends Juego {
         this.juego=juego;
         
     }
+    //Metodo jugar del tipo de juego Holdem
     @Override
     public void jugar()
     {

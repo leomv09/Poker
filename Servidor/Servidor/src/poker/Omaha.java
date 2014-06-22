@@ -12,12 +12,14 @@ import java.util.List;
 
 
 public class Omaha extends Juego{
+    //Constructor
     public Omaha(Mesa juego)
     {
         this.cartasJugador=4;
         this.cartasMesa=5;
         this.juego=juego;
     }
+    //Metodo jugar del tipo de juego Omaha
     @Override
     public void jugar()
     {

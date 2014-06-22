@@ -11,11 +11,13 @@ package poker;
 import java.util.List;
 
 public class FiveCards extends Juego{
+    //Constructor
     public FiveCards(Mesa juego)
     {
         this.cartasJugador=5;
         this.juego=juego;
     }
+    //Metodo jugar del tipo de juego FiveCards
     @Override
     public void jugar()
     {
