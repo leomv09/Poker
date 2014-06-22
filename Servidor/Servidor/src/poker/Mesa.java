@@ -31,10 +31,11 @@ public class Mesa {
     private PokerBet pokerBet;
     private int dealer;
     private String nombre;
-    private String tipoJuego;
+    private int tipoJuego;
     private Juego juego;
+    private int cantidadJugadores;
     
-    public Mesa(Jugador creador, PokerBet bet,String Nombre,String tipo)
+    public Mesa(Jugador creador, PokerBet bet,String Nombre,int tipo,int cantidadJugadores)
     {
         this.id = UUID.randomUUID().toString();
         this.dealer = 0;
@@ -46,6 +47,7 @@ public class Mesa {
         this.jugadores.add(creador);
         this.nombre=Nombre;
         this.tipoJuego=tipo;
+        this.cantidadJugadores = cantidadJugadores;
     }
     public void crearJuego()
     {
