@@ -31,10 +31,11 @@ public class Mesa {
     private PokerBet pokerBet;
     private int dealer;
     private String nombre;
-    private String tipoJuego;
+    private int tipoJuego;
     private Juego juego;
+    private int maxJugadores;
     
-    public Mesa(Jugador creador, PokerBet bet,String Nombre,String tipo)
+    public Mesa(Jugador creador, PokerBet bet,String Nombre,int tipo,int cantMax)
     {
         this.id = UUID.randomUUID().toString();
         this.dealer = 0;
@@ -46,18 +47,19 @@ public class Mesa {
         this.jugadores.add(creador);
         this.nombre=Nombre;
         this.tipoJuego=tipo;
+        this.maxJugadores=cantMax;
     }
     public void crearJuego()
     {
-        if (this.tipoJuego=="Omaha")
+        if (this.tipoJuego==2)
         {
             this.juego=new Omaha(this);
         }
-        else if (this.tipoJuego=="Holdem")
+        else if (this.tipoJuego==0)
         {
             this.juego=new Holdem(this);
         }
-        else if (this.tipoJuego=="FiveCards")
+        else if (this.tipoJuego==1)
         {
             this.juego=new FiveCards(this);
         }
@@ -148,5 +150,16 @@ public class Mesa {
 
     public Servidor getServidor() {
         return servidor;
+    }
+    public int getTipoJuego() {
+        return tipoJuego;
+    }
+
+    public Juego getJuego() {
+        return juego;
+    }
+
+    public int getMaxJugadores() {
+        return maxJugadores;
     }
 }
