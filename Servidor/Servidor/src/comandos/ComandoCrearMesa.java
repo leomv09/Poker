@@ -7,6 +7,7 @@
 
 package comandos;
 
+import java.util.ArrayList;
 import poker.Jugador;
 import servidor.Servidor;
 
@@ -22,7 +23,12 @@ public class ComandoCrearMesa extends Comando{
     @Override
    public Object ejecutar(Object args)
    {
+       //idmesa 0
+       //cantidad jugadores
+       //tipo juego
+       //Nombre del juego
+       ArrayList<Object> dato = (ArrayList<Object>) args;
        Servidor serv = Servidor.getInstance();
-       return serv.crearMesa((Jugador)args);
+       return serv.crearMesa((Jugador)dato.get(0));
    }
 }

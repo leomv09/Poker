@@ -18,10 +18,12 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import poker.Jugador;
 
 public class Conexion extends Thread{
     //Atributos
@@ -44,7 +46,7 @@ public class Conexion extends Thread{
     /**
      * Identificador del jugador
      */
-    private String idJugador;
+    private Jugador idJugador;
     /**
      * Flag de control para saber cuando se termina la conexión.
      */
@@ -63,7 +65,6 @@ public class Conexion extends Thread{
     public Conexion(Socket scli, Servidor serv) {
         this.scli = scli;
         this.serv = serv;
-        this.idJugador = "";
         serv.post("Conexion agregada: "+this);
         comandos=inicializarComandos();
         try {
@@ -96,15 +97,18 @@ public class Conexion extends Thread{
         
         try{
             //Lee el id del jugador apenas se establece la conexión.
-            idJugador = entrada.readUTF();
+            idJugador = (Jugador) entrada.readObject();
             
             //Espera comandos
             while(corriendo){
                 String nombreComando = entrada.readUTF();
                 Object argumentos = entrada.readObject();
                 Comando com = comandos.get(nombreComando);
+                ArrayList<Object> parametros = new ArrayList<>();
+                parametros.add(argumentos);
+                parametros.add(idJugador);
                 //Comando comAEjecutar = (Comando)Class.forName(comando).newInstance(); //Idea de usar reflection, descartada por rendimiento.
-                salida.writeObject(com.ejecutar(argumentos));
+                salida.writeObject(com.ejecutar(parametros));
             }
             
         }

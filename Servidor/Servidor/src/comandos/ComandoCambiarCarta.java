@@ -14,6 +14,7 @@ public class ComandoCambiarCarta extends Comando{
 
    public Object ejecutar(Object args)
    {
+       //CartasDTO - envío cartasDTO
        return null;
    }
     
