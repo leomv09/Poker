@@ -14,6 +14,14 @@ import java.util.List;
 import java.util.UUID;
 
 public class Mesa {
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
     
     private final String id;
     private final Jugador creador;
@@ -22,8 +30,11 @@ public class Mesa {
     private final Servidor servidor;
     private PokerBet pokerBet;
     private int dealer;
+    private String nombre;
+    private String tipoJuego;
+    private Juego juego;
     
-    public Mesa(Jugador creador, PokerBet bet)
+    public Mesa(Jugador creador, PokerBet bet,String Nombre,String tipo)
     {
         this.id = UUID.randomUUID().toString();
         this.dealer = 0;
@@ -33,6 +44,23 @@ public class Mesa {
         this.cartasMesa = new LinkedList<>();
         this.jugadores = new LinkedList<>();
         this.jugadores.add(creador);
+        this.nombre=Nombre;
+        this.tipoJuego=tipo;
+    }
+    public void crearJuego()
+    {
+        if (this.tipoJuego=="Omaha")
+        {
+            this.juego=new Omaha(this);
+        }
+        else if (this.tipoJuego=="Holdem")
+        {
+            this.juego=new Holdem(this);
+        }
+        else if (this.tipoJuego=="FiveCards")
+        {
+            this.juego=new FiveCards(this);
+        }
     }
     
     public void notificarApuestas()
@@ -114,5 +142,11 @@ public class Mesa {
     {
         return pokerBet;
     }
-    
+    public List<Carta> getCartasMesa() {
+        return cartasMesa;
+    }
+
+    public Servidor getServidor() {
+        return servidor;
+    }
 }

@@ -15,6 +15,7 @@ public class ComandoIniciarPartida extends Comando{
     
     public Object ejecutar(Object args)
    {
+       //Llega id mesa
        return null;
    }
 }

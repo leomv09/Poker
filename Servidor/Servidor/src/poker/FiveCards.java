@@ -11,10 +11,10 @@ package poker;
 import java.util.List;
 
 public class FiveCards extends Juego{
-    public FiveCards(Jugador jugador,PokerBet poker)
+    public FiveCards(Mesa juego)
     {
         this.cartasJugador=5;
-        this.juego=new Mesa(jugador,poker);
+        this.juego=juego;
     }
     @Override
     public void jugar()

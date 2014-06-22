@@ -15,6 +15,8 @@ public class ComandoApostar extends Comando{
 
    public Object ejecutar(Object args)
    {
+       //Monto de apuesta
+       //devuelve null
        return null;
    }
     

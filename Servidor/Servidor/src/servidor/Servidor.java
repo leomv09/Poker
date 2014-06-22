@@ -7,6 +7,7 @@
 
 package servidor;
 
+
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -147,8 +148,22 @@ public class Servidor extends Thread implements ConstantesServ{
         return mesa.getId();
     }
     
+    /**
+     * Devuelve todas las mesas que tiene el servidor.
+     * @return mesas
+     */
     public ArrayList<Mesa> getMesas(){
         return mesas;
+    }
+    
+    public boolean unirJugador(String idmesa,Jugador jugador){
+        for(Mesa mesa : mesas){
+            if(mesa.getId().equals(idmesa)){
+                mesa.agregarJugador(jugador);
+                return true;
+            }
+        }
+        return false;
     }
     
     public void solicitarCambios(String id)

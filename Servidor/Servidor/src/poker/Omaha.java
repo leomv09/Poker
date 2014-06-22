@@ -12,11 +12,11 @@ import java.util.List;
 
 
 public class Omaha extends Juego{
-    public Omaha(Jugador jugador,PokerBet poker)
+    public Omaha(Mesa juego)
     {
         this.cartasJugador=4;
         this.cartasMesa=5;
-        this.juego=new Mesa(jugador,poker);
+        this.juego=juego;
     }
     @Override
     public void jugar()
