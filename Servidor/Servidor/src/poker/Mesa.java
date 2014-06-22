@@ -149,10 +149,4 @@ public class Mesa {
     public Servidor getServidor() {
         return servidor;
     }
-
-    public String getTipoJuego() {
-        return tipoJuego;
-    }
-    
-    
 }

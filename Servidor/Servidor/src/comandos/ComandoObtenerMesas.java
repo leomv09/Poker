@@ -28,9 +28,8 @@ public class ComandoObtenerMesas extends Comando{
        ArrayList<MesaDTO> dtos = new ArrayList<MesaDTO>();
        for(Mesa i: mesas){
            dtos.add(new MesaDTO(i.getId(),
-                                i.getNombre(),
-                                i.getJugadores().size(),
-                                i.getTipoJuego()));
+                                null,
+                                ));
        }
        ArrayList<Object> respuesta = new ArrayList<>();
        respuesta.add("notificarMesas");
