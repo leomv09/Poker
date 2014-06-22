@@ -9,6 +9,8 @@ import poker.MesaDTO;
 public class DialogoUnirseMesa extends javax.swing.JDialog {
     
     public int estado;
+    private String nombre;
+    private String id;
     private List<MesaDTO> mesas;
     
     public DialogoUnirseMesa(java.awt.Frame parent, boolean modal)
@@ -19,6 +21,7 @@ public class DialogoUnirseMesa extends javax.swing.JDialog {
         this.estado = Constantes.DIALOGO_ACEPTAR;
     }
     
+    
     /**
      * Método que carga las mesas en la interfaz.
      */
@@ -27,7 +30,19 @@ public class DialogoUnirseMesa extends javax.swing.JDialog {
         DefaultListModel model = new DefaultListModel();
         for (MesaDTO mesa : mesas)
         {
-            String elem ="Nombre: " + mesa.getId() + " " + "Cantidad de jugadores: "+ mesa.getCantidadJugadores();
+            String tipoJuego = "";
+            
+            switch(mesa.getTipoJuego())
+            {
+                case 0: tipoJuego = "Holdem";
+                    break;
+                case 1: tipoJuego = "Five Cards";
+                    break;
+                case 3: tipoJuego = "Omaha";
+                    break;
+            }
+            String elem = "Nombre: " + mesa.getNombre() + " | " + "Cantidad de jugadores: "+ 
+                    mesa.getCantidadJugadores() + " | " + "Juego: " + tipoJuego;
             model.addElement(elem);
         }
         this.listaMesas.setModel(model);
@@ -51,6 +66,16 @@ public class DialogoUnirseMesa extends javax.swing.JDialog {
             return "Seleccione una mesa.";
         }
         return null;
+    }
+    
+    /**
+     *
+     * @return Objeto MesaDTO seleccionado.
+     */
+    public MesaDTO getMesa()
+    {
+       int index =  this.listaMesas.getSelectedIndex();
+       return this.mesas.get(index);
     }
     
     public String getNombreMesa()

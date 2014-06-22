@@ -6,7 +6,7 @@ package comandos;
 
 
 import gui.DialogoUnirseMesa;
-import java.util.List;
+import java.util.ArrayList;
 import poker.MesaDTO;
 
 /**
@@ -21,7 +21,7 @@ public class ComandoNotificarMesas extends Comando{
     
     /**
      *
-     * @param cliente El cliente al cual se le notifican las mesas.
+     * @param frame La ventana de mesas que se va a llenar.
      */
     public ComandoNotificarMesas(DialogoUnirseMesa frame)
     {
@@ -32,14 +32,15 @@ public class ComandoNotificarMesas extends Comando{
 
     /**
      *
-     * @param args
+     * @param args Arreglo de objetos que contendrá el arreglo de mesas.
      */
     @Override
    public Object ejecutar(Object args)
    {
        if(args != null)
        {
-        List<MesaDTO> dtos = (List<MesaDTO>) args;
+        ArrayList<Object> datos = (ArrayList<Object>) args;
+        ArrayList<MesaDTO> dtos = (ArrayList<MesaDTO>) datos.get(0);
         this.frame.setMesas(dtos);
        }
        return null;

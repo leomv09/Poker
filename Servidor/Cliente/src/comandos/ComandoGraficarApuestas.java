@@ -1,6 +1,7 @@
 package comandos;
 
 import gui.VentanaJuego;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JLabel;
 import poker.BetStatusDTO;
@@ -17,10 +18,16 @@ public class ComandoGraficarApuestas extends Comando{
         this.labelApuestas = frame.getLabelApuestas();
     }
     
+    /**
+     *
+     * @param args Arreglo de objetos, que contendrá el dto de apuestas en la posición 0.
+     * @return
+     */
     @Override
     public Object ejecutar(Object args)
     {
-        BetStatusDTO dto = BetStatusDTO.deserialize((String)args);
+        ArrayList<BetStatusDTO> datos = (ArrayList<BetStatusDTO>) args;
+        BetStatusDTO dto = datos.get(0);
         List<Jugador> jugadores = dto.getJugadores();
         int[][] rondaApuestas = dto.getApuestas();
         return null;

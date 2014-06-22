@@ -3,6 +3,8 @@ package gui;
 import cliente.Cliente;
 import comandos.ComandoGraficarApuestas;
 import comandos.ComandoGraficarCartas;
+import comandos.ComandoSolicitarApuesta;
+import comandos.ComandoSolicitarCambioCarta;
 
 public class VentanaEspera extends javax.swing.JFrame {
     
@@ -18,12 +20,17 @@ public class VentanaEspera extends javax.swing.JFrame {
         this.nombreMesa.setText(nombre);
     }
     
+    /**
+     * Método que crea la ventana de juego cuando el servidor indica el inicio de la partida.
+     */
     public void crearVentanaJuego()
     {
         VentanaJuego dialog = new VentanaJuego();
         //Se agregan los comandos relacionados con la ventana de juego.
         Cliente.getInstance().getsocketCliente().setComando("graficarApuestas", new ComandoGraficarApuestas(dialog));
         Cliente.getInstance().getsocketCliente().setComando("graficarCartas", new ComandoGraficarCartas(dialog));
+        Cliente.getInstance().getsocketCliente().setComando("solicitarApuesta", new ComandoSolicitarApuesta(dialog));
+        Cliente.getInstance().getsocketCliente().setComando("solicitarCarta", new ComandoSolicitarCambioCarta(dialog));
         dialog.setVisible(true);
         this.dispose();
     }

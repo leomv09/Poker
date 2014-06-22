@@ -1,6 +1,7 @@
 package comandos;
 
 import gui.VentanaJuego;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -20,10 +21,16 @@ public class ComandoGraficarCartas extends Comando{
         this.labelsCartasJugador = frame.getCartasJugador();
     }
     
+    /**
+     *
+     * @param args Arreglo de objetos, que contendrá el dto de cartas en la posición 0.
+     * @return
+     */
     @Override
     public Object ejecutar(Object args)
     {
-        CartasDTO dto = CartasDTO.deserialize(String.valueOf(args));
+        ArrayList<CartasDTO> datos = (ArrayList<CartasDTO>) args;
+        CartasDTO dto = datos.get(0);
         graficarCartas(dto.getCartasMesa(), labelsCartasMesa);
         graficarCartas(dto.getCartasJugador(), labelsCartasJugador);
         return null;

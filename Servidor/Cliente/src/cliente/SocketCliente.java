@@ -107,7 +107,7 @@ public class SocketCliente extends Thread{
         Comando comando = this.comandos.get(nombre);
         if(comando != null)
         {
-            comando.ejecutar(args);
+            comando.ejecutar((ArrayList<Object>)args);
         }
     }
     
@@ -140,8 +140,8 @@ public class SocketCliente extends Thread{
                 datos = (ArrayList<Object>) input;
                 if(datos != null)
                 {
-                    String comando = (String)datos.get(0);
-                    datos.remove(0);
+                    String comando = (String)datos.get(0);//Se obtiene el comando a ejecutar.
+                    datos.remove(0);//Se elimina el comando del arreglo de objetos ingresado.
                     ejecutarComando(comando, datos);
                 }
             }
