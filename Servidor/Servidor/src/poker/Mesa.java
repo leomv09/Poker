@@ -51,15 +51,15 @@ public class Mesa {
     }
     public void crearJuego()
     {
-        if (this.tipoJuego=="Omaha")
+        if (this.tipoJuego==2)
         {
             this.juego=new Omaha(this);
         }
-        else if (this.tipoJuego=="Holdem")
+        else if (this.tipoJuego==0)
         {
             this.juego=new Holdem(this);
         }
-        else if (this.tipoJuego=="FiveCards")
+        else if (this.tipoJuego==1)
         {
             this.juego=new FiveCards(this);
         }
