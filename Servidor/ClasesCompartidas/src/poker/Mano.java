@@ -8,12 +8,17 @@
 
 package poker;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public abstract class Mano implements Comparable<Mano>{
+public class Mano implements Comparable<Mano>{
     //Parametro de mano
     List<Carta> cartas;
-    
+    //Constructor
+    public Mano()
+    {
+        cartas=new ArrayList<Carta>();
+    }
     //Metodo para agregar cartas a la mano
     public void agregarCarta(Carta c)
     {
@@ -28,8 +33,22 @@ public abstract class Mano implements Comparable<Mano>{
     public int obtenerValor()
     {
         int valor=0;
-        
+        this.ordenarMano();
         return valor;
+    }
+    //Metodo para ordenar la mano
+   public void ordenarMano()
+    {
+        for (int i=1;i<cartas.size();i++)
+            for (int j=0;j<cartas.size()-1;j++)
+                if (cartas.get(j).Valor>cartas.get(j+1).Valor)
+                {
+                    Carta temp=cartas.get(j);
+                    cartas.set(j, cartas.get(j+1));
+                    cartas.set(j+1, temp);
+                    
+                }
+        
     }
     //Metodo compareTo de la interfaz Comparable
     public int compareTo(Mano mano)
