@@ -30,6 +30,7 @@ public class ComandoSolicitarCambioCarta extends Comando{
     @Override
    public Object ejecutar(Object args)
    {
+       this.frame.setCambiarCartas();//Se habilita el botón de cambiar cartas.
        return null;
    }
     

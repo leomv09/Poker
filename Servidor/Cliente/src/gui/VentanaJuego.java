@@ -5,8 +5,13 @@ import java.util.List;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
+/*
+ * Clase que corre la ventana principal del juego.
+ */
 public class VentanaJuego extends javax.swing.JFrame {
 
+    private int cantIgualar;//Cantidad a igualar en las apuestas.
+    
     public VentanaJuego()
     {
         initComponents();
@@ -35,6 +40,16 @@ public class VentanaJuego extends javax.swing.JFrame {
         this.setButtonsEnabled(true);
     }
     
+    
+    /**
+     * Método que establece la cantidad a igualar.
+     * @param cant Cantidad a igualar en la apuesta.
+     */
+    public void setCantIgualar(int cant)
+    {
+        this.cantIgualar = cant;
+    }
+    
     /**
      * Método que habilita el botón de cambiar cartas.
      */
@@ -43,16 +58,21 @@ public class VentanaJuego extends javax.swing.JFrame {
         this.botonCambioCarta.setEnabled(true);
     }
     
+    
+    /**
+     * Método que le notifica al socket cliente la apuesta.
+     * @param cantidad Cantidad a apostar.
+     */
     private void igualar(int cantidad)
     {
         if(Cliente.getInstance().getJugador().getDinero() - cantidad >= 0 )
         { 
-           Cliente.getInstance().getsocketCliente().enviarComando("apostar", cantidad);
-           //Cliente.getInstance().getJugador().setDinero(Cliente.getInstance().getJugador().getDinero() - cantidad);
+           Cliente.getInstance().getsocketCliente().enviarComando("apostar", cantidad);//Se envía el comando al servidor.
+           Cliente.getInstance().getJugador().setDinero(Cliente.getInstance().getJugador().getDinero() - cantidad);//Se rebaja la apuesta realizada.
         }
-        else
+        else//No posee fichas para apostar.
         {
-            JOptionPane.showMessageDialog(this, "No posee fichas suficientes apara igualar.", "Poker", 
+            JOptionPane.showMessageDialog(this, "No posee fichas suficientes para igualar.", "Poker", 
                     JOptionPane.WARNING_MESSAGE);
         }
     }
@@ -75,7 +95,7 @@ public class VentanaJuego extends javax.swing.JFrame {
         return this.labelApuestas;
     }
     
-    public void setButtonsEnabled(boolean enabled)
+    private void setButtonsEnabled(boolean enabled)
     {
         this.botonIgualar.setEnabled(enabled);
         this.botonPasar.setEnabled(enabled);
@@ -303,11 +323,12 @@ public class VentanaJuego extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonIgualarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonIgualarActionPerformed
-       igualar(0);//obtener cantidad a igualar.
+       igualar(this.cantIgualar);
         this.setButtonsEnabled(false);
     }//GEN-LAST:event_botonIgualarActionPerformed
 
     private void botonPasarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonPasarActionPerformed
+        igualar(0);//No se apuesta nada. Verificar en serividor-> si apuesta es == 0 es que pasa.
         this.setButtonsEnabled(false);
     }//GEN-LAST:event_botonPasarActionPerformed
 

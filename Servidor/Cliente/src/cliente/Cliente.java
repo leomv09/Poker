@@ -14,7 +14,6 @@ public class Cliente {
     
     private static Cliente instance = null;
     private String idJugador;//id de jugador que se le asigna.
-    private String[] mesas;
     private String idMesa;//id de la mesa en la que está jugando.
     private SocketCliente socketCliente;//Socket por el cuál se va a comunicar con el server.
     private Jugador jugador;
@@ -29,7 +28,6 @@ public class Cliente {
     {
         this.idJugador = "-1";
         this.idMesa = "-1";
-        this.mesas = new String[10];
         this.socketCliente = new SocketCliente();
         this.jugador = new Jugador("", 50);
     }
@@ -79,14 +77,6 @@ public class Cliente {
         this.jugador.setId(id);
     }
     
-    /*
-     * Método que establece las mesas a mostrar.
-     * Parámetros: Mesas Las mesas a mostrar. 
-     */
-    public void setMesas(String[] Mesas)
-    {
-        this.mesas = Mesas;
-    }
     
     /*
      * Método que establece el id de mesa.

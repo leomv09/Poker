@@ -6,6 +6,7 @@ package comandos;
 
 import cliente.Cliente;
 import gui.VentanaJuego;
+import java.util.ArrayList;
 
 /**
  *
@@ -27,10 +28,18 @@ public class ComandoSolicitarApuesta extends Comando{
     }
     
     
+    /**
+     * Método que ejecuta el comando.
+     * @param args En este caso es la cantidad de fichas a igualar.
+     * @return
+     */
     @Override
    public Object ejecutar(Object args)
     {
-        this.frame.setButtonsEnabled(true);
+        ArrayList<Object> args2 = (ArrayList<Object>)args;
+        int cantApostar = (int) args2.get(0);
+        this.frame.setCantIgualar(cantApostar);//Se establece la cantidad a igualar en la apuesta.
+        this.frame.realizarApuesta();//Se habilitan los botones relacionados con apostar.
         return null;
     }
 
