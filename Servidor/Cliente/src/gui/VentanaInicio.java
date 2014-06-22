@@ -13,6 +13,19 @@ public class VentanaInicio extends javax.swing.JFrame {
     public VentanaInicio()
     {
         initComponents();
+        conectarServidor();
+    }
+    
+    private void conectarServidor()
+    {
+        String serverIp = null;
+        boolean isConnected = false;
+        
+        while (!isConnected)
+        {
+            serverIp = JOptionPane.showInputDialog(this, "Server IP");
+            //Cliente.getInstance().getsocketCliente().establecerConexion(serverIp);
+        }
     }
 
     private String validarDatos()
