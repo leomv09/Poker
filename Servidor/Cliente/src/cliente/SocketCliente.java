@@ -43,14 +43,13 @@ public class SocketCliente extends Thread{
     /**
      * Método que establece la conexión al servidor.
      * @param ip Dirección ip del servidor.
-     * @return
+     * @return true Si se establece la conexión las servidor.
+     *         fasle 
      */
     public boolean establecerConexion(String ip)
     {
         try {
             this.server = new Socket(ip, 2020);//Cambiar por el server y la dirección IP del server.
-            this.in = new ObjectInputStream(server.getInputStream());
-            this.out = new ObjectOutputStream(server.getOutputStream());
             return true;
         } catch (UnknownHostException ex) {
             Logger.getLogger(SocketCliente.class.getName()).log(Level.SEVERE, null, ex);
@@ -154,6 +153,8 @@ public class SocketCliente extends Thread{
     {
         Object input;//Objeto que se recibe del servidor.
         try {
+            this.in = new ObjectInputStream(server.getInputStream());
+            this.out = new ObjectOutputStream(server.getOutputStream());
             ArrayList<Object> datos;//Arreglo de datos recibidos.
             while((input = in.readObject()) != null)
             {

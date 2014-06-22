@@ -74,7 +74,7 @@ public class ComandoGraficarApuestas extends Comando{
             }
         }
         
-        return pot;
+        return pot;//Side pots
     }
     
 }
