@@ -5,6 +5,7 @@
 package comandos;
 
 import cliente.Cliente;
+import gui.VentanaJuego;
 
 /**
  *
@@ -13,16 +14,16 @@ import cliente.Cliente;
 public class ComandoSolicitarCambioCarta extends Comando{
     
     public static final String COMANDO = "solicitarCarta";//Comando de la clase
-    private Cliente cliente;// Cliente del cual se extraen las cartas.
+    private VentanaJuego frame;// Cliente del cual se extraen las cartas.
     
     
     /**
      *
      * @param cliente Objeto de tipo Cliente.
      */
-    public ComandoSolicitarCambioCarta(Cliente cliente)
+    public ComandoSolicitarCambioCarta(VentanaJuego frame)
     {
-        this.cliente = cliente;
+        this.frame = frame;
     }
     
    

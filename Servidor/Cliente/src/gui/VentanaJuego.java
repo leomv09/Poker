@@ -1,7 +1,9 @@
 package gui;
 
+import cliente.Cliente;
 import java.util.List;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 public class VentanaJuego extends javax.swing.JFrame {
 
@@ -33,6 +35,28 @@ public class VentanaJuego extends javax.swing.JFrame {
         this.setButtonsEnabled(true);
     }
     
+    /**
+     * Método que habilita el botón de cambiar cartas.
+     */
+    public void setCambiarCartas()
+    {
+        this.botonCambioCarta.setEnabled(true);
+    }
+    
+    private void igualar(int cantidad)
+    {
+        if(Cliente.getInstance().getJugador().getDinero() - cantidad >= 0 )
+        { 
+           Cliente.getInstance().getsocketCliente().enviarComando("apostar", cantidad);
+           //Cliente.getInstance().getJugador().setDinero(Cliente.getInstance().getJugador().getDinero() - cantidad);
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(this, "No posee fichas suficientes apara igualar.", "Poker", 
+                    JOptionPane.WARNING_MESSAGE);
+        }
+    }
+    
     public final JLabel[] getCartasMesa()
     {
         return new JLabel[] { this.cartaMesa1, this.cartaMesa2, this.cartaMesa3, this.cartaMesa4, this.cartaMesa5 };
@@ -51,7 +75,7 @@ public class VentanaJuego extends javax.swing.JFrame {
         return this.labelApuestas;
     }
     
-    private void setButtonsEnabled(boolean enabled)
+    public void setButtonsEnabled(boolean enabled)
     {
         this.botonIgualar.setEnabled(enabled);
         this.botonPasar.setEnabled(enabled);
@@ -84,6 +108,7 @@ public class VentanaJuego extends javax.swing.JFrame {
         cartaJugador3 = new javax.swing.JLabel();
         cartaJugador4 = new javax.swing.JLabel();
         cartaJugador5 = new javax.swing.JLabel();
+        botonCambioCarta = new javax.swing.JButton();
         panelApuestas = new javax.swing.JPanel();
         labelApuestas = new javax.swing.JLabel();
 
@@ -167,6 +192,14 @@ public class VentanaJuego extends javax.swing.JFrame {
 
         cartaJugador5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/cards/B-2.png"))); // NOI18N
 
+        botonCambioCarta.setText("Cambiar");
+        botonCambioCarta.setEnabled(false);
+        botonCambioCarta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonCambioCartaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panelCartasJugadorLayout = new javax.swing.GroupLayout(panelCartasJugador);
         panelCartasJugador.setLayout(panelCartasJugadorLayout);
         panelCartasJugadorLayout.setHorizontalGroup(
@@ -182,7 +215,9 @@ public class VentanaJuego extends javax.swing.JFrame {
                 .addComponent(cartaJugador4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(cartaJugador5)
-                .addGap(123, 123, 123))
+                .addGap(18, 18, 18)
+                .addComponent(botonCambioCarta)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panelCartasJugadorLayout.setVerticalGroup(
             panelCartasJugadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -195,6 +230,10 @@ public class VentanaJuego extends javax.swing.JFrame {
                     .addComponent(cartaJugador4)
                     .addComponent(cartaJugador5))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelCartasJugadorLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(botonCambioCarta)
+                .addGap(19, 19, 19))
         );
 
         labelApuestas.setText("Apuestas");
@@ -264,6 +303,7 @@ public class VentanaJuego extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonIgualarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonIgualarActionPerformed
+       igualar(0);//obtener cantidad a igualar.
         this.setButtonsEnabled(false);
     }//GEN-LAST:event_botonIgualarActionPerformed
 
@@ -275,7 +315,13 @@ public class VentanaJuego extends javax.swing.JFrame {
         this.setButtonsEnabled(false);
     }//GEN-LAST:event_botonRetirarseActionPerformed
 
+    private void botonCambioCartaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCambioCartaActionPerformed
+        List<Integer> cartasCambiar = cambiarCartas();//Se obtienen las cartas a cambiar.
+        Cliente.getInstance().getsocketCliente().enviarComando("cambiarCarta", cartasCambiar);//Se le notifica al servidor las cartas a cambiar.
+    }//GEN-LAST:event_botonCambioCartaActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton botonCambioCarta;
     private javax.swing.JButton botonIgualar;
     private javax.swing.JButton botonPasar;
     private javax.swing.JButton botonRetirarse;

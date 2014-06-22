@@ -5,12 +5,12 @@
 package cliente;
 
 import comandos.Comando;
-import comandos.ComandoSolicitarApuesta;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.net.UnknownHostException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;
@@ -68,14 +68,28 @@ public class SocketCliente extends Thread{
         this.comandos.put(nombre, comando);
     }
     
+    /**
+     * Método que permite enviar datos al servidor.
+     * @param dato Dato a enviar.
+     */
+    public void enviarDato(Object dato)
+    {
+        try {
+            this.out.writeObject(dato);
+        } catch (IOException ex) {
+            Logger.getLogger(SocketCliente.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
     /*
-     *Método que permite enviar un dato al servidor(DTO).
+     *Método que permite enviar un comando y sus argumentos al servidor.
      * Parametro: comando Comando para el servidor.
      *            args Arreglo de argumentos.
      */
-    public void enviarDato(String comando, String[] args)
+    public void enviarComando(String comando, Object args)
     {
         try {
+            this.out.writeObject(comando);
             this.out.writeObject(args);
         } catch (IOException ex) {
             Logger.getLogger(SocketCliente.class.getName()).log(Level.SEVERE, null, ex);
@@ -88,7 +102,7 @@ public class SocketCliente extends Thread{
      * Parametros: nombre Nombre del comando.
      *             dto DTO a procesar.
      */
-    private void ejecutarComando(String nombre, String[] args)
+    private void ejecutarComando(String nombre, Object args)
     {
         Comando comando = this.comandos.get(nombre);
         if(comando != null)
@@ -97,17 +111,6 @@ public class SocketCliente extends Thread{
         }
     }
     
-    /*
-     *Método que elimina el primer elemento de un arreglo.
-     * Parametros: array Arreglo a eliminar el elementos.
-     *             elem  Elemento a eliminar.
-     */
-    private String[] removeFirst(String[] array, String elem)
-    {
-        String[] res =(String[]) new String[array.length - 1];
-        System.arraycopy(array, 1, res, 0, array.length - 1);
-        return res;
-    }
     
     /*
      * Método que cierra la conexión con el servidor.
@@ -131,13 +134,15 @@ public class SocketCliente extends Thread{
     {
         Object input;//Objeto que se recibe del servidor.
         try {
-            String[] datos;//Arreglo de datos recibidos.
+            ArrayList<Object> datos;//Arreglo de datos recibidos.
             while((input = in.readObject()) != null)
             {
-                datos = (String[])input;
-                if(datos[0] != null)
+                datos = (ArrayList<Object>) input;
+                if(datos != null)
                 {
-                    ejecutarComando(datos[0], removeFirst(datos, datos[0]));
+                    String comando = (String)datos.get(0);
+                    datos.remove(0);
+                    ejecutarComando(comando, datos);
                 }
             }
         }catch ( ClassNotFoundException | IOException ex) {

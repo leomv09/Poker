@@ -121,7 +121,7 @@ public class Cliente {
     public void solicitarMesas()
     {
         String[] args = {""};
-        this.socketCliente.enviarDato("obtenerMesas", args);
+        this.socketCliente.enviarComando("obtenerMesas", args);
     }
     
     /*
@@ -131,7 +131,7 @@ public class Cliente {
     public void unirseMesa(String idMesa)
     {
         String[] args = {idMesa, this.idJugador};//Se envía el id de la mesa a unirse y el jugador a unirse.
-        this.socketCliente.enviarDato("unirseMesa", args);
+        this.socketCliente.enviarComando("unirseMesa", args);
     }
     
     /*
@@ -151,6 +151,6 @@ public class Cliente {
     public void realizarApuesta(int apuesta)
     {
         String[] args = {idJugador, Integer.toString(apuesta)};
-        this.socketCliente.enviarDato("apostar", args);
+        this.socketCliente.enviarComando("apostar", args);
     }
 }
