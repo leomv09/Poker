@@ -105,6 +105,15 @@ public class VentanaJuego extends javax.swing.JFrame {
         return this.labelApuestas;
     }
     
+    /**
+     * Método que establece el texto referente a la ronda de apuestas.
+     * @param ronda Mensaje que contendrá el label.
+     */
+    public void setRondaApuestas(String ronda)
+    {
+        this.labelApuestas.setText(ronda);
+    }
+    
     private void setButtonsEnabled(boolean enabled)
     {
         this.botonIgualar.setEnabled(enabled);

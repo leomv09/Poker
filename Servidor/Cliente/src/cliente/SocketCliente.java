@@ -79,6 +79,7 @@ public class SocketCliente extends Thread{
     {
         try {
             this.out.writeObject(dato);
+            this.out.flush();
         } catch (IOException ex) {
             Logger.getLogger(SocketCliente.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -93,7 +94,9 @@ public class SocketCliente extends Thread{
     {
         try {
             this.out.writeObject(comando);
+            this.out.flush();
             this.out.writeObject(args);
+            this.out.flush();
         } catch (IOException ex) {
             Logger.getLogger(SocketCliente.class.getName()).log(Level.SEVERE, null, ex);
         }
