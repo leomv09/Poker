@@ -181,23 +181,27 @@ public class Servidor extends Thread implements ConstantesServ{
         return null;
     }
     
-    public void solicitarCambios(String id)
+    public void solicitarCambios(String idMesa)
     {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public void solicitarApuestas(String id)
+    public void solicitarApuestas(String idMesa)
     {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public void notificarCartas(String id, CartasDTO status)
+    public void notificarCartas(String idJugador, CartasDTO status)
     {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public void notificarEstadoApuesta(String id, BetStatusDTO status)
+    public void notificarEstadoApuesta(String idMesa, BetStatusDTO status)
     {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public void notificarInicioJuego(String idJugador) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
