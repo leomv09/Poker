@@ -172,6 +172,11 @@ public class Servidor extends Thread implements ConstantesServ{
         return false;
     }
     
+    /**
+     * Devuelve la mesa que corresponde all ID dado.
+     * @param idMesa
+     * @return 
+     */
     public Mesa getMesa(String idMesa){
         for(Mesa i: mesas){
             if(i.getId().equals(idMesa)){
@@ -181,23 +186,29 @@ public class Servidor extends Thread implements ConstantesServ{
         return null;
     }
     
-    public void solicitarCambios(String id)
-    {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    /**
+     * Obtiene la conexión correspondiente al jugador recibido.
+     * @param idjugador
+     * @return 
+     */
+    private Conexion getConexion(String idjugador){
+        for(Conexion con:conexiones){
+            if(con.getID().equals(idjugador)){
+                return con;
+            }
+        }
+        return null;
     }
-
-    public void solicitarApuestas(String id)
-    {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    
+    /**
+     * Envía un comando al jugador dado.
+     * @param idJugador
+     * @param comando
+     * @param argumentos 
+     */
+    public void enviarComando(String idJugador,String comando,Object argumentos){
+        Conexion con = getConexion(idJugador);
+        con.enviarComando(comando, argumentos);
     }
-
-    public void notificarCartas(String id, CartasDTO status)
-    {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    public void notificarEstadoApuesta(String id, BetStatusDTO status)
-    {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    
 }

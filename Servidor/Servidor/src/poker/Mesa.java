@@ -77,6 +77,14 @@ public class Mesa {
         }
     }
     
+    public void notificarInicioJuego()
+    {
+        for (Jugador jugador : this.jugadores)
+        {
+            this.servidor.notificarInicioJuego(jugador.getId());
+        }
+    }
+    
     public void repartirCartasJugadores(int cantidadCartas)
     {
         Iterator<Carta> iter = deck.iterador();

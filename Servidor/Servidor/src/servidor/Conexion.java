@@ -120,5 +120,28 @@ public class Conexion extends Thread{
         }
     }
     
+    /**
+     * Envía el id del jugador dueño de la conexion
+     * @return 
+     */
+    public String getID(){
+        return idJugador.getId();
+    }
+    
+    /**
+     * Envía un comando al cliente.
+     * @param comando
+     * @param argumentos 
+     */
+    public void enviarComando(String comando, Object argumentos){
+        try {
+            ArrayList<Object> dato = new ArrayList<>();
+            dato.add(comando);
+            dato.add(argumentos);
+            salida.writeObject(dato);
+        } catch (IOException ex) {
+            Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
 }
