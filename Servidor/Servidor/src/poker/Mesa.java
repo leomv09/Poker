@@ -151,4 +151,14 @@ public class Mesa {
     public Servidor getServidor() {
         return servidor;
     }
+
+    public int getTipoJuego() {
+        return tipoJuego;
+    }
+
+    public int getCantidadJugadores() {
+        return cantidadJugadores;
+    }
+    
+    
 }
