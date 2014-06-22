@@ -1,12 +1,17 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ * Instituto Tecnológico de Costa Rica
+ * Escuela de Ingeniería en Computación
+ * Lenguajes de Programación
+ * Casa de Apuestas de Eddy
  */
+
 package comandos;
+
+import servidor.Servidor;
 
 /**
  *
- * @author Leo
+ * @author kortega
  */
 public class ComandoObtenerMesas extends Comando{
     
@@ -14,6 +19,7 @@ public class ComandoObtenerMesas extends Comando{
     
    public Object ejecutar(Object args)
    {
-       return null;
+       Servidor serv = Servidor.getInstance();
+       return (Object)serv.getMesas();
    }
 }

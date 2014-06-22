@@ -15,6 +15,7 @@ import poker.BetStatusDTO;
 import poker.CartasDTO;
 import poker.Jugador;
 import poker.Mesa;
+import poker.PokerBet;
 
 /**
  * Servidor, Se encarga de recibir las conexiones entrantes
@@ -22,7 +23,7 @@ import poker.Mesa;
  * Clase Singleton
  * @author kortega
  */
-public class Servidor extends Thread{
+public class Servidor extends Thread implements ConstantesServ{
     //Atributos
     /**
      * Única instancia del servidor
@@ -140,9 +141,14 @@ public class Servidor extends Thread{
     }
 
     public String crearMesa(Jugador plr){
-        Mesa mesa = new Mesa(plr,null);
+        PokerBet apuesta = new PokerBet(LITTLE_BLIND,BIG_BLIND);
+        Mesa mesa = new Mesa(plr,apuesta);
         mesas.add(mesa);
         return mesa.getId();
+    }
+    
+    public ArrayList<Mesa> getMesas(){
+        return mesas;
     }
     
     public void solicitarCambios(String id)
