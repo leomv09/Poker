@@ -13,6 +13,8 @@ import java.net.Socket;
 import java.util.ArrayList;
 import poker.BetStatusDTO;
 import poker.CartasDTO;
+import poker.Jugador;
+import poker.Mesa;
 
 /**
  * Servidor, Se encarga de recibir las conexiones entrantes
@@ -36,11 +38,14 @@ public class Servidor extends Thread{
      */
     private static ArrayList<Conexion> conexiones;
     
+    private static ArrayList<Mesa> mesas;
+    
     //Constructores
     /**
      * Crea una nueva instancia del servidor.
      */
     private Servidor(){
+        mesas = new ArrayList<>();
     }
     
     //Métodos
@@ -134,6 +139,11 @@ public class Servidor extends Thread{
         
     }
 
+    public String crearMesa(Jugador plr){
+        Mesa mesa = new Mesa(plr,null);
+        mesas.add(mesa);
+        return mesa.getId();
+    }
     
     public void solicitarCambios(String id)
     {
