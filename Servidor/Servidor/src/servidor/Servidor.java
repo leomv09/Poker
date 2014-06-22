@@ -156,7 +156,12 @@ public class Servidor extends Thread implements ConstantesServ{
     public ArrayList<Mesa> getMesas(){
         return mesas;
     }
-    
+    /**
+     * Une al jugador a la mesa indicada
+     * @param idmesa
+     * @param jugador
+     * @return se pudo unir?
+     */
     public boolean unirJugador(String idmesa,Jugador jugador){
         for(Mesa mesa : mesas){
             if(mesa.getId().equals(idmesa)){
@@ -165,6 +170,15 @@ public class Servidor extends Thread implements ConstantesServ{
             }
         }
         return false;
+    }
+    
+    public Mesa getMesa(String idMesa){
+        for(Mesa i: mesas){
+            if(i.getId().equals(idMesa)){
+                return i;
+            }
+        }
+        return null;
     }
     
     public void solicitarCambios(String id)
