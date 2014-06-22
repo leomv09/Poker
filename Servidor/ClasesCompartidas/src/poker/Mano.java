@@ -51,9 +51,10 @@ public class Mano implements Comparable<Mano>{
         
     }
     //Metodo compareTo de la interfaz Comparable
+   @Override
     public int compareTo(Mano mano)
     {
-        int resultado=0;
+        int resultado;
         if (this.obtenerValor()>mano.obtenerValor())
         {
             resultado=1;
