@@ -1,6 +1,10 @@
 package gui;
 
 import cliente.Cliente;
+import comandos.ComandoGraficarApuestas;
+import comandos.ComandoGraficarCartas;
+import comandos.ComandoSolicitarApuesta;
+import comandos.ComandoSolicitarCambioCarta;
 import java.util.List;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -24,6 +28,12 @@ public class VentanaJuego extends javax.swing.JFrame {
         {
             label.setVisible(false);
         }
+        
+        //Se agregan los comandos relacionados con la ventana de juego.
+        Cliente.getInstance().getsocketCliente().putComando("graficarApuestas", new ComandoGraficarApuestas(this));
+        Cliente.getInstance().getsocketCliente().putComando("graficarCartas", new ComandoGraficarCartas(this));
+        Cliente.getInstance().getsocketCliente().putComando("solicitarApuesta", new ComandoSolicitarApuesta(this));
+        Cliente.getInstance().getsocketCliente().putComando("solicitarCarta", new ComandoSolicitarCambioCarta(this));
     }
     
     public List<Integer> cambiarCartas()

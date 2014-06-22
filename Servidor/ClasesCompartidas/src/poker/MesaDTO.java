@@ -35,11 +35,29 @@ public class MesaDTO {
     {
         return tipoJuego;
     }
+    
+    public String getNombreTipoJuego()
+    {
+        String nombreTipo = null;
+        switch(tipoJuego)
+        {
+            case Constantes.JUEGO_HOLDEM:
+                nombreTipo = "Holdem";
+                break;
+            case Constantes.JUEGO_FIVECARDS:
+                nombreTipo = "Five Cards";
+                break;
+            case Constantes.JUEGO_OMAHA:
+                nombreTipo = "Omaha";
+                break;
+        }
+        return nombreTipo;
+    }
 
     @Override
     public String toString()
     {
-        return this.nombre;
+        return "Nombre: " + nombre + " | " + "Cantidad de jugadores: "+ cantidadJugadores + " | " + "Juego: " + this.getNombreTipoJuego();
     }
     
 }

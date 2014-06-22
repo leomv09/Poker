@@ -63,9 +63,12 @@ public class SocketCliente extends Thread{
      * @param nombre Nombre del comando.
      * @param comando Objeto de tipo comando.
      */
-    public void setComando(String nombre, Comando comando)
+    public void putComando(String nombre, Comando comando)
     {
-        this.comandos.put(nombre, comando);
+        if (! this.comandos.containsKey(nombre))
+        {
+            this.comandos.put(nombre, comando);
+        }
     }
     
     /**
