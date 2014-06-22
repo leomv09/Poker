@@ -8,35 +8,34 @@
 
 package poker;
 
-import java.util.List;
-
-
 public class Holdem extends Juego {
+    
     //Constructor
     public Holdem(Mesa juego)
     {
-        this.cartasJugador=2;
-        this.cartasMesa=5;
-        this.juego=juego;
-        
+        super(juego);
+        this.cartasJugador = 2;
+        this.cartasMesa = 5;
     }
+    
     //Metodo jugar del tipo de juego Holdem
     @Override
     public void jugar()
     {
+        this.mesa.repartirCartasJugadores(2);
+        this.mesa.notificarCartas();
+        this.mesa.recibirApuestas();
+        this.mesa.notificarApuestas();
+        
         int j=0;
-        while (j!=2){
-        this.juego.recibirApuestas();
-        this.juego.generarBetStatusDTO();
-        List<Jugador> jugadores=this.juego.getJugadores();
-        for (int i=0;i<jugadores.size();i++)
+        while (j != 2)
         {
-            CartasDTO generarCartasDTO = this.juego.generarCartasDTO(jugadores.get(i));
+            this.mesa.repartirCartasMesa(1);
+            this.mesa.notificarCartas();
+            this.mesa.recibirApuestas();
+            this.mesa.notificarApuestas();
+            j++;
         }
-        this.juego.notificarApuestas();
-        this.juego.notificarCartas();
-        j++;}
     }
-    
     
 }

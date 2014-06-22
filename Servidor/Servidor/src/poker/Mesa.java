@@ -12,9 +12,10 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.UUID;
+import servidor.ListenerComandos;
 import servidor.Servidor;
 
-public class Mesa {
+public class Mesa implements ListenerComandos {
 
     public String getNombre() {
         return nombre;
@@ -37,6 +38,7 @@ public class Mesa {
     private int tipoJuego;
     private Juego juego;
     private int cantidadJugadores;
+    private int cantidadApuestas;
     
     public Mesa(Jugador creador, PokerBet bet, String Nombre, int tipo, int cantidadJugadores)
     {
@@ -53,6 +55,7 @@ public class Mesa {
         this.nombre=Nombre;
         this.tipoJuego=tipo;
         this.cantidadJugadores = cantidadJugadores;
+        this.cantidadApuestas = 0;
         
         for (int i=0; i<cantidadJugadores; i++)
         {
@@ -81,7 +84,7 @@ public class Mesa {
     {
         for (Jugador jugador : this.jugadores)
         {
-            this.servidor.notificarInicioJuego(jugador.getId());
+            this.servidor.enviarComando(jugador.getId(), "iniciarPartida", null);
         }
     }
     
@@ -114,10 +117,19 @@ public class Mesa {
         }
     }
     
+    private void escucharApuestas()
+    {
+        while (this.cantidadApuestas < this.jugadores.size()) { }
+        this.cantidadApuestas = 0;
+    }
+    
     public void notificarApuestas()
     {
         BetStatusDTO status = this.generarBetStatusDTO();
-        this.servidor.notificarEstadoApuesta(this.id, status);
+        for (Jugador jugador : this.jugadores)
+        {
+            this.servidor.enviarComando(jugador.getId(), "graficarApuestas", status);
+        }
     }
     
     public void notificarCartas()
@@ -125,19 +137,26 @@ public class Mesa {
         for (Jugador current : this.jugadores)
         {
             CartasDTO status = this.generarCartasDTO(current);
-            this.servidor.notificarCartas(current.getId(), status);
+            this.servidor.enviarComando(current.getId(), "graficarCartas", status);
         }
     }
     
     public void recibirApuestas()
     {
         this.pokerBet.iniciarRondaApuesta();
-        this.servidor.solicitarApuestas(this.id);
+        for (Jugador jugador : this.jugadores)
+        {
+            this.servidor.enviarComando(jugador.getId(), "solicitarApuesta", this.pokerBet.getbBlind());
+        }
+        escucharApuestas();
     }
     
     public void recibirCambios()
     {
-        this.servidor.solicitarCambios(this.id);
+        for (Jugador jugador : this.jugadores)
+        {
+            this.servidor.enviarComando(jugador.getId(), "solicitarCarta", null);
+        }
     }
     
     public BetStatusDTO generarBetStatusDTO()
@@ -208,6 +227,14 @@ public class Mesa {
     public int getCantidadJugadores() {
         return cantidadJugadores;
     }
-    
+
+    @Override
+    public void handleEvent(String comando)
+    {
+        if (comando.equals("apostar"))
+        {
+            this.cantidadApuestas++;
+        }
+    }
     
 }

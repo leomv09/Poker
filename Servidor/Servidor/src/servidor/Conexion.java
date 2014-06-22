@@ -20,6 +20,8 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -55,6 +57,8 @@ public class Conexion extends Thread{
      * Hash para obtener el tipo de comando recibido.
      */
     private Map<String, Comando> comandos;
+    
+    private List<ListenerComandos> listeners;
 
     //Constructores
     /**
@@ -63,6 +67,7 @@ public class Conexion extends Thread{
      * @param serv 
      */
     public Conexion(Socket scli, Servidor serv) {
+        this.listeners = new LinkedList<>();
         this.scli = scli;
         this.serv = serv;
         serv.post("Conexion agregada: "+this);
@@ -93,6 +98,11 @@ public class Conexion extends Thread{
         return res;
     }
     
+    public void agregarListener(ListenerComandos l)
+    {
+        this.listeners.add(l);
+    }
+    
     public void run(){
         
         try{
@@ -100,9 +110,16 @@ public class Conexion extends Thread{
             idJugador = (Jugador) entrada.readObject();
             
             //Espera comandos
-            while(corriendo){
+            while(corriendo)
+            {
                 String nombreComando = entrada.readUTF();
                 Object argumentos = entrada.readObject();
+                
+                for (ListenerComandos l : this.listeners)
+                {
+                    l.handleEvent(nombreComando);
+                }
+                
                 Comando com = comandos.get(nombreComando);
                 ArrayList<Object> parametros = new ArrayList<>();
                 parametros.add(argumentos);

@@ -10,28 +10,31 @@ package poker;
 
 import java.util.List;
 
-public class FiveCards extends Juego{
+public class FiveCards extends Juego {
+    
     //Constructor
     public FiveCards(Mesa juego)
     {
-        this.cartasJugador=5;
-        this.juego=juego;
+        super(juego);
+        this.cartasJugador = 5;
+        this.cartasMesa = 0;
     }
+    
     //Metodo jugar del tipo de juego FiveCards
     @Override
     public void jugar()
     {
         int j=0;
         while (j!=2){
-        this.juego.recibirApuestas();
-        this.juego.recibirCambios();
-        this.juego.generarBetStatusDTO();
-        List<Jugador> jugadores=this.juego.getJugadores();
+        this.mesa.recibirApuestas();
+        this.mesa.recibirCambios();
+        this.mesa.generarBetStatusDTO();
+        List<Jugador> jugadores=this.mesa.getJugadores();
         for (int i=0;i<jugadores.size();i++)
         {
-            CartasDTO generarCartasDTO = this.juego.generarCartasDTO(jugadores.get(i));
+            CartasDTO generarCartasDTO = this.mesa.generarCartasDTO(jugadores.get(i));
         }
-        this.juego.notificarApuestas();
+        this.mesa.notificarApuestas();
         j++;}
     }
     

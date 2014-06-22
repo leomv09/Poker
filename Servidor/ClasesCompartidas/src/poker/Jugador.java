@@ -46,7 +46,7 @@ public class Jugador {
     //Metodo para obtener las cartas que tiene el jugador
     public List<Carta> getCartas()
     {
-        return this.manoJugador.getMano();
+        return this.manoJugador.getCartas();
     }
     
 }

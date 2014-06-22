@@ -14,7 +14,7 @@ import java.util.ArrayList;
  */
 public class ComandoSolicitarApuesta extends Comando{
    
-    public static final String COMANDO = "solicitarAouesta";//Comando de la clase
+    public static final String COMANDO = "solicitarApuesta";//Comando de la clase
     private VentanaJuego frame;//Cliente al cual se le va a soliciatar la apuesta.
     
     
