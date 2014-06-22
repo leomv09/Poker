@@ -13,7 +13,7 @@ public class DialogoCrearMesa extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         this.estado = Constantes.DIALOGO_CANCELAR;
-        this.juego = Constantes.HOLDEM;
+        this.juego = Constantes.JUEGO_HOLDEM;
     }
     
     private String validarDatos()
@@ -192,15 +192,15 @@ public class DialogoCrearMesa extends javax.swing.JDialog {
     }//GEN-LAST:event_botonAceptarActionPerformed
 
     private void holdemButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_holdemButtonActionPerformed
-        this.juego = Constantes.HOLDEM;
+        this.juego = Constantes.JUEGO_HOLDEM;
     }//GEN-LAST:event_holdemButtonActionPerformed
 
     private void fiveCardsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fiveCardsButtonActionPerformed
-        this.juego = Constantes.FIVECARDS;
+        this.juego = Constantes.JUEGO_FIVECARDS;
     }//GEN-LAST:event_fiveCardsButtonActionPerformed
 
     private void omahaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_omahaButtonActionPerformed
-        this.juego = Constantes.OMAHA;
+        this.juego = Constantes.JUEGO_OMAHA;
     }//GEN-LAST:event_omahaButtonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

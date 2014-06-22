@@ -141,8 +141,6 @@ public class VentanaInicio extends javax.swing.JFrame {
                 
                 VentanaEspera frame = new VentanaEspera(true);
                 frame.establecerNombreMesa( dialog.getNombreMesa() );
-                //Se agrega el comando para iniciar la partida con la ventana de espera.
-                Cliente.getInstance().getsocketCliente().setComando("iniciarPartida", new ComandoIniciarPartidaCliente(frame));
                 //Se establecen los datos a enviar al servidor.
                 ArrayList<String> datoEnvio = new ArrayList<>();
                 datoEnvio.add(dialog.getNombreMesa());//Nombre de la mesa.
@@ -167,8 +165,6 @@ public class VentanaInicio extends javax.swing.JFrame {
         if (error == null)
         {
             DialogoUnirseMesa dialog = new DialogoUnirseMesa(this, true);
-            Cliente.getInstance().getsocketCliente().setComando("notificarMesas", new ComandoNotificarMesas(dialog));
-            Cliente.getInstance().getsocketCliente().enviarComando("obtenerMesas", null);//Se le pieden las mesas al servidor.
             dialog.setVisible(true);
 
             if (dialog.getEstado() == Constantes.DIALOGO_ACEPTAR)
@@ -177,8 +173,6 @@ public class VentanaInicio extends javax.swing.JFrame {
                 this.dispose();
                 
                 VentanaEspera frame = new VentanaEspera(false);
-                //Se agrega el comando para iniciar la partida con la ventana de espera.
-                Cliente.getInstance().getsocketCliente().setComando("iniciarPartida", new ComandoIniciarPartidaCliente(frame));
                 MesaDTO mesaSeleccionada = dialog.getMesa();
                 Cliente.getInstance().setidMesa(mesaSeleccionada.getId());
                 frame.establecerNombreMesa(mesaSeleccionada.getNombre());

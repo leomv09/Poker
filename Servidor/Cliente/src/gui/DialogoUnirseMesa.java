@@ -1,5 +1,7 @@
 package gui;
 
+import cliente.Cliente;
+import comandos.ComandoNotificarMesas;
 import java.util.List;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
@@ -19,6 +21,9 @@ public class DialogoUnirseMesa extends javax.swing.JDialog {
         initComponents();
         this.mesas = null;
         this.estado = Constantes.DIALOGO_ACEPTAR;
+        
+        Cliente.getInstance().getsocketCliente().putComando("notificarMesas", new ComandoNotificarMesas(this));
+        Cliente.getInstance().getsocketCliente().enviarComando("obtenerMesas", null);//Se le pieden las mesas al servidor.
     }
     
     
@@ -30,20 +35,7 @@ public class DialogoUnirseMesa extends javax.swing.JDialog {
         DefaultListModel model = new DefaultListModel();
         for (MesaDTO mesa : mesas)
         {
-            String tipoJuego = "";
-            
-            switch(mesa.getTipoJuego())
-            {
-                case 0: tipoJuego = "Holdem";
-                    break;
-                case 1: tipoJuego = "Five Cards";
-                    break;
-                case 3: tipoJuego = "Omaha";
-                    break;
-            }
-            String elem = "Nombre: " + mesa.getNombre() + " | " + "Cantidad de jugadores: "+ 
-                    mesa.getCantidadJugadores() + " | " + "Juego: " + tipoJuego;
-            model.addElement(elem);
+            model.addElement(mesa);
         }
         this.listaMesas.setModel(model);
         this.listaMesas.setSelectedIndex(0);
