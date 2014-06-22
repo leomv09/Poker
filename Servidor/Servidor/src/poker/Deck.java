@@ -13,46 +13,59 @@ import java.util.Collections;
 import java.util.Iterator;
 
 public class Deck {
+    
       //Parametros del deck
-      int posicion=0;
-      ArrayList<Carta> baraja=null;
-      int[] valores={1,2,3,4,5,6,7,8,9,10,11,12,13};
+      private int posicion;
+      private boolean joker;
+      private ArrayList<Carta> baraja;
       
       //Constructor
-      public Deck()
+      public Deck(boolean joker)
       {
-          baraja=new ArrayList();
+          this.posicion = 0;
+          this.joker = joker;
+          this.baraja = new ArrayList();
           nuevaBaraja();
       }
+      
       //Metodo para la creacion de una nueva baraja
       private void nuevaBaraja()
       {
-          for (int i=1;i<=4;i++)
+          for (int i=1; i<=4; i++)
           {
-            for(int j=1;j<=valores.length-1;j++)
+            for(int j=1; j<=13; j++)
             {
-                Carta c=new Carta(i,valores[j]);
-                baraja.add(c);
+                this.baraja.add( new Carta(i,j) );
             }
-              
+          }
+          if (this.joker)
+          {
+            Carta jr = new Carta(20, 0);
+            Carta jn = new Carta(21, 0);
+            this.baraja.add(jr);
+            this.baraja.add(jn);
           }
       }
+      
       //Metodo shuffle que hace barajar a la baraja
       public void shuffle()
       {
           Collections.shuffle(baraja);
       }
+      
       //Metodo iterador del deck de la interfaz Iterator
       public Iterator<Carta> iterador()
       {
           return new IteradorDeck();
       }
+      
       //Metodo toString
       @Override
       public String toString()
       {
           return baraja.toString();
       }
+      
       //Clase interna de Iteracion del deck
       protected class IteradorDeck implements Iterator<Carta>
       {
@@ -60,33 +73,28 @@ public class Deck {
          @Override
          public boolean hasNext()
          {
-             return posicion<baraja.size();
+             return posicion < baraja.size() - 1;
          }
+         
          //Metodo next para dar la siguiente carta
          @Override
          public Carta next()
          {
-             Carta sig=baraja.get(posicion);
-             posicion++;
-             return sig;
+             if (this.hasNext())
+             {
+                 return baraja.get(posicion++);
+             }
+             else
+             {
+                 return null;
+             }
          }
+         
          //Metodo para quitar cartas
          @Override
          public void remove()
          {
+             baraja.remove(posicion - 1);
          }
-      }
-      //Metodo para definir la agregacion de un joker
-      public void setJoker(boolean joker)
-      {
-          if(joker==true)
-          {
-          Carta jr=new Carta(20,0);
-          Carta jn=new Carta(21,0);
-          baraja.add(jr);
-          baraja.add(jn);
-          
-          }
-          
       }
 }

@@ -8,10 +8,11 @@
 
 package poker;
 
-import servidor.Servidor;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.UUID;
+import servidor.Servidor;
 
 public class Mesa {
 
@@ -25,43 +26,83 @@ public class Mesa {
     
     private final String id;
     private final Jugador creador;
+    private final Servidor servidor;
+    private Deck deck;
+    private PokerBet pokerBet;
     private final List<Jugador> jugadores;
     private final List<Carta> cartasMesa;
-    private final Servidor servidor;
-    private PokerBet pokerBet;
+    private final List<Carta>[] cartasJugadores;
     private int dealer;
     private String nombre;
     private int tipoJuego;
     private Juego juego;
     private int cantidadJugadores;
     
-    public Mesa(Jugador creador, PokerBet bet,String Nombre,int tipo,int cantidadJugadores)
+    public Mesa(Jugador creador, PokerBet bet, String Nombre, int tipo, int cantidadJugadores)
     {
         this.id = UUID.randomUUID().toString();
         this.dealer = 0;
         this.creador = creador;
         this.pokerBet = bet;
+        this.deck = new Deck(false);
         this.servidor = Servidor.getInstance();
         this.cartasMesa = new LinkedList<>();
+        this.cartasJugadores = new List[cantidadJugadores];
         this.jugadores = new LinkedList<>();
         this.jugadores.add(creador);
         this.nombre=Nombre;
         this.tipoJuego=tipo;
         this.cantidadJugadores = cantidadJugadores;
+        
+        for (int i=0; i<cantidadJugadores; i++)
+        {
+            this.cartasJugadores[i] = new LinkedList<>();
+        }
+        this.deck.shuffle();
     }
+    
     public void crearJuego()
     {
-        if (this.tipoJuego==2)
+        switch(tipoJuego)
         {
-            this.juego=new Omaha(this);
+            case Constantes.JUEGO_HOLDEM:
+                this.juego = new Holdem(this);
+                break;
+            case Constantes.JUEGO_FIVECARDS:
+                this.juego = new FiveCards(this);
+                break;
+            case Constantes.JUEGO_OMAHA:
+                this.juego = new Omaha(this);
+                break;
         }
-        else if (this.tipoJuego==0)
+    }
+    
+    public void repartirCartasJugadores(int cantidadCartas)
+    {
+        Iterator<Carta> iter = deck.iterador();
+        for (int i=0; i<this.jugadores.size(); i++)
         {
-            this.juego=new Holdem(this);
+            for (int j=0; j<cantidadCartas; j++)
+            {
+                if (iter.hasNext())
+                {
+                    this.cartasJugadores[i].add( iter.next() );
+                    iter.remove();
+                }
+            }
         }
-        else if (this.tipoJuego==1)
+    }
+    
+    public void repartirCartasMesa(int cantidadCartas)
+    {
+        Iterator<Carta> iter = deck.iterador();
+        for (int j=0; j<cantidadCartas; j++)
         {
-            this.juego=new FiveCards(this);
+            if (iter.hasNext())
+            {
+                this.cartasMesa.add( iter.next() );
+                iter.remove();
+            }
         }
     }
     
