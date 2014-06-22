@@ -15,8 +15,9 @@ import servidor.Servidor;
 public class ComandoUnirseMesa extends Comando{
     
     public static final String COMANDO = "unirseMesa";//Comando de la clase.
-    private static final short POS_JUGADOR = 0;
-    private static final short POS_IDMESA = 1;
+
+    private static final short POS_JUGADOR = 1;
+    private static final short POS_IDMESA = 0;
     
     public Object ejecutar(Object args)
    {
@@ -25,8 +26,10 @@ public class ComandoUnirseMesa extends Comando{
        String idmesa = (String)dato.get(POS_IDMESA);
        
        Servidor serv = Servidor.getInstance();
-       
-       return null;
+       if(serv.unirJugador(idmesa, jugador)){
+           return 1;
+       }
+       return -1;
    }
     
 }
