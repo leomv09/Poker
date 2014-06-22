@@ -19,7 +19,13 @@ import servidor.Servidor;
 public class ComandoCrearMesa extends Comando{
     
     public static final String COMANDO = "crearMesa";//Comando de la clase.
-
+    
+    private static final short POS_JUGADOR = 1;
+    private static final short POS_ARGUMENTOS = 0;
+    private static final short POS_NOMBRE = 0;
+    private static final short POS_CANTIDAD = 1;
+    private static final short POS_TIPO = 2;
+        
     @Override
    public Object ejecutar(Object args)
    {
@@ -28,7 +34,11 @@ public class ComandoCrearMesa extends Comando{
        //tipo juego
        //Nombre del juego
        ArrayList<Object> dato = (ArrayList<Object>) args;
+       ArrayList<Object> arg = (ArrayList<Object>) dato.get(POS_ARGUMENTOS);
        Servidor serv = Servidor.getInstance();
-       return serv.crearMesa((Jugador)dato.get(0));
+       return serv.crearMesa((Jugador)dato.get(POS_JUGADOR),
+                              (String)arg.get(POS_NOMBRE),
+                              (int)arg.get(POS_CANTIDAD),
+                              (int)arg.get(POS_TIPO));
    }
 }
