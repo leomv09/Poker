@@ -147,6 +147,10 @@ public class Servidor extends Thread implements ConstantesServ{
         return mesa.getId();
     }
     
+    public ArrayList<Mesa> getMesas(){
+        return mesas;
+    }
+    
     public void solicitarCambios(String id)
     {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
