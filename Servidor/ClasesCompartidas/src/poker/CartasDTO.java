@@ -10,28 +10,30 @@ package poker;
 
 import com.google.gson.Gson;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 
-public class CartasDTO implements Serializable{
+public final class CartasDTO implements Serializable{
 
+    private static final long serialVersionUID = 7526472295622776147L;
     public static Gson gson = new Gson();
     
-    private List<Carta> cartasMesa;
-    private List<Carta> cartasJugador;
+    private final ArrayList<Carta> cartasMesa;
+    private final ArrayList<Carta> cartasJugador;
 
-    public CartasDTO(List<Carta> cartasMesa, List<Carta> cartasJugador)
+    public CartasDTO(ArrayList<Carta> cartasMesa, ArrayList<Carta> cartasJugador)
     {
         this.cartasMesa = cartasMesa;
         this.cartasJugador = cartasJugador;
     }
 
-    public List<Carta> getCartasMesa()
+    public ArrayList<Carta> getCartasMesa()
     {
         return cartasMesa;
     }
 
-    public List<Carta> getCartasJugador()
+    public ArrayList<Carta> getCartasJugador()
     {
         return cartasJugador;
     }

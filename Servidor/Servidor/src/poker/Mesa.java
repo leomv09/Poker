@@ -32,8 +32,8 @@ public class Mesa implements ListenerComandos {
     private Deck deck;
     private PokerBet pokerBet;
     private final List<Jugador> jugadores;
-    private final List<Carta> cartasMesa;
-    private final List<Carta>[] cartasJugadores;
+    private final ArrayList<Carta> cartasMesa;
+    private final ArrayList<Carta>[] cartasJugadores;
     private final List<Mano> manos;
     private int dealer;
     private String nombre;
@@ -50,8 +50,8 @@ public class Mesa implements ListenerComandos {
         this.pokerBet = bet;
         this.deck = new Deck(false);
         this.manos = new LinkedList<>();
-        this.cartasMesa = new LinkedList<>();
-        this.cartasJugadores = new List[cantidadJugadores];
+        this.cartasMesa = new ArrayList<>();
+        this.cartasJugadores = new ArrayList[cantidadJugadores];
         this.jugadores = new LinkedList<>();
         this.jugadores.add(creador);
         this.nombre=Nombre;
@@ -62,7 +62,7 @@ public class Mesa implements ListenerComandos {
         
         for (int i=0; i<cantidadJugadores; i++)
         {
-            this.cartasJugadores[i] = new LinkedList<>();
+            this.cartasJugadores[i] = new ArrayList<>();
         }
         this.deck.shuffle();
     }
@@ -183,6 +183,11 @@ public class Mesa implements ListenerComandos {
         for (Jugador current : this.jugadores)
         {
             CartasDTO status = this.generarCartasDTO(current);
+            
+            System.out.println(status);
+            System.out.println("Carta Mesa " + status.getCartasMesa().size());
+            System.out.println("Carta Jugador " + status.getCartasJugador().size());
+
             Servidor.getInstance().enviarComando(current.getId(), "graficarCartas", status);
         }
     }

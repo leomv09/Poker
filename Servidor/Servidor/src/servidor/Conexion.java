@@ -25,6 +25,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import poker.CartasDTO;
 import poker.Jugador;
 
 public class Conexion extends Thread{
@@ -161,6 +162,7 @@ public class Conexion extends Thread{
             dato.add(comando);
             dato.add(argumentos);
             salida.writeObject(dato);
+            salida.flush();
         } catch (IOException ex) {
             Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
         }

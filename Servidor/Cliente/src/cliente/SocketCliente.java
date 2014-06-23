@@ -127,7 +127,7 @@ public class SocketCliente extends Thread{
         Comando comando = this.comandos.get(nombre);
         if(comando != null)
         {
-            comando.ejecutar((ArrayList<Object>)args);
+            comando.ejecutar(args);
         }
     }
     
