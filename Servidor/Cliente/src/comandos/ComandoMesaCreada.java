@@ -25,6 +25,7 @@ public class ComandoMesaCreada extends Comando{
    public Object ejecutar(Object args)
    {
        List<Object> datos = (ArrayList<Object>) args;
+       System.out.println("Mesa Creada: "+datos.get(0));
        Cliente.getInstance().setidMesa((String) datos.get(0));
        return null;
    }

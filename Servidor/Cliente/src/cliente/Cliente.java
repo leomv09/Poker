@@ -13,7 +13,6 @@ import poker.Jugador;
 public class Cliente {
     
     private static Cliente instance = null;
-    private String idJugador;//id de jugador que se le asigna.
     private String idMesa;//id de la mesa en la que está jugando.
     private SocketCliente socketCliente;//Socket por el cuál se va a comunicar con el server.
     private Jugador jugador;
@@ -26,7 +25,6 @@ public class Cliente {
      */
     private Cliente()
     {
-        this.idJugador = "-1";
         this.idMesa = "-1";
         this.socketCliente = new SocketCliente();
         this.jugador = new Jugador("", 50);
@@ -96,14 +94,6 @@ public class Cliente {
         this.idMesa = id;
     }
     
-    /*
-     * Método que obtiene el id del jugador.
-     * Retorna: El id del jugador.
-     */
-    public String getidJugador()
-    {
-        return this.idJugador;
-    }
     
     /*
      * Método que obtiene el id de la mesa.
@@ -129,7 +119,7 @@ public class Cliente {
      */
     public void unirseMesa(String idMesa)
     {
-        String[] args = {idMesa, this.idJugador};//Se envía el id de la mesa a unirse y el jugador a unirse.
+        String[] args = {idMesa, this.jugador.getId()};//Se envía el id de la mesa a unirse y el jugador a unirse.
         this.socketCliente.enviarComando("unirseMesa", args);
     }
     
@@ -149,7 +139,7 @@ public class Cliente {
      */
     public void realizarApuesta(int apuesta)
     {
-        String[] args = {idJugador, Integer.toString(apuesta)};
+        String[] args = {this.jugador.getId(), Integer.toString(apuesta)};
         this.socketCliente.enviarComando("apostar", args);
     }
 }

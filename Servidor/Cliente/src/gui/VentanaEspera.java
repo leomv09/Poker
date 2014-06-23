@@ -105,7 +105,7 @@ public class VentanaEspera extends javax.swing.JFrame {
     private void botonIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonIniciarActionPerformed
         List<Object> params = new ArrayList<>();
         params.add(Cliente.getInstance().getidMesa());
-        params.add(Cliente.getInstance().getidJugador());
+        params.add(Cliente.getInstance().getJugador().getId());
         Cliente.getInstance().getsocketCliente().enviarComando("iniciarPartida", params);
     }//GEN-LAST:event_botonIniciarActionPerformed
 

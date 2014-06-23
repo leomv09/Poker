@@ -24,26 +24,27 @@ public class ComandoGraficarApuestas extends Comando{
     @Override
     public Object ejecutar(Object args)
     {
-        /*
-        ArrayList<BetStatusDTO> datos = (ArrayList<BetStatusDTO>) args;
-        BetStatusDTO dto = datos.get(0);
-        List<Jugador> jugadores = dto.getJugadores();
-        int[][] rondaApuestas = dto.getApuestas();
-        
-        String msj = "";
-        int i = 0;
-        //Por cada jugador se obtiene su apuesta.
-        for(Jugador jugador : jugadores)
+        if(args != null)
         {
-            msj += obtenerApuestaJugador(rondaApuestas[i], jugador);
-            i++;
+            ArrayList<BetStatusDTO> datos = (ArrayList<BetStatusDTO>) args;
+            BetStatusDTO dto = datos.get(0);
+            List<Jugador> jugadores = dto.getJugadores();
+            int[][] rondaApuestas = dto.getApuestas();
+            int rondaActual = dto.getRondaActual();
+            String msj = "";
+            int i = 0;
+            //Por cada jugador se obtiene su apuesta.
+            for(Jugador jugador : jugadores)
+            {
+                msj += obtenerApuestaJugador(rondaApuestas[rondaActual], jugador);
+                i++;
+            }
+
+            msj += "Pot: " + obtenerPot(rondaApuestas) + "\n"; 
+
+            this.frame.setRondaApuestas(msj);
+            obtenerSidePots(rondaApuestas, jugadores);
         }
-        
-        msj += "Pot: " + obtenerPot(rondaApuestas) + "\n"; 
-        
-        this.frame.setRondaApuestas(msj);
-        obtenerSidePots(rondaApuestas, jugadores);
-        */
         return null;
     }
     
@@ -55,7 +56,7 @@ public class ComandoGraficarApuestas extends Comando{
      */
     private String obtenerApuestaJugador(int[] ronda, Jugador jugador)
     {
-        int ultimaApuesta = ronda[ronda.length];//Se obtiene la última cantidad apostada por el jugador.
+        int ultimaApuesta = ronda[ronda.length-1];//Se obtiene la última cantidad apostada por el jugador.
         
         String res = "Jugador: "+jugador.getId() + " | " +"Apuesta: " + ultimaApuesta + "\n";
         
@@ -111,7 +112,7 @@ public class ComandoGraficarApuestas extends Comando{
         String sidePots = "";
         for (int i = 0; i < rondaApuestas.length; i++)
         {
-            for(int j = 0; j < rondaApuestas[i].length; i++)
+            for(int j = 0; j < rondaApuestas[i].length-1; i++)
             {
                 if(rondaApuestas[i][j] == -2)//Si en alguna ronda de un jugador tiene indicador de all in(-2).
                 {

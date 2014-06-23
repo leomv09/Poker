@@ -93,6 +93,7 @@ public class Mesa implements ListenerComandos {
         }
         System.out.println(tipoJuego);
         crearJuego();
+        this.pokerBet.establecerCantJugadores(this.jugadores.size());
         this.juego.jugar();
     }
     
@@ -211,7 +212,7 @@ public class Mesa implements ListenerComandos {
     
     public BetStatusDTO generarBetStatusDTO()
     {
-        return new BetStatusDTO(this.jugadores, this.pokerBet.getApuestas());
+        return new BetStatusDTO(this.jugadores, this.pokerBet.getApuestas(), this.pokerBet.getRondaActual());
     }
     
     public CartasDTO generarCartasDTO(Jugador jugador)

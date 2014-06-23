@@ -18,11 +18,13 @@ public class BetStatusDTO implements Serializable{
 
     private List<Jugador> jugadores;
     private int[][] apuestas;
+    private int rondaActual;
     
-    public BetStatusDTO(List<Jugador> jugadores, int[][] apuestas)
+    public BetStatusDTO(List<Jugador> jugadores, int[][] apuestas, int rondaActual)
     {
         this.jugadores = jugadores;
         this.apuestas = apuestas;
+        this.rondaActual = rondaActual;
     }
 
     public List<Jugador> getJugadores()
@@ -33,6 +35,11 @@ public class BetStatusDTO implements Serializable{
     public int[][]getApuestas()
     {
         return apuestas;
+    }
+    
+    public int getRondaActual()
+    {
+        return this.rondaActual;
     }
     
     public static BetStatusDTO deserialize(String text)
