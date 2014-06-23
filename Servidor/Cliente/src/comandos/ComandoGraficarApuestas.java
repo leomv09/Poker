@@ -41,6 +41,7 @@ public class ComandoGraficarApuestas extends Comando{
         msj += "Pot: " + obtenerPot(rondaApuestas) + "\n"; 
         
         this.frame.setRondaApuestas(msj);
+        obtenerSidePots(rondaApuestas, jugadores);
         return null;
     }
     
@@ -70,11 +71,58 @@ public class ComandoGraficarApuestas extends Comando{
         {
             for(int j = 0; j < rondaApuestas[i].length; j++)
             {
-                pot += rondaApuestas[i][j];
+                if(rondaApuestas[i][j] >= 0)
+                {
+                    pot += rondaApuestas[i][j];
+                }
             }
         }
         
         return pot;//Side pots
+    }
+    
+    /*
+     * Método que obtiene un pot desde 0 hasta una ronda determinada. Sirve para el caso en que un jugador se fue all in.
+     * @param rondaApuestas La ronda de apuestas a analizar.
+     * @param k Ronda límite a sumar.
+     * Retorna: Lo que el jugador se puede llevar del pot.
+     */
+    private int obtenerSide(int[][] rondaApuestas, int k)
+    {
+        int pot = 0;
+        
+        for(int i = 0; i < rondaApuestas.length; i++)
+        {
+            for(int j = 0; j < k; j++)
+            {
+                pot += rondaApuestas[i][j];
+            }
+        }
+        return pot;
+    }
+    
+    /*
+     * Método que obtiene los sidepots(de haber) en la ronda de apuestas.
+     */
+    private void obtenerSidePots(int[][] rondaApuestas, List<Jugador> jugadores)
+    {
+        String sidePots = "";
+        for (int i = 0; i < rondaApuestas.length; i++)
+        {
+            for(int j = 0; j < rondaApuestas[i].length; i++)
+            {
+                if(rondaApuestas[i][j] == -2)//Si en alguna ronda de un jugador tiene indicador de all in(-2).
+                {
+                    sidePots += "Side Pot: " + jugadores.get(i).getId() + "Cantidad: " +obtenerSide(rondaApuestas, j) + "\n"; 
+                    break;
+                }
+            }
+        }
+        
+        if(!sidePots.equals(""))
+        {
+            this.frame.setSidePots(sidePots);
+        }
     }
     
 }
