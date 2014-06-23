@@ -234,7 +234,7 @@ public class Mesa implements ListenerComandos {
         return null;
     }
     
-    private int getIndexJugador(String idJugador)
+    public int getIndexJugador(String idJugador)
     {
         for (int i=0; i<this.jugadores.size(); i++)
         {
