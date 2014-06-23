@@ -44,6 +44,8 @@ public class Omaha extends Juego {
            this.mesa.notificarApuestas();
            j++;
        }
+       
+       finalizarJuego();
     }
     
 }

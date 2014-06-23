@@ -8,7 +8,9 @@
 
 package poker;
 
-public class Carta implements Comparable<Carta>{
+import java.io.Serializable;
+
+public class Carta implements Comparable<Carta>, Serializable {
     //Parametros de una carta
     private int Palo;
     private int Valor;

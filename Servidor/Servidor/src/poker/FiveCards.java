@@ -38,6 +38,7 @@ public class FiveCards extends Juego {
             j++;
        }
         
+       finalizarJuego();
     }
     
 }

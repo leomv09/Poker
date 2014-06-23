@@ -50,7 +50,8 @@ public class ComandoGraficarCartas extends Comando{
                 cartaActual = cartas.get(i);
                 rutaImagen = "/res/cards/" + cartaActual.toString() + ".png";
 
-                labelActual.setIcon( new ImageIcon(ClassLoader.getSystemResource(rutaImagen)) );
+                System.out.println(rutaImagen);
+                labelActual.setIcon( new ImageIcon(this.getClass().getResource(rutaImagen)) );
                 labelActual.setVisible(true);
             }
         }

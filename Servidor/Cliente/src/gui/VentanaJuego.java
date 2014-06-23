@@ -1,6 +1,7 @@
 package gui;
 
 import cliente.Cliente;
+import comandos.ComandoFinalPartida;
 import comandos.ComandoGraficarApuestas;
 import comandos.ComandoGraficarCartas;
 import comandos.ComandoSolicitarApuesta;
@@ -34,6 +35,7 @@ public class VentanaJuego extends javax.swing.JFrame {
         Cliente.getInstance().getsocketCliente().putComando("graficarCartas", new ComandoGraficarCartas(this));
         Cliente.getInstance().getsocketCliente().putComando("solicitarApuesta", new ComandoSolicitarApuesta(this));
         Cliente.getInstance().getsocketCliente().putComando("solicitarCarta", new ComandoSolicitarCambioCarta(this));
+        Cliente.getInstance().getsocketCliente().putComando(ComandoFinalPartida.COMANDO, new ComandoFinalPartida(this));
     }
     
     public List<Integer> cambiarCartas()
@@ -130,6 +132,12 @@ public class VentanaJuego extends javax.swing.JFrame {
         this.botonRetirarse.setEnabled(enabled);
     }
     
+    public void notificarFinalPartida(String estado)
+    {
+        JOptionPane.showMessageDialog(this, estado, "Fin Partida", JOptionPane.INFORMATION_MESSAGE);
+        this.dispose();
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -142,6 +150,7 @@ public class VentanaJuego extends javax.swing.JFrame {
         botonIgualar = new javax.swing.JButton();
         botonRetirarse = new javax.swing.JButton();
         botonPasar = new javax.swing.JButton();
+        botonCambioCarta = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         labelFichas = new javax.swing.JLabel();
         panelCartasMesa = new javax.swing.JPanel();
@@ -156,7 +165,6 @@ public class VentanaJuego extends javax.swing.JFrame {
         cartaJugador3 = new javax.swing.JLabel();
         cartaJugador4 = new javax.swing.JLabel();
         cartaJugador5 = new javax.swing.JLabel();
-        botonCambioCarta = new javax.swing.JButton();
         panelApuestas = new javax.swing.JPanel();
         labelApuestas = new javax.swing.JLabel();
         labelSidePots = new javax.swing.JLabel();
@@ -184,6 +192,14 @@ public class VentanaJuego extends javax.swing.JFrame {
         botonPasar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonPasarActionPerformed(evt);
+            }
+        });
+
+        botonCambioCarta.setText("Cambiar Cartas");
+        botonCambioCarta.setEnabled(false);
+        botonCambioCarta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonCambioCartaActionPerformed(evt);
             }
         });
 
@@ -241,14 +257,6 @@ public class VentanaJuego extends javax.swing.JFrame {
 
         cartaJugador5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/cards/B-2.png"))); // NOI18N
 
-        botonCambioCarta.setText("Cambiar");
-        botonCambioCarta.setEnabled(false);
-        botonCambioCarta.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonCambioCartaActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout panelCartasJugadorLayout = new javax.swing.GroupLayout(panelCartasJugador);
         panelCartasJugador.setLayout(panelCartasJugadorLayout);
         panelCartasJugadorLayout.setHorizontalGroup(
@@ -264,8 +272,6 @@ public class VentanaJuego extends javax.swing.JFrame {
                 .addComponent(cartaJugador4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(cartaJugador5)
-                .addGap(18, 18, 18)
-                .addComponent(botonCambioCarta)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panelCartasJugadorLayout.setVerticalGroup(
@@ -279,10 +285,6 @@ public class VentanaJuego extends javax.swing.JFrame {
                     .addComponent(cartaJugador4)
                     .addComponent(cartaJugador5))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelCartasJugadorLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(botonCambioCarta)
-                .addGap(19, 19, 19))
         );
 
         labelApuestas.setText("Apuestas");
@@ -322,7 +324,8 @@ public class VentanaJuego extends javax.swing.JFrame {
                         .addComponent(labelFichas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(botonPasar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(botonRetirarse, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(botonIgualar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(botonIgualar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(botonCambioCarta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(20, 20, 20))
             .addComponent(panelCartasMesa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(panelCartasJugador, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -338,7 +341,9 @@ public class VentanaJuego extends javax.swing.JFrame {
                         .addComponent(botonPasar)
                         .addGap(5, 5, 5)
                         .addComponent(botonRetirarse)
-                        .addGap(47, 47, 47)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(botonCambioCarta)
+                        .addGap(16, 16, 16)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel1)
                             .addComponent(labelFichas)))

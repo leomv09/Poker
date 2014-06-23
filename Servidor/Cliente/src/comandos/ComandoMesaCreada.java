@@ -6,6 +6,7 @@ package comandos;
 
 import cliente.Cliente;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -14,16 +15,6 @@ import java.util.ArrayList;
 public class ComandoMesaCreada extends Comando{
     
      public static final String COMANDO = "mesaCreada";//Comando de la clase
-    
-    
-    /**
-     *
-     * @param cliente Objeto de tipo Cliente.
-     */
-    public ComandoMesaCreada()
-    {
-    }
-    
    
     /**
      *
@@ -33,8 +24,8 @@ public class ComandoMesaCreada extends Comando{
     @Override
    public Object ejecutar(Object args)
    {
-       ArrayList<String> datos = (ArrayList<String>) args;
-       Cliente.getInstance().setidMesa(datos.get(0));
+       List<Object> datos = (ArrayList<Object>) args;
+       Cliente.getInstance().setidMesa((String) datos.get(0));
        return null;
    }
     
