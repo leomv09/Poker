@@ -30,6 +30,8 @@ public abstract class Juego {
     //Metodo jugar que se hereda en los juegos
     public abstract void jugar();
     
+    public abstract void apuestasFinalizadas();
+    
     protected void finalizarJuego()
     {
         // Obtener las manos.

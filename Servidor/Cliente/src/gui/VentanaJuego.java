@@ -6,6 +6,7 @@ import comandos.ComandoGraficarApuestas;
 import comandos.ComandoGraficarCartas;
 import comandos.ComandoSolicitarApuesta;
 import comandos.ComandoSolicitarCambioCarta;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -78,8 +79,10 @@ public class VentanaJuego extends javax.swing.JFrame {
     private void igualar(int cantidad)
     {
         if(Cliente.getInstance().getJugador().getDinero() - cantidad >= 0 )
-        { 
-           Cliente.getInstance().getsocketCliente().enviarComando("apostar", cantidad);//Se envía el comando al servidor.
+        {
+            List<Integer> params = new ArrayList<>();
+            params.add(cantidad);
+           Cliente.getInstance().getsocketCliente().enviarComando("apostar", params);//Se envía el comando al servidor.
            Cliente.getInstance().getJugador().setDinero(Cliente.getInstance().getJugador().getDinero() - cantidad);//Se rebaja la apuesta realizada.
         }
         else//No posee fichas para apostar.

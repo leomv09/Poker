@@ -88,6 +88,7 @@ public class Mesa implements ListenerComandos {
         for (Jugador jugador : this.jugadores)
         {
             Servidor.getInstance().enviarComando(jugador.getId(), "iniciarPartida", null);
+            Servidor.getInstance().getConexion(jugador.getId()).agregarListener(this);
         }
         this.juego.jugar();
     }
@@ -139,7 +140,9 @@ public class Mesa implements ListenerComandos {
     
     private void escucharApuestas()
     {
+        System.out.println("Esperando apuestas");
         while (this.cantidadApuestas < this.jugadores.size()) { }
+        System.out.println("listo!");
         this.cantidadApuestas = 0;
     }
     
@@ -184,7 +187,6 @@ public class Mesa implements ListenerComandos {
         {
             Servidor.getInstance().enviarComando(jugador.getId(), "solicitarApuesta", this.pokerBet.getbBlind());
         }
-        escucharApuestas();
     }
     
     public void recibirCambios()
@@ -193,7 +195,6 @@ public class Mesa implements ListenerComandos {
         {
             Servidor.getInstance().enviarComando(jugador.getId(), "solicitarCarta", null);
         }
-        escucharCambios();
     }
     
     public BetStatusDTO generarBetStatusDTO()
@@ -280,10 +281,19 @@ public class Mesa implements ListenerComandos {
         if (comando.equals("apostar"))
         {
             this.cantidadApuestas++;
+            if (this.cantidadApuestas == this.jugadores.size())
+            {
+                this.juego.apuestasFinalizadas();
+                this.cantidadApuestas = 0;
+            }
         }
         if (comando.equals("cambiarCarta"))
         {
             this.cantidadCambios++;
+            if (this.cantidadCambios == this.jugadores.size())
+            {
+                this.cantidadCambios = 0;
+            }
         }
     }
     

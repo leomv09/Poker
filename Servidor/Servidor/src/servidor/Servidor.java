@@ -192,7 +192,7 @@ public class Servidor extends Thread implements ConstantesServ{
      * @param idjugador
      * @return 
      */
-    private Conexion getConexion(String idjugador){
+    public Conexion getConexion(String idjugador){
         for(Conexion con:conexiones){
             if(con.getID().equals(idjugador)){
                 return con;
