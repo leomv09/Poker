@@ -161,7 +161,9 @@ public class VentanaInicio extends javax.swing.JFrame {
                 ArrayList<String> datoEnvio = new ArrayList<>();
                 datoEnvio.add(dialog.getNombreMesa());//Nombre de la mesa.
                 datoEnvio.add(Integer.toString(dialog.getMaxJugadores()));//Cantidad máxima de juagadores.
+                System.out.println(dialog.getMaxJugadores());
                 datoEnvio.add(Integer.toString(dialog.getTipoJuego()));//Entero indicando el tipo de juego.
+                System.out.println(dialog.getTipoJuego());
                 //Se envía la petición al servidor.
                 Cliente.getInstance().setJugador(jugador);
                 Cliente.getInstance().getsocketCliente().enviarDato(jugador);//Se envía el juagador al servidor.
@@ -182,7 +184,10 @@ public class VentanaInicio extends javax.swing.JFrame {
         String error = this.validarDatos();
         if (error == null)
         {
-            DialogoUnirseMesa dialog = new DialogoUnirseMesa(this, true);
+            Jugador jugador = new Jugador(this.textoIdUsuario.getText(), 50);//Se crea el jugador.
+            Cliente.getInstance().setJugador(jugador);
+            Cliente.getInstance().getsocketCliente().enviarDato(jugador);//Se envía el jugador al servidor.
+            DialogoUnirseMesa dialog = new DialogoUnirseMesa(this, true);//Se envía petición al servidor de obtener mesas.
             dialog.setVisible(true);
 
             if (dialog.getEstado() == Constantes.DIALOGO_ACEPTAR)
@@ -191,7 +196,6 @@ public class VentanaInicio extends javax.swing.JFrame {
                 this.dispose();
                 
                 VentanaEspera frame = new VentanaEspera(false);
-                Jugador jugador = new Jugador(this.textoIdUsuario.getText(), 50);//Se crea el jugador.
                 MesaDTO mesaSeleccionada = dialog.getMesa();
                 Cliente.getInstance().setidMesa(mesaSeleccionada.getId());
                 frame.establecerNombreMesa(mesaSeleccionada.getNombre());
@@ -199,8 +203,6 @@ public class VentanaInicio extends javax.swing.JFrame {
                 ArrayList<String> datoEnvio = new ArrayList<>();
                 datoEnvio.add(mesaSeleccionada.getId());//Id de la mesa.
                 //Se envía la petición al servidor.
-                Cliente.getInstance().setJugador(jugador);
-                Cliente.getInstance().getsocketCliente().enviarDato(jugador);//Se envía el jugador al servidor.
                 Cliente.getInstance().getsocketCliente().enviarComando("unirseMesa", datoEnvio);
                 frame.setVisible(true);
             }

@@ -124,6 +124,9 @@ public class Conexion extends Thread{
                 {
                     l.handleEvent(nombreComando);
                 }
+                if(argumentos==null){
+                    argumentos = new ArrayList<>();
+                }
                 argumentos.add(idJugador);
                 Comando com = comandos.get(nombreComando);
                 salida.writeObject(com.ejecutar(argumentos));

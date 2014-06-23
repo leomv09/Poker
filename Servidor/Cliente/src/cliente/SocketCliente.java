@@ -156,10 +156,17 @@ public class SocketCliente extends Thread{
             ArrayList<Object> datos;//Arreglo de datos recibidos.
             while((input = in.readObject()) != null)
             {
+                
+                if(input instanceof String)
+                {
+                    System.out.println("Es un string");
+                }
+                
                 datos = (ArrayList<Object>) input;
                 if(datos != null)
                 {
                     String comando = (String)datos.get(0);//Se obtiene el comando a ejecutar.
+                    System.out.println(comando);
                     datos.remove(0);//Se elimina el comando del arreglo de objetos ingresado.
                     ejecutarComando(comando, datos);
                 }

@@ -1,7 +1,9 @@
 package poker;
 
+import java.io.Serializable;
 
-public class MesaDTO {
+
+public class MesaDTO implements Serializable{
 
     private final String id;
     private final String nombre;

@@ -9,9 +9,10 @@
 package poker;
 
 import com.google.gson.Gson;
+import java.io.Serializable;
 import java.util.List;
 
-public class CartasDTO {
+public class CartasDTO implements Serializable{
 
     public static Gson gson = new Gson();
     

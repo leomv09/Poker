@@ -35,6 +35,6 @@ public class ComandoObtenerMesas extends Comando{
        ArrayList<Object> respuesta = new ArrayList<>();
        respuesta.add("notificarMesas");
        respuesta.add(dtos);
-       return respuesta;
+       return (ArrayList<Object>)respuesta;
    }
 }

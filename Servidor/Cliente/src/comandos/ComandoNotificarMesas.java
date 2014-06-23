@@ -41,6 +41,7 @@ public class ComandoNotificarMesas extends Comando{
        {
         ArrayList<Object> datos = (ArrayList<Object>) args;
         ArrayList<MesaDTO> dtos = (ArrayList<MesaDTO>) datos.get(0);
+           System.out.println(dtos.get(0).getNombre());
         this.frame.setMesas(dtos);
        }
        return null;
