@@ -19,6 +19,7 @@ public class ComandoApostar extends Comando{
 
    public Object ejecutar(Object args)
    {
+       /*
        ArrayList<Object> datos=new ArrayList<>();
        String jugador= (String)datos.get(2);
        String idMesa=(String)datos.get(1);
@@ -27,7 +28,7 @@ public class ComandoApostar extends Comando{
        Mesa mesa=Servidor.getInstance().getMesa(idMesa);
        
        mesa.getPokerBet().almacenarApuesta(mesa.getIndexJugador(jugador), cantidadApuesta);
-       
+       */
        //devuelve null
        return null;
    }
