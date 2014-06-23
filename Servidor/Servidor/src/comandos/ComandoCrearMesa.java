@@ -39,8 +39,8 @@ public class ComandoCrearMesa extends Comando{
        serv.post((String) dato.get(POS_NOMBRE)+jugador.getId());
        String idMesa = serv.crearMesa(jugador,
                               (String)dato.get(POS_NOMBRE),
-                              Integer.parseInt( (String) dato.get(POS_CANTIDAD) ),
-                              Integer.parseInt( (String) dato.get(POS_TIPO) ));
+                              Integer.parseInt( (String) dato.get(POS_CANTIDAD)),
+                              Integer.parseInt( (String) dato.get(POS_TIPO)));
        Servidor.getInstance().enviarComando(jugador.getId(), "mesaCreada", idMesa);
        return null;
    }

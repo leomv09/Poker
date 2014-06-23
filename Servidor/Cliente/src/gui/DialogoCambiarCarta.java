@@ -1,5 +1,6 @@
 package gui;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import javax.swing.JCheckBox;
@@ -30,7 +31,7 @@ public class DialogoCambiarCarta extends javax.swing.JDialog {
     
     public List<Integer> obtenerCartasCambiadas()
     {
-        List<Integer> cartasCambiadas = new LinkedList<>();
+        ArrayList<Integer> cartasCambiadas = new ArrayList<>();
         JCheckBox[] checkBox = this.obtenerCheckbox();
         
         for (int i=0; i<checkBox.length; i++)

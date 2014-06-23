@@ -24,11 +24,11 @@ public class VentanaJuego extends javax.swing.JFrame {
         
         for (JLabel label : this.getCartasMesa())
         {
-            label.setVisible(false);
+            label.setVisible(true);
         }
         for (JLabel label : this.getCartasJugador())
         {
-            label.setVisible(false);
+            label.setVisible(true);
         }
         
         //Se agregan los comandos relacionados con la ventana de juego.

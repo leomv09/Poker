@@ -18,6 +18,7 @@ public class ComandoIniciarPartida extends Comando{
     private static final short POS_MESA = 0;
     private static final short POS_JUGADOR = 1;
     
+    @Override
     public Object ejecutar(Object args)
    {
        ArrayList<Object> dato = (ArrayList<Object>) args;

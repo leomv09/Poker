@@ -160,11 +160,8 @@ public class VentanaInicio extends javax.swing.JFrame {
                 //Se establecen los datos a enviar al servidor.
                 ArrayList<String> datoEnvio = new ArrayList<>();
                 datoEnvio.add(dialog.getNombreMesa());//Nombre de la mesa.
-
                 datoEnvio.add(Integer.toString(dialog.getMaxJugadores()));//Cantidad máxima de juagadores.
-                System.out.println(dialog.getMaxJugadores());
                 datoEnvio.add(Integer.toString(dialog.getTipoJuego()));//Entero indicando el tipo de juego.
-                System.out.println(dialog.getTipoJuego());
                 //Se envía la petición al servidor.
                 Cliente.getInstance().setJugador(jugador);
                 Cliente.getInstance().getsocketCliente().enviarDato(jugador);//Se envía el juagador al servidor.

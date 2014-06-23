@@ -8,6 +8,7 @@
 
 package poker;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
@@ -87,9 +88,11 @@ public class Mesa implements ListenerComandos {
     {
         for (Jugador jugador : this.jugadores)
         {
-            Servidor.getInstance().enviarComando(jugador.getId(), "iniciarPartida", null);
+            Servidor.getInstance().enviarComando(jugador.getId(), "iniciarPartida", null);//Hace falta enviarle las cartas al cliente.
             Servidor.getInstance().getConexion(jugador.getId()).agregarListener(this);
         }
+        System.out.println(tipoJuego);
+        crearJuego();
         this.juego.jugar();
     }
     
@@ -111,6 +114,8 @@ public class Mesa implements ListenerComandos {
     
     public void repartirCartasJugadores(int cantidadCartas)
     {
+        Servidor.getInstance().post("Repartiendo Cartas...");
+        System.out.println("Repartiendo Cartas...");
         Iterator<Carta> iter = deck.iterador();
         for (int i=0; i<this.jugadores.size(); i++)
         {
@@ -173,6 +178,8 @@ public class Mesa implements ListenerComandos {
     
     public void notificarCartas()
     {
+        Servidor.getInstance().post("Notificando Cartas...");
+        System.out.println("Notificando cartas...");
         for (Jugador current : this.jugadores)
         {
             CartasDTO status = this.generarCartasDTO(current);

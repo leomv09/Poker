@@ -144,7 +144,7 @@ public class Servidor extends Thread implements ConstantesServ{
 
     public String crearMesa(Jugador plr,String nombre,int cantidad,int tipojuego){
         PokerBet apuesta = new PokerBet(LITTLE_BLIND,BIG_BLIND);
-        Mesa mesa = new Mesa(plr,apuesta,nombre,cantidad,tipojuego);
+        Mesa mesa = new Mesa(plr,apuesta,nombre,tipojuego,cantidad);
         mesas.add(mesa);
         mesa.crearJuego();
         return mesa.getId();
@@ -193,7 +193,7 @@ public class Servidor extends Thread implements ConstantesServ{
      * @return 
      */
     public Conexion getConexion(String idjugador){
-        for(Conexion con:conexiones){
+        for(Conexion con : conexiones){
             if(con.getID().equals(idjugador)){
                 return con;
             }

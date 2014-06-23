@@ -29,7 +29,7 @@ public class ComandoGraficarCartas extends Comando{
     @Override
     public Object ejecutar(Object args)
     {
-        List<Object> datos = (ArrayList<Object>) args;
+        ArrayList<Object> datos = (ArrayList<Object>) args;
         CartasDTO dto = (CartasDTO) datos.get(0);
         graficarCartas(dto.getCartasMesa(), labelsCartasMesa);
         graficarCartas(dto.getCartasJugador(), labelsCartasJugador);
