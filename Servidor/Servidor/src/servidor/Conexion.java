@@ -67,6 +67,7 @@ public class Conexion extends Thread{
      * @param serv 
      */
     public Conexion(Socket scli, Servidor serv) {
+        this.corriendo = true;
         this.listeners = new LinkedList<>();
         this.scli = scli;
         this.serv = serv;
@@ -103,29 +104,29 @@ public class Conexion extends Thread{
         this.listeners.add(l);
     }
     
+    
+    
     public void run(){
         
         try{
             //Lee el id del jugador apenas se establece la conexión.
             idJugador = (Jugador) entrada.readObject();
             
+            serv.post(idJugador.getId());
+            
             //Espera comandos
             while(corriendo)
             {
-                String nombreComando = entrada.readUTF();
-                Object argumentos = entrada.readObject();
+                String nombreComando = (String) entrada.readObject();
+                ArrayList<Object> argumentos = (ArrayList<Object>) entrada.readObject();
                 
                 for (ListenerComandos l : this.listeners)
                 {
                     l.handleEvent(nombreComando);
                 }
-                
+                argumentos.add(idJugador);
                 Comando com = comandos.get(nombreComando);
-                ArrayList<Object> parametros = new ArrayList<>();
-                parametros.add(argumentos);
-                parametros.add(idJugador);
-                //Comando comAEjecutar = (Comando)Class.forName(comando).newInstance(); //Idea de usar reflection, descartada por rendimiento.
-                salida.writeObject(com.ejecutar(parametros));
+                salida.writeObject(com.ejecutar(argumentos));
             }
             
         }
