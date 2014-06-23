@@ -158,16 +158,7 @@ public class SocketCliente extends Thread{
             ArrayList<Object> datos;//Arreglo de datos recibidos.
             while (true)
             {
-<<<<<<< HEAD
-                
-                if(input instanceof String)
-                {
-                    System.out.println("Es un string");
-                }
-                
-=======
                 input = in.readObject();
->>>>>>> 349355b6dc2c09a2b8c3f52ccca35dd536cb3ae5
                 datos = (ArrayList<Object>) input;
                 if(datos != null)
                 {
