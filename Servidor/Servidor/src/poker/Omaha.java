@@ -47,5 +47,10 @@ public class Omaha extends Juego {
        
        finalizarJuego();
     }
+
+    @Override
+    public void apuestasFinalizadas() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }

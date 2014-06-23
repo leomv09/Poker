@@ -29,8 +29,8 @@ public class ComandoGraficarCartas extends Comando{
     @Override
     public Object ejecutar(Object args)
     {
-        ArrayList<CartasDTO> datos = (ArrayList<CartasDTO>) args;
-        CartasDTO dto = datos.get(0);
+        List<Object> datos = (ArrayList<Object>) args;
+        CartasDTO dto = (CartasDTO) datos.get(0);
         graficarCartas(dto.getCartasMesa(), labelsCartasMesa);
         graficarCartas(dto.getCartasJugador(), labelsCartasJugador);
         return null;
@@ -50,7 +50,6 @@ public class ComandoGraficarCartas extends Comando{
                 cartaActual = cartas.get(i);
                 rutaImagen = "/res/cards/" + cartaActual.toString() + ".png";
 
-                System.out.println(rutaImagen);
                 labelActual.setIcon( new ImageIcon(this.getClass().getResource(rutaImagen)) );
                 labelActual.setVisible(true);
             }

@@ -24,6 +24,7 @@ public class ComandoGraficarApuestas extends Comando{
     @Override
     public Object ejecutar(Object args)
     {
+        /*
         ArrayList<BetStatusDTO> datos = (ArrayList<BetStatusDTO>) args;
         BetStatusDTO dto = datos.get(0);
         List<Jugador> jugadores = dto.getJugadores();
@@ -42,6 +43,7 @@ public class ComandoGraficarApuestas extends Comando{
         
         this.frame.setRondaApuestas(msj);
         obtenerSidePots(rondaApuestas, jugadores);
+        */
         return null;
     }
     
