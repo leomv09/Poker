@@ -8,6 +8,7 @@
 
 package poker;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -21,6 +22,42 @@ public class Mano implements Comparable<Mano> {
     public Mano(List<Carta> cartas)
     {
         this.cartas = cartas;
+    }
+    
+    public List<List<Carta>> printCombination(List<Carta> l, int n, int r)
+    { 
+        List<Carta> data = new ArrayList<>();
+        List<List<Carta>> res = new ArrayList<>();
+ 
+        // Print all combination using temprary array 'data[]'
+        combinationUtil(res, l, data, 0, l.size()-1, 0, r);
+        return res;
+    }
+
+    /* arr[]  ---> Input Array
+       data[] ---> Temporary array to store current combination
+       start & end ---> Staring and Ending indexes in arr[]
+       index  ---> Current index in data[]
+       r ---> Size of a combination to be printed */
+    private void combinationUtil(List<List<Carta>> res, List<Carta> l, List<Carta> data, int start, int end, int index, int r)
+    {
+        // Current combination is ready to be printed, print it
+        if (index == r)
+        {
+            res.add(data);
+            data = new ArrayList<>();
+            return;
+        }
+
+        // replace index with all possible elements. The condition
+        // "end-i+1 >= r-index" makes sure that including one element
+        // at index will make a combination with remaining elements
+        // at remaining positions
+        for (int i=start; i<=end && end-i+1 >= r-index; i++)
+        {
+            data.add(index, l.get(i));
+            combinationUtil(res, l, data, i+1, end, index+1, r);
+        }
     }
     
     public void ordenarValor()

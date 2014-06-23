@@ -25,6 +25,7 @@ public class Holdem extends Juego {
     @Override
     public void jugar()
     {
+        this.mesa.repartirCartasMesa(5);
         this.mesa.repartirCartasJugadores(2);
         this.mesa.notificarCartas();
         this.mesa.recibirApuestas();
@@ -37,8 +38,9 @@ public class Holdem extends Juego {
         switch (this.rondaApuestas)
         {
             case 0:
-                //this.mesa.notificarApuestas();
-                this.mesa.repartirCartasMesa(3);
+                this.mesa.notificarApuestas();
+                //this.mesa.repartirCartasMesa(3);
+                //this.mesa.repartirCartasJugadores(1);
                 this.mesa.notificarCartas();
                 this.mesa.recibirApuestas();
                 break;
@@ -46,8 +48,8 @@ public class Holdem extends Juego {
                 finalizarJuego();
                 break;
             default:
-                //this.mesa.notificarApuestas();
-                this.mesa.repartirCartasMesa(1);
+                this.mesa.notificarApuestas();
+                //this.mesa.repartirCartasMesa(1);
                 this.mesa.notificarCartas();
                 this.mesa.recibirApuestas();
                 break;

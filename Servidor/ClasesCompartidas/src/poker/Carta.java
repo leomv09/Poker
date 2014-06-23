@@ -11,6 +11,9 @@ package poker;
 import java.io.Serializable;
 
 public class Carta implements Comparable<Carta>, Serializable {
+    
+    private static final long serialVersionUID = 7826452295622766149L;
+    
     //Parametros de una carta
     private int Palo;
     private int Valor;

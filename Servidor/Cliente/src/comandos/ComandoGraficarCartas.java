@@ -15,10 +15,13 @@ public class ComandoGraficarCartas extends Comando{
     private final JLabel[] labelsCartasMesa;
     private final JLabel[] labelsCartasJugador;
     
+    private int cantCartas;
+    
     public ComandoGraficarCartas(VentanaJuego frame)
     {
         this.labelsCartasMesa = frame.getCartasMesa();
         this.labelsCartasJugador = frame.getCartasJugador();
+        this.cantCartas = 0;
     }
     
     /**
@@ -31,12 +34,34 @@ public class ComandoGraficarCartas extends Comando{
     {
         ArrayList<Object> datos = (ArrayList<Object>) args;
         CartasDTO dto = (CartasDTO) datos.get(0);
+        
+        //System.out.println(dto);
+        //System.out.println("Carta Mesa " + dto.getCartasMesa().size());
+        //System.out.println("Carta Jugador " + dto.getCartasJugador().size());
+        
         graficarCartas(dto.getCartasMesa(), labelsCartasMesa);
         graficarCartas(dto.getCartasJugador(), labelsCartasJugador);
+        
+        this.enseñarCartas(labelsCartasJugador, 5);
+        
+        switch (this.cantCartas)
+        {
+            case 1:
+                this.enseñarCartas(labelsCartasMesa, 3);
+                break;
+            case 2:
+                this.enseñarCartas(labelsCartasMesa, 4);
+                break;
+            case 3:
+                this.enseñarCartas(labelsCartasMesa, 5);
+                break;
+        }
+        
+        this.cantCartas++;
         return null;
     }
     
-    private void graficarCartas(List<Carta> cartas, JLabel[] labels)
+    private void graficarCartas(ArrayList<Carta> cartas, JLabel[] labels)
     {
         Carta cartaActual;
         JLabel labelActual;
@@ -51,8 +76,15 @@ public class ComandoGraficarCartas extends Comando{
                 rutaImagen = "/res/cards/" + cartaActual.toString() + ".png";
 
                 labelActual.setIcon( new ImageIcon(this.getClass().getResource(rutaImagen)) );
-                labelActual.setVisible(true);
             }
+        }
+    }
+    
+    private void enseñarCartas(JLabel[] labels, int cantCartas)
+    {
+        for (int i=0; i<cantCartas; i++)
+        {
+            labels[i].setVisible(true);
         }
     }
     
