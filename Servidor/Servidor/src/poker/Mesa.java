@@ -16,6 +16,7 @@ import servidor.ListenerComandos;
 import servidor.Servidor;
 
 public class Mesa implements ListenerComandos {
+    private int cantidadCambios;
 
     public String getNombre() {
         return nombre;
@@ -56,6 +57,7 @@ public class Mesa implements ListenerComandos {
         this.tipoJuego=tipo;
         this.cantidadJugadores = cantidadJugadores;
         this.cantidadApuestas = 0;
+        this.cantidadCambios = 0;
         
         for (int i=0; i<cantidadJugadores; i++)
         {
@@ -123,6 +125,12 @@ public class Mesa implements ListenerComandos {
         this.cantidadApuestas = 0;
     }
     
+    private void escucharCambios()
+    {
+        while (this.cantidadCambios < this.jugadores.size()) { }
+        this.cantidadCambios = 0;
+    }
+    
     public void notificarApuestas()
     {
         BetStatusDTO status = this.generarBetStatusDTO();
@@ -157,6 +165,7 @@ public class Mesa implements ListenerComandos {
         {
             this.servidor.enviarComando(jugador.getId(), "solicitarCarta", null);
         }
+        escucharCambios();
     }
     
     public BetStatusDTO generarBetStatusDTO()
@@ -234,6 +243,10 @@ public class Mesa implements ListenerComandos {
         if (comando.equals("apostar"))
         {
             this.cantidadApuestas++;
+        }
+        if (comando.equals("cambiarCarta"))
+        {
+            this.cantidadCambios++;
         }
     }
     
