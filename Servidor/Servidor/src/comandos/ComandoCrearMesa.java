@@ -35,11 +35,22 @@ public class ComandoCrearMesa extends Comando{
        ArrayList<Object> dato = (ArrayList<Object>) args;
        ArrayList<Object> respuesta = new ArrayList<>();
        Servidor serv = Servidor.getInstance();
+<<<<<<< HEAD
        respuesta.add(serv.crearMesa((Jugador)dato.get(POS_JUGADOR),
                               (String)dato.get(POS_NOMBRE),
                               Integer.parseInt((String)dato.get(POS_CANTIDAD)),
                               Integer.parseInt((String)dato.get(POS_TIPO))));
        serv.post((String)dato.get(POS_TIPO));
        return respuesta;
+=======
+       Jugador jugador = (Jugador)dato.get(POS_JUGADOR);
+       serv.post((String) dato.get(POS_NOMBRE)+jugador.getId());
+       String idMesa = serv.crearMesa(jugador,
+                              (String)dato.get(POS_NOMBRE),
+                              Integer.parseInt( (String) dato.get(POS_CANTIDAD) ),
+                              Integer.parseInt( (String) dato.get(POS_TIPO) ));
+       Servidor.getInstance().enviarComando(jugador.getId(), "mesaCreada", idMesa);
+       return null;
+>>>>>>> 349355b6dc2c09a2b8c3f52ccca35dd536cb3ae5
    }
 }

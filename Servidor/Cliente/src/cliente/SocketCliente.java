@@ -5,6 +5,7 @@
 package cliente;
 
 import comandos.Comando;
+import comandos.ComandoMesaCreada;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -66,6 +67,7 @@ public class SocketCliente extends Thread{
     private Map<String, Comando> inicializarComandos()
     {
         Map<String, Comando> res = new HashMap<>();
+        res.put(ComandoMesaCreada.COMANDO, new ComandoMesaCreada());
         return res;
     }
     
@@ -154,14 +156,18 @@ public class SocketCliente extends Thread{
         try {
             this.in = new ObjectInputStream(server.getInputStream());
             ArrayList<Object> datos;//Arreglo de datos recibidos.
-            while((input = in.readObject()) != null)
+            while (true)
             {
+<<<<<<< HEAD
                 
                 if(input instanceof String)
                 {
                     System.out.println("Es un string");
                 }
                 
+=======
+                input = in.readObject();
+>>>>>>> 349355b6dc2c09a2b8c3f52ccca35dd536cb3ae5
                 datos = (ArrayList<Object>) input;
                 if(datos != null)
                 {

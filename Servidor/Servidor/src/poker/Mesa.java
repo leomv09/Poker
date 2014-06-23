@@ -28,12 +28,12 @@ public class Mesa implements ListenerComandos {
     
     private final String id;
     private final Jugador creador;
-    private final Servidor servidor;
     private Deck deck;
     private PokerBet pokerBet;
     private final List<Jugador> jugadores;
     private final List<Carta> cartasMesa;
     private final List<Carta>[] cartasJugadores;
+    private final List<Mano> manos;
     private int dealer;
     private String nombre;
     private int tipoJuego;
@@ -48,7 +48,7 @@ public class Mesa implements ListenerComandos {
         this.creador = creador;
         this.pokerBet = bet;
         this.deck = new Deck(false);
-        this.servidor = Servidor.getInstance();
+        this.manos = new LinkedList<>();
         this.cartasMesa = new LinkedList<>();
         this.cartasJugadores = new List[cantidadJugadores];
         this.jugadores = new LinkedList<>();
@@ -68,7 +68,8 @@ public class Mesa implements ListenerComandos {
     
     public void crearJuego()
     {
-        switch(tipoJuego)
+        System.out.println(tipoJuego);
+        switch (tipoJuego)
         {
             case Constantes.JUEGO_HOLDEM:
                 this.juego = new Holdem(this);
@@ -86,8 +87,9 @@ public class Mesa implements ListenerComandos {
     {
         for (Jugador jugador : this.jugadores)
         {
-            this.servidor.enviarComando(jugador.getId(), "iniciarPartida", null);
+            Servidor.getInstance().enviarComando(jugador.getId(), "iniciarPartida", null);
         }
+        this.juego.jugar();
     }
     
     public void cambiarCartas(String idJugador, List<Carta> cartas)
@@ -147,12 +149,22 @@ public class Mesa implements ListenerComandos {
         this.cantidadCambios = 0;
     }
     
+    public List<Mano> generarManos()
+    {
+        this.manos.clear();
+        for (List<Carta> cartas : this.cartasJugadores)
+        {
+            this.manos.add( new Mano(cartas) );
+        }
+        return this.manos;
+    }
+    
     public void notificarApuestas()
     {
         BetStatusDTO status = this.generarBetStatusDTO();
         for (Jugador jugador : this.jugadores)
         {
-            this.servidor.enviarComando(jugador.getId(), "graficarApuestas", status);
+            Servidor.getInstance().enviarComando(jugador.getId(), "graficarApuestas", status);
         }
     }
     
@@ -161,7 +173,7 @@ public class Mesa implements ListenerComandos {
         for (Jugador current : this.jugadores)
         {
             CartasDTO status = this.generarCartasDTO(current);
-            this.servidor.enviarComando(current.getId(), "graficarCartas", status);
+            Servidor.getInstance().enviarComando(current.getId(), "graficarCartas", status);
         }
     }
     
@@ -170,7 +182,7 @@ public class Mesa implements ListenerComandos {
         this.pokerBet.iniciarRondaApuesta();
         for (Jugador jugador : this.jugadores)
         {
-            this.servidor.enviarComando(jugador.getId(), "solicitarApuesta", this.pokerBet.getbBlind());
+            Servidor.getInstance().enviarComando(jugador.getId(), "solicitarApuesta", this.pokerBet.getbBlind());
         }
         escucharApuestas();
     }
@@ -179,7 +191,7 @@ public class Mesa implements ListenerComandos {
     {
         for (Jugador jugador : this.jugadores)
         {
-            this.servidor.enviarComando(jugador.getId(), "solicitarCarta", null);
+            Servidor.getInstance().enviarComando(jugador.getId(), "solicitarCarta", null);
         }
         escucharCambios();
     }
@@ -191,7 +203,8 @@ public class Mesa implements ListenerComandos {
     
     public CartasDTO generarCartasDTO(Jugador jugador)
     {
-        return new CartasDTO(this.cartasMesa, jugador.getCartas());
+        int indiceJugador = this.jugadores.indexOf(jugador);
+        return new CartasDTO(this.cartasMesa, this.cartasJugadores[indiceJugador]);
     }
     
     public void agregarJugador(Jugador jugador)
@@ -251,10 +264,6 @@ public class Mesa implements ListenerComandos {
     }
     public List<Carta> getCartasMesa() {
         return cartasMesa;
-    }
-
-    public Servidor getServidor() {
-        return servidor;
     }
 
     public int getTipoJuego() {

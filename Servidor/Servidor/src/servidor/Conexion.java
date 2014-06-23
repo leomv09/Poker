@@ -118,6 +118,7 @@ public class Conexion extends Thread{
             while(corriendo)
             {
                 String nombreComando = (String) entrada.readObject();
+                System.out.println(nombreComando);
                 ArrayList<Object> argumentos = (ArrayList<Object>) entrada.readObject();
                 
                 for (ListenerComandos l : this.listeners)

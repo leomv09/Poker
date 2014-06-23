@@ -41,6 +41,8 @@ public class Holdem extends Juego {
             this.mesa.notificarApuestas();
             j++;
         }
+        
+        finalizarJuego();
     }
     
 }

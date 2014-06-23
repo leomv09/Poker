@@ -208,6 +208,7 @@ public class Servidor extends Thread implements ConstantesServ{
      * @param argumentos 
      */
     public void enviarComando(String idJugador,String comando,Object argumentos){
+        System.out.println("Comando enviado a " + idJugador + ": " + comando);
         Conexion con = getConexion(idJugador);
         con.enviarComando(comando, argumentos);
     }

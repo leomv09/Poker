@@ -2,6 +2,7 @@ package gui;
 
 import cliente.Cliente;
 import comandos.ComandoIniciarPartidaCliente;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -102,7 +103,7 @@ public class VentanaEspera extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonIniciarActionPerformed
-        List<Object> params = new LinkedList<>();
+        List<Object> params = new ArrayList<>();
         params.add(Cliente.getInstance().getidMesa());
         params.add(Cliente.getInstance().getidJugador());
         Cliente.getInstance().getsocketCliente().enviarComando("iniciarPartida", params);
