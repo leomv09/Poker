@@ -8,9 +8,10 @@
 
 package poker;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Jugador {
+public class Jugador implements Serializable{
     //Parametros de jugador
     String Id;
     int dinero;
