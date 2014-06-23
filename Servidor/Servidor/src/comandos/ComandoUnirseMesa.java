@@ -19,17 +19,21 @@ public class ComandoUnirseMesa extends Comando{
     private static final short POS_JUGADOR = 1;
     private static final short POS_IDMESA = 0;
     
+    @Override
     public Object ejecutar(Object args)
    {
        ArrayList<Object> dato = (ArrayList<Object>) args;
+       ArrayList<Object> respuesta = new ArrayList<>();
        Jugador jugador = (Jugador)dato.get(POS_JUGADOR);
        String idmesa = (String)dato.get(POS_IDMESA);
        
        Servidor serv = Servidor.getInstance();
        if(serv.unirJugador(idmesa, jugador)){
-           return 1;
+           respuesta.add(1);
+           return null;
        }
-       return -1;
+       respuesta.add(-1);
+       return null;
    }
     
 }

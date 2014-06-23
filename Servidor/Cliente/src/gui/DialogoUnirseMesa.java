@@ -72,7 +72,8 @@ public class DialogoUnirseMesa extends javax.swing.JDialog {
     
     public String getNombreMesa()
     {
-        return (String) this.listaMesas.getSelectedValue();
+        int index = this.listaMesas.getSelectedIndex();
+        return (String)this.mesas.get(index).getNombre();
     }
     
     public int getEstado()
