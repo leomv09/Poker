@@ -4,6 +4,12 @@
  */
 package comandos;
 
+import java.util.ArrayList;
+import java.util.List;
+import poker.Carta;
+import poker.Mesa;
+import servidor.Servidor;
+
 /**
  *
  * @author Leo
@@ -14,7 +20,14 @@ public class ComandoCambiarCarta extends Comando{
 
    public Object ejecutar(Object args)
    {
-       //CartasDTO - envío cartasDTO
+       List<Object> dato = (ArrayList<Object>) args;
+       
+       String idMesa = (String) dato.get(0);
+       String idJugador = (String) dato.get(1);
+       List<Carta> cartas = (List<Carta>) dato.get(2);
+       
+       Mesa mesa = Servidor.getInstance().getMesa(idMesa);
+       mesa.cambiarCartas(idJugador, cartas);
        return null;
    }
     

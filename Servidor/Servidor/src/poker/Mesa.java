@@ -90,6 +90,22 @@ public class Mesa implements ListenerComandos {
         }
     }
     
+    public void cambiarCartas(String idJugador, List<Carta> cartas)
+    {
+        int index = this.getIndexJugador(idJugador);
+        List<Carta> cartasJugador = this.cartasJugadores[index];
+        Iterator<Carta> iter = this.deck.iterador();
+        
+        int indiceCarta;
+        for (Carta carta : cartas)
+        {
+            if (iter.hasNext()) {
+                indiceCarta = cartasJugador.indexOf(carta);
+                cartasJugador.set(indiceCarta, iter.next());   
+            }
+        }
+    }
+    
     public void repartirCartasJugadores(int cantidadCartas)
     {
         Iterator<Carta> iter = deck.iterador();
@@ -195,6 +211,18 @@ public class Mesa implements ListenerComandos {
         }
         
         return null;
+    }
+    
+    private int getIndexJugador(String idJugador)
+    {
+        for (int i=0; i<this.jugadores.size(); i++)
+        {
+            if (this.jugadores.get(i).getId().equals(idJugador))
+            {
+                return i;
+            }
+        }
+        return -1;
     }
 
     public String getId()
