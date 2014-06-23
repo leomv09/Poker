@@ -37,7 +37,7 @@ public class ComandoApostar extends Comando{
             System.out.println("Mesa: "+idMesa);
             System.out.println("Cantidad apostar: "+cantidadApuesta);
             Mesa mesa = Servidor.getInstance().getMesa(idMesa);
-            mesa.getPokerBet().almacenarApuesta(mesa.getIndexJugador(jugador), cantidadApuesta);
+            //mesa.getPokerBet().almacenarApuesta(mesa.getIndexJugador(jugador), cantidadApuesta);
         }
 
        return null;

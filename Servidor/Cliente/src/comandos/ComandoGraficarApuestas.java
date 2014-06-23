@@ -43,7 +43,7 @@ public class ComandoGraficarApuestas extends Comando{
             msj += "Pot: " + obtenerPot(rondaApuestas) + "\n"; 
 
             this.frame.setRondaApuestas(msj);
-            obtenerSidePots(rondaApuestas, jugadores);
+            //obtenerSidePots(rondaApuestas, jugadores);
         }
         return null;
     }
