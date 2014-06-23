@@ -24,40 +24,22 @@ public class Mano implements Comparable<Mano> {
         this.cartas = cartas;
     }
     
-    public List<List<Carta>> printCombination(List<Carta> l, int n, int r)
-    { 
-        List<Carta> data = new ArrayList<>();
-        List<List<Carta>> res = new ArrayList<>();
- 
-        // Print all combination using temprary array 'data[]'
-        combinationUtil(res, l, data, 0, l.size()-1, 0, r);
-        return res;
-    }
-
-    /* arr[]  ---> Input Array
-       data[] ---> Temporary array to store current combination
-       start & end ---> Staring and Ending indexes in arr[]
-       index  ---> Current index in data[]
-       r ---> Size of a combination to be printed */
-    private void combinationUtil(List<List<Carta>> res, List<Carta> l, List<Carta> data, int start, int end, int index, int r)
+    public static Mano bestHand(List<Carta> cartas)
     {
-        // Current combination is ready to be printed, print it
-        if (index == r)
+        Permutations per = new Permutations(cartas, 5);
+        Mano bestHand = new Mano(per.next());
+        Mano actualHand;
+        
+        while (per.hasNext())
         {
-            res.add(data);
-            data = new ArrayList<>();
-            return;
+            actualHand = new Mano(per.next());
+            if (actualHand.compareTo(bestHand) > 0)
+            {
+                bestHand = actualHand;
+            }
         }
-
-        // replace index with all possible elements. The condition
-        // "end-i+1 >= r-index" makes sure that including one element
-        // at index will make a combination with remaining elements
-        // at remaining positions
-        for (int i=start; i<=end && end-i+1 >= r-index; i++)
-        {
-            data.add(index, l.get(i));
-            combinationUtil(res, l, data, i+1, end, index+1, r);
-        }
+        
+        return bestHand;
     }
     
     public void ordenarValor()
@@ -178,17 +160,33 @@ public class Mano implements Comparable<Mano> {
     private int cantidadDeRepeticiones(int numCartas)
     {
         this.ordenarValor();
-        int frecuencia = 0;
+                int frecuencia = 0;
         int repeticiones = 0;
         
-        while (frecuencia <= cartas.size())
+        List<Carta> c = new ArrayList<>(cartas);
+        for (Carta ca : c)
+        {
+            frecuencia = Collections.frequency(c, ca);
+            if (frecuencia > 0 && frecuencia%numCartas == 0)
+            {
+                repeticiones += frecuencia/numCartas;
+                boolean f = true;
+                while (f)
+                {
+                    f = c.remove(ca);
+                }
+            };
+        }
+       
+        /*
+        while (frecuencia < cartas.size())
         {
             frecuencia += Collections.frequency(cartas, cartas.get(frecuencia));
-            if (frecuencia%numCartas == 0)
+            if (frecuencia > 0 && frecuencia%numCartas == 0)
             {
                 repeticiones += frecuencia/numCartas;
             }
-        }
+        }*/
         return repeticiones;
     }
     
@@ -260,5 +258,16 @@ public class Mano implements Comparable<Mano> {
         {
             return compare;
         }
+    }
+
+    @Override
+    public String toString()
+    {
+        String res="";
+        for (Carta c : this.cartas)
+        {
+            res += c.toString() + " ";
+        }
+        return res;
     }
 }

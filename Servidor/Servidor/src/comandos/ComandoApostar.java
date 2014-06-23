@@ -26,6 +26,7 @@ public class ComandoApostar extends Comando{
     @Override
    public Object ejecutar(Object args)
    {
+
        if(args != null)
        {
             ArrayList<Object> datos = (ArrayList<Object>) args;
@@ -39,7 +40,6 @@ public class ComandoApostar extends Comando{
             mesa.getPokerBet().almacenarApuesta(mesa.getIndexJugador(jugador), cantidadApuesta);
         }
 
-       //devuelve null
        return null;
    }
     

@@ -17,11 +17,11 @@ public class DialogoCambiarCarta extends javax.swing.JDialog {
     
     public void establecerCartas(JLabel[] cartas)
     {
-        this.cartaJugador1 = cartas[0];
-        this.cartaJugador2 = cartas[1];
-        this.cartaJugador3 = cartas[2];
-        this.cartaJugador4 = cartas[3];
-        this.cartaJugador5 = cartas[4];
+        this.cartaJugador1.setIcon(cartas[0].getIcon());
+        this.cartaJugador2.setIcon(cartas[1].getIcon());
+        this.cartaJugador3.setIcon(cartas[2].getIcon());
+        this.cartaJugador4.setIcon(cartas[3].getIcon());
+        this.cartaJugador5.setIcon(cartas[4].getIcon());
     }
     
     private JCheckBox[] obtenerCheckbox()

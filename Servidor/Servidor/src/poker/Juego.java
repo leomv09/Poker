@@ -60,7 +60,7 @@ public abstract class Juego {
             {
                 param = "perdedor";
             }
-            Servidor.getInstance().enviarComando(jugadores.get(i).getId(), "finPartida", param);
+            Servidor.getInstance().enviarComando(jugadores.get(i).getId(), "finPartida", param + " " + manos.get(i).toString());
         }
     }
     

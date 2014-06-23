@@ -163,7 +163,8 @@ public class Mesa implements ListenerComandos {
         this.manos.clear();
         for (List<Carta> cartas : this.cartasJugadores)
         {
-            this.manos.add( new Mano(cartas) );
+            cartas.addAll(this.cartasMesa);
+            this.manos.add( Mano.bestHand(cartas) );
         }
         return this.manos;
     }
