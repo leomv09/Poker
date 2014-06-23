@@ -26,6 +26,8 @@ public class VentanaInicio extends javax.swing.JFrame {
             serverIp = JOptionPane.showInputDialog(this, "Server IP");
             isConnected = Cliente.getInstance().getsocketCliente().establecerConexion(serverIp);
         }
+        
+        Cliente.getInstance().getsocketCliente().start();
     }
 
     private String validarDatos()
