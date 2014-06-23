@@ -6,6 +6,7 @@ import comandos.ComandoNotificarMesas;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import poker.Constantes;
+import poker.Jugador;
 import poker.MesaDTO;
 
 public class VentanaInicio extends javax.swing.JFrame {
@@ -151,7 +152,7 @@ public class VentanaInicio extends javax.swing.JFrame {
             {
                 this.setVisible(false);
                 this.dispose();
-                
+                Jugador jugador = new Jugador(this.textoIdUsuario.getText(), 50);//Se crea el jugador.
                 VentanaEspera frame = new VentanaEspera(true);
                 frame.establecerNombreMesa( dialog.getNombreMesa() );
                 //Se establecen los datos a enviar al servidor.
@@ -160,6 +161,8 @@ public class VentanaInicio extends javax.swing.JFrame {
                 datoEnvio.add(Integer.toString(dialog.getMaxJugadores()));//Cantidad máxima de juagadores.
                 datoEnvio.add(Integer.toString(dialog.getTipoJuego()));//Entero indicando el tipo de juego.
                 //Se envía la petición al servidor.
+                Cliente.getInstance().setJugador(jugador);
+                Cliente.getInstance().getsocketCliente().enviarDato(jugador);//Se envía el juagador al servidor.
                 Cliente.getInstance().getsocketCliente().enviarComando("crearMesa", datoEnvio);//Pasar arreglo a object
                 frame.setVisible(true);
             }
@@ -186,6 +189,7 @@ public class VentanaInicio extends javax.swing.JFrame {
                 this.dispose();
                 
                 VentanaEspera frame = new VentanaEspera(false);
+                Jugador jugador = new Jugador(this.textoIdUsuario.getText(), 50);//Se crea el jugador.
                 MesaDTO mesaSeleccionada = dialog.getMesa();
                 Cliente.getInstance().setidMesa(mesaSeleccionada.getId());
                 frame.establecerNombreMesa(mesaSeleccionada.getNombre());
@@ -193,6 +197,8 @@ public class VentanaInicio extends javax.swing.JFrame {
                 ArrayList<String> datoEnvio = new ArrayList<>();
                 datoEnvio.add(mesaSeleccionada.getId());//Id de la mesa.
                 //Se envía la petición al servidor.
+                Cliente.getInstance().setJugador(jugador);
+                Cliente.getInstance().getsocketCliente().enviarDato(jugador);//Se envía el jugador al servidor.
                 Cliente.getInstance().getsocketCliente().enviarComando("unirseMesa", datoEnvio);
                 frame.setVisible(true);
             }

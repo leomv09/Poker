@@ -33,6 +33,15 @@ public class Cliente {
     }
     
     
+    
+    /**
+     * Método que establece el atributo jugador.
+     * @param jugador Objeto de tipo jugador.
+     */
+    public void setJugador(Jugador jugador)
+    {
+        this.jugador = jugador;
+    }
     private static void createInstance()
     {
         if(instance == null)
