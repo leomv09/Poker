@@ -20,7 +20,7 @@ public class ComandoIniciarPartida extends Comando{
     
     public Object ejecutar(Object args)
    {
-       ArrayList<Object> dato = new ArrayList<>();
+       ArrayList<Object> dato = (ArrayList<Object>) args;
        String idmesa = (String) dato.get(POS_MESA);
        Servidor serv = Servidor.getInstance();
        Mesa mesa = serv.getMesa(idmesa);
