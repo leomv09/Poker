@@ -127,6 +127,7 @@ public class ServerLog extends javax.swing.JFrame {
         ServerLog ventana = new ServerLog();
         ventana.setVisible(true);
         ventana.post(".::Servidor Iniciado::.");
+        ventana.servidor.runServer();
     }
     
     /**

@@ -48,6 +48,7 @@ public class Servidor extends Thread implements ConstantesServ{
      */
     private Servidor(){
         mesas = new ArrayList<>();
+        conexiones = new ArrayList<>();
     }
     
     //Métodos
@@ -98,7 +99,7 @@ public class Servidor extends Thread implements ConstantesServ{
         try
         {
             //Crea el socket que va a estar escuchando las peticiones
-            serv = new ServerSocket(7777);
+            serv = new ServerSocket(2020);
             
             post(".:: Servidor Activo");
             

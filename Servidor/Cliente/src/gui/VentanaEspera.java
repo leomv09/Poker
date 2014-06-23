@@ -56,6 +56,11 @@ public class VentanaEspera extends javax.swing.JFrame {
 
         botonIniciar.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         botonIniciar.setText("Iniciar");
+        botonIniciar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonIniciarActionPerformed(evt);
+            }
+        });
 
         spinner.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         spinner.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/icons/spinner.gif"))); // NOI18N
@@ -93,6 +98,10 @@ public class VentanaEspera extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void botonIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonIniciarActionPerformed
+        Cliente.getInstance().getsocketCliente().enviarComando("iniciarPartida", null);
+    }//GEN-LAST:event_botonIniciarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonIniciar;
