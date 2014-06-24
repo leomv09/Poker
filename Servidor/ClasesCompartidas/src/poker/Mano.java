@@ -159,34 +159,21 @@ public class Mano implements Comparable<Mano> {
     
     private int cantidadDeRepeticiones(int numCartas)
     {
-        this.ordenarValor();
+                this.ordenarValor();
                 int frecuencia = 0;
         int repeticiones = 0;
         
-        List<Carta> c = new ArrayList<>(cartas);
-        for (Carta ca : c)
-        {
-            frecuencia = Collections.frequency(c, ca);
-            if (frecuencia > 0 && frecuencia%numCartas == 0)
-            {
-                repeticiones += frecuencia/numCartas;
-                boolean f = true;
-                while (f)
-                {
-                    f = c.remove(ca);
-                }
-            };
-        }
-       
-        /*
+        int index;
+        
         while (frecuencia < cartas.size())
         {
-            frecuencia += Collections.frequency(cartas, cartas.get(frecuencia));
-            if (frecuencia > 0 && frecuencia%numCartas == 0)
+            index = Collections.frequency(cartas, cartas.get(frecuencia));
+            if (index > 0 && index%numCartas == 0)
             {
-                repeticiones += frecuencia/numCartas;
+                repeticiones += index/numCartas;
             }
-        }*/
+            frecuencia += index;
+        }
         return repeticiones;
     }
     
